@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: 讨论
-    url: https://github.com/programmingWTF/nuaaagent/discussions
+    url: https://github.com/programmingWTF/NUAAgent/discussions
     about: 在此提问与交流想法
   - name: 安全
-    url: https://github.com/programmingWTF/nuaaagent/security/policy
+    url: https://github.com/programmingWTF/NUAAgent/security/policy
     about: 请在此报告安全漏洞
