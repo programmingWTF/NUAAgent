@@ -91,6 +91,7 @@ async function handleChat(rq, rs, url) {
 
   // 上游真实地址：<upstream=>/chat/completions
   const upstreamUrl = UPSTREAM + '/chat/completions';
+  console.error(new Date().toISOString() + ' [nuaa-proxy] chat请求 stream=' + stream + ' body=' + bodyStr.length);
 
   // 流式：立即回 SSE 头 + 15s 心跳，避免中间层（如 clash 60 秒响应超时）掐断长思考请求
   if (stream) {
@@ -112,13 +113,26 @@ async function handleChat(rq, rs, url) {
       } catch {}
     };
     try {
-      const { status, bodyStream, proc } = await curlStream(upstreamUrl, sanitized, { proxyUrl: PROXY || undefined, apiKey });
-      if (status !== 200) {
-        try { proc.kill(); } catch {}
-        console.error('[nuaa-proxy] 上游状态码 ' + status + '（流式）');
-        sseEnd('upstream returned status ' + status);
+      let triesLeft = 3;
+      let curlRes = null;
+      while (triesLeft) {
+        curlRes = await curlStream(upstreamUrl, sanitized, { proxyUrl: PROXY || undefined, apiKey });
+        if (curlRes.status === 200) break;
+        if (' 502 503 504 '.indexOf(' ' + curlRes.status + ' ') === -1) {
+          console.error(new Date().toISOString() + ' [nuaa-proxy] 上游状态码 ' + curlRes.status + '（流式）');
+          sseEnd('upstream returned status ' + curlRes.status);
+          return;
+        }
+        try { curlRes.proc.kill(); } catch {}
+        triesLeft = triesLeft - 1;
+        console.error(new Date().toISOString() + ' [nuaa-proxy] 上游状态码 ' + curlRes.status + '（流式，自动重试，剩余' + triesLeft + '次）');
+        if (triesLeft) await new Promise(function(rr){ setTimeout(rr, 2000); });
+      }
+      if (!curlRes || curlRes.status !== 200) {
+        sseEnd('upstream returned status ' + (curlRes ? curlRes.status : 0));
         return;
       }
+      const { status, bodyStream, proc } = curlRes;
       const onClose = () => { try { proc.kill(); } catch {} };
       rs.on('close', onClose);
       bodyStream.on('end', () => rs.removeListener('close', onClose));
@@ -137,7 +151,21 @@ async function handleChat(rq, rs, url) {
   // 非流式：等待上游响应头再回传
   let curl;
   try {
-    curl = await curlStream(upstreamUrl, sanitized, { proxyUrl: PROXY || undefined, apiKey });
+    let triesLeft = 3;
+    while (triesLeft) {
+      curl = await curlStream(upstreamUrl, sanitized, { proxyUrl: PROXY || undefined, apiKey });
+      if (curl.status === 200) break;
+      if (' 502 503 504 '.indexOf(' ' + curl.status + ' ') === -1) break;
+      try { curl.proc.kill(); } catch {}
+      triesLeft = triesLeft - 1;
+      console.error(new Date().toISOString() + ' [nuaa-proxy] 上游状态码 ' + curl.status + '（非流式，自动重试，剩余' + triesLeft + '次）');
+      if (triesLeft) await new Promise(function(rr){ setTimeout(rr, 2000); });
+    }
+    if (curl.status !== 200) {
+      if (' 502 503 504 '.indexOf(' ' + curl.status + ' ') !== -1) {
+        return json(rs, 502, { error: { message: 'upstream returned status ' + curl.status + ' after retries', type: 'upstream_error' } });
+      }
+    }
   } catch (e) {
     console.error('[nuaa-proxy] curl failed: ' + e.message);
     return json(rs, 502, { error: { message: 'upstream request failed: ' + e.message, type: 'upstream_error' } });
