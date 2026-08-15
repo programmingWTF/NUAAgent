@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  easyconnect:
+    image: hagb/docker-easyconnect:7.6.7
+    container_name: easyconnect
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    environment:
+      - EC_VER=7.6.7
+      - PASSWORD=nuaaagent   # 请改成你自己的网页 VNC 登录密码
+      - USE_NOVNC=1          # 启用网页版 VNC，无需安装 VNC 客户端
+    ports:
+      - "127.0.0.1:1080:1080"  # SOCKS5 代理端口
+      - "127.0.0.1:8888:8888"  # HTTP 代理端口（供 NUAAgent 使用）
+      - "127.0.0.1:8080:8080"  # 网页 VNC 管理界面
+    volumes:
+      - ./ecdata:/root          # 保存登录状态

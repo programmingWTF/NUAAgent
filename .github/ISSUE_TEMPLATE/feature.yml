@@ -1,7 +1,7 @@
 name: 功能请求
 description: 为这个项目提一个想法
 title: "[Feature]: "
-labels: ["enhancement"]
+labels: ["✨ 功能增强"]
 body:
   - type: markdown
     attributes:

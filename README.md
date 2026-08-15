@@ -10,6 +10,12 @@
 - 适配：`dsh-adapter/` 南航定制适配层，对接南航深信服网关后的免费模型 API（`token.nuaa.edu.cn`），内置 WAF/内容过滤绕过与代理回退。
 - 约束：南航免费 API 模型并发量为 **1**，本发行版已在系统提示词中**严格声明绝对不允许启用子代理**（见下文）。
 
+> **📢 重要提示**
+>
+> - 🖥️ **桌面版正在开发中**，当前请先使用网页版（Web GUI）。
+> - 🧪 **当前为测试版**，很多功能极不稳定；遇到问题可换模型重试，详见下方「常见问题」与「联系与支持」。
+> - 🗓️ **免费活动截止 2026 年 8 月 31 日**，抓紧时间使用。
+
 ## 功能特性
 
 - Web GUI（默认 `http://127.0.0.1:3080`）：流式输出、会话持久化、文件树/编辑器、工具调用可视化、审批弹窗、计划模式、任务列表。
@@ -46,7 +52,26 @@ NUAAgent/
 - Corepack（启用后获得 pnpm 11.7.0）：Node 自带，执行一次 `corepack enable` 即可
 - Windows / macOS / Linux（Windows 下代理使用 PowerShell 工具链）
 
+## 校外访问（EasyConnect）
+
+校内可直接访问；**校外需先通过 EasyConnect 接入校园网**。我们提供了一键 Docker 部署方案：
+
+- 📖 图文教程：[docs/easyconnect.md](docs/easyconnect.md)
+- ⚡ 自动配置脚本：`scripts/easyconnect-setup.ps1`（Windows）/ `scripts/easyconnect-setup.sh`（macOS / Linux）
+- 🐳 手动部署：[easyconnect/docker-compose.yml](easyconnect/docker-compose.yml)
+
+启动 EasyConnect 后，把 `config.json` 的 `proxy` 填为 `http://127.0.0.1:8888` 即可。
+
 ## 快速开始
+
+### 0. 获取 API Key 与选择模型
+
+1. 打开 [模型管理](https://agent.nuaa.edu.cn/management/model)，挑选你需要的模型。
+   - 目前（2026 年 8 月 31 日前）理论上**所有模型均可使用**；
+   - 推荐：`deepseek-v4-pro-202606`、`kimi-k3`。
+2. 打开 [我的模型](https://agent.nuaa.edu.cn/resource/mymodel)，获取你的 **API Key** 与 **Base URL**。
+
+> `apiBaseUrl` 填平台给出的 Base URL（通常为 `https://token.nuaa.edu.cn/v1`），`apiKey` 填平台生成的个人密钥，**切勿泄露或提交到仓库**。
 
 ### 1. 写入 API 配置（一次性）
 
@@ -170,6 +195,7 @@ npm run dev:web       # 可选：另开终端跑客户端插件 HMR watcher
 ## 常见问题（FAQ）
 
 - **`pi-ai provider "nuaa" has no configured model "X"`**：默认模型不在 provider 的 `models` 列表里。0.2.0 起启动器已改为合并写入，正常不会再出现；若手工改过 `~/.dsh/settings.yaml`，把该模型补进 `models` 即可。
+- **某个模型执行到一半报错、且无法继续**：换一个模型试试。我们测试时偶尔遇到该问题，正在排查中。
 - **429 / 并发限制报错**：并发量为 1。关闭多余的会话窗口与后台任务，稍后重试；不要并行发问。
 - **校外访问失败**：`proxy` 填 EasyConnect（`http://127.0.0.1:8888`）；注意 EasyConnect 自带 WAF 对超大请求体有额外拦截，条件许可时校内直连。
 - **端口被占用**：`npm run nuaagent:web -- --port 3081` 换端口，或先结束占用进程。
@@ -179,6 +205,12 @@ npm run dev:web       # 可选：另开终端跑客户端插件 HMR watcher
 
 - 默认文件沙箱为 `workspace-write`、审批策略为 `ask`（敏感操作弹窗确认）。放开 `yolo`/全量写权限前请先理解风险。
 - 南航 API 为学校提供的免费服务，请遵守学校使用条款；`apiKey` 属个人凭证，**不要**提交 `~/.nuaagent/config.json` 或 `~/.dsh/settings.yaml` 到任何仓库。
+
+## 联系与支持
+
+- 遇到任何问题，欢迎访问我的个人网站 [liguiyu.com](https://liguiyu.com)，页面最下方有联系方式；很乐意为同学解答问题、提供帮助。
+- 本项目从七月末做到八月中旬，制作不易；免费活动目前**只到 2026 年 8 月 31 日**，请大家抓紧时间使用。
+- 当前为**测试版**，很多功能极不稳定；不过可以充当大家对冲 API 服务涨价的一个途径。
 
 ## 许可证与致谢
 

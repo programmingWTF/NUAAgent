@@ -5,6 +5,12 @@
 
 ## [未发布]
 
+### 新增
+
+- 仓库标准化：贡献指南、安全策略、行为准则、愿景、第三方声明、AI 代理指引（`AGENTS.md` / `CLAUDE.md`）、`.github/` 议题/PR 模板与 CI 工作流。
+- 校外访问一键部署：`easyconnect/` Docker 方案、`docs/easyconnect.md` 图文教程、`scripts/easyconnect-setup.{ps1,sh}` 自动配置脚本。
+- README 补充：获取 API Key 与模型选择指引、测试版与活动截止说明、联系与支持。
+
 ## [0.2.0]
 
 ### 新增

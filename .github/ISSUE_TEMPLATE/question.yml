@@ -1,7 +1,7 @@
 name: 问题咨询
 description: 就这个项目提问
 title: "[Question]: "
-labels: ["question"]
+labels: ["❓ 问题"]
 body:
   - type: markdown
     attributes:
