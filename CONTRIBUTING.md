@@ -19,7 +19,7 @@
 ## Issue 约定
 
 - 使用 Issue 表单：缺陷报告、功能请求、问题咨询。
-- 用对应类型标签（`bug` / `enhancement` / `documentation` / `question`）与优先级（`P0`–`P3`）标记你的 Issue。
+- 用对应类型标签（`🐛 缺陷` / `✨ 功能增强` / `📚 文档` / `❓ 问题`）与优先级（`🔴 P0`–`🟢 P3`）标记你的 Issue；完整标签体系见 [LABELS.md](LABELS.md)。
 
 ## 提交信息风格
 
