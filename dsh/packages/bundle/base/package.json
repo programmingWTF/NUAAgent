@@ -1,0 +1,128 @@
+{
+  "name": "@nuaagent/base",
+  "description": "The shared dsh core as a profile bundle: every profile's first patch layer, inserting the base plugin rows over the empty profile root",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/bundle/base"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "cordis.patch.yml",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "@nuaagent/cordis-plugin-hmr": "workspace:^",
+    "@nuaagent/cordis-plugin-timer": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-default-model": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/attachment-local": "workspace:^",
+    "@nuaagent/shell-env": "workspace:^",
+    "@nuaagent/bash-sandbox": "workspace:^",
+    "@nuaagent/command-compact": "workspace:^",
+    "@nuaagent/command-feedback": "workspace:^",
+    "@nuaagent/command-goal": "workspace:^",
+    "@nuaagent/commands": "workspace:^",
+    "@nuaagent/compaction-basic": "workspace:^",
+    "@nuaagent/compaction-tool-result-pruner": "workspace:^",
+    "@nuaagent/credentials-local": "workspace:^",
+    "@nuaagent/fs-local": "workspace:^",
+    "@nuaagent/fs-observation-policy": "workspace:^",
+    "@nuaagent/fs-sandbox": "workspace:^",
+    "@nuaagent/goal": "workspace:^",
+    "@nuaagent/goal-round-driver": "workspace:^",
+    "@nuaagent/api-gateway": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/llm-deepseek": "workspace:^",
+    "@nuaagent/llm-pi-ai": "workspace:^",
+    "@nuaagent/llm-retry": "workspace:^",
+    "@nuaagent/permission-presets": "workspace:^",
+    "@nuaagent/plan-mode": "workspace:^",
+    "@nuaagent/pwsh-sandbox": "workspace:^",
+    "@nuaagent/repeat-tool-reminder": "workspace:^",
+    "@nuaagent/sandbox-local": "workspace:^",
+    "@nuaagent/sandbox-policy": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/session-checkpoint-policy": "workspace:^",
+    "@nuaagent/session-persistence-jsonl": "workspace:^",
+    "@nuaagent/session-projection": "workspace:^",
+    "@nuaagent/session-query-sqlite": "workspace:^",
+    "@nuaagent/session-telemetry-otel": "workspace:^",
+    "@nuaagent/session-title": "workspace:^",
+    "@nuaagent/session-title-first-prompt-llm": "workspace:^",
+    "@nuaagent/settings-file": "workspace:^",
+    "@nuaagent/skill": "workspace:^",
+    "@nuaagent/skill-badge": "workspace:^",
+    "@nuaagent/skill-filesystem": "workspace:^",
+    "@nuaagent/spill-local": "workspace:^",
+    "@nuaagent/spill-policy": "workspace:^",
+    "@nuaagent/subagent": "workspace:^",
+    "@nuaagent/subagent-fork-in-process": "workspace:^",
+    "@nuaagent/subagent-spawn-in-process": "workspace:^",
+    "@nuaagent/subprocess-local": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/jobs-local": "workspace:^",
+    "@nuaagent/tool-call-timeout-policy": "workspace:^",
+    "@nuaagent/token-meter": "workspace:^",
+    "@nuaagent/tool-bash": "workspace:^",
+    "@nuaagent/tool-fs": "workspace:^",
+    "@nuaagent/tool-fs-search": "workspace:^",
+    "@nuaagent/tool-goal": "workspace:^",
+    "@nuaagent/tool-pwsh": "workspace:^",
+    "@nuaagent/tool-ralph": "workspace:^",
+    "@nuaagent/tool-skill": "workspace:^",
+    "@nuaagent/tool-str-replace-editor": "workspace:^",
+    "@nuaagent/tool-subagent": "workspace:^",
+    "@nuaagent/tool-subagent-control": "workspace:^",
+    "@nuaagent/tool-subagent-report": "workspace:^",
+    "@nuaagent/tool-jobs": "workspace:^",
+    "@nuaagent/tool-todo": "workspace:^",
+    "@nuaagent/tool-web": "workspace:^",
+    "@nuaagent/tool-workflow": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/typert-loader": "workspace:^",
+    "@nuaagent/typert-registry": "workspace:^",
+    "@nuaagent/user-approval": "workspace:^",
+    "@nuaagent/user-questions": "workspace:^",
+    "@nuaagent/web": "workspace:^",
+    "@nuaagent/web-search-deepseek": "workspace:^",
+    "@nuaagent/workflow-worker-thread": "workspace:^",
+    "@nuaagent/agent-instructions": "workspace:^"
+  },
+  "peerDependencies": {
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

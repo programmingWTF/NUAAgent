@@ -1,0 +1,81 @@
+{
+  "name": "@nuaagent/client-locale",
+  "description": "Locale plugin: Host-backed zh/en preference, browser-derived fallback, locale snapshots, and typed namespace dictionaries",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/client/locale"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@nuaagent/client-connection",
+        "@nuaagent/client-runtime",
+        "@nuaagent/client-ui-settings",
+        "@nuaagent/api-remotes"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/api-remotes": "workspace:^",
+    "@nuaagent/client-connection": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-settings": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/api-remotes": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-settings": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@types/react": "~18.3.1",
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "@nuaagent/settings": "workspace:^",
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  }
+}

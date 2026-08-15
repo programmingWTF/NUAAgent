@@ -1,0 +1,53 @@
+name: 缺陷报告
+description: 报告一个 bug 帮助我们改进
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你花时间填写缺陷报告！
+  - type: textarea
+    id: description
+    attributes:
+      label: 描述这个 bug
+      description: 清晰简洁地描述这个 bug 是什么。
+      placeholder: 告诉我们发生了什么
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      description: 我们如何复现这个问题？
+      placeholder: |
+        1. 打开 '...'
+        2. 点击 '...'
+        3. 看到错误
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 你原本期望发生什么？
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境信息
+      description: 请补全以下信息。
+      value: |
+        - 操作系统：[如 Windows 11 / macOS 14 / Ubuntu 24.04]
+        - 版本 / 提交：[如 v0.2.0 / abc1234]
+        - 运行时：[如 Node 24 / Node 22]
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 确认
+      options:
+        - label: 我已搜索过已有 issue，确认这不是重复提交
+          required: true

@@ -1,0 +1,61 @@
+{
+  "name": "@nuaagent/tool-lsp",
+  "description": "Model-facing lsp tool over the NUAAgent LSP capability seam (ctx.lsp) — one read-only tool with goToDefinition/findReferences/goToImplementation/hover operations, one-based UTF-16 cursor coordinates, bounded location rendering, and hover normalization",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/lsp/tool-lsp"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/lsp": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/timeout": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "dependencies": {
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/fs-local": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/lsp": "workspace:^",
+    "@nuaagent/lsp-stdio": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/subprocess-local": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/timeout": "workspace:^",
+    "@nuaagent/tool-call-timeout-policy": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

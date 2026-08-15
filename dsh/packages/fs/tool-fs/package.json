@@ -1,0 +1,70 @@
+{
+  "name": "@nuaagent/tool-fs",
+  "description": "Model-facing filesystem tools (read, write, edit) over the NUAAgent filesystem seam (ctx.fs)",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/fs/tool-fs"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "diff": "^9.0.0",
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "peerDependencies": {
+    "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/fs": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/sandbox": "workspace:^",
+    "@nuaagent/sandbox-policy": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/user-approval": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/agent-loop-testkit": "workspace:^",
+    "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/fs": "workspace:^",
+    "@nuaagent/fs-local": "workspace:^",
+    "@nuaagent/fs-observation-policy": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/llm-deepseek": "workspace:^",
+    "@nuaagent/sandbox": "workspace:^",
+    "@nuaagent/sandbox-policy": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/user-approval": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

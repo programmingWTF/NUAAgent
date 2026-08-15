@@ -1,0 +1,70 @@
+{
+  "name": "@nuaagent/headless",
+  "description": "The dsh one-shot bundle: a direct core Agent/Session runner over dsh-base with no Host, HTTP, or browser layer",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/bundle/headless"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./startup": {
+      "types": "./lib/types/startup.d.ts",
+      "default": "./lib/startup.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/startup.js",
+    "cordis.patch.yml",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "@nuaagent/cmdline": "workspace:^",
+    "@nuaagent/code-runtime-worker-thread": "workspace:^",
+    "@nuaagent/schemastery": "workspace:^",
+    "commander": "^15.0.0"
+  },
+  "peerDependencies": {
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-default-model": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-default-model": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

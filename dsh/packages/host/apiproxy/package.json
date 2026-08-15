@@ -1,0 +1,94 @@
+{
+  "name": "@nuaagent/host-apiproxy",
+  "description": "API gateway: the ApiProxy contract (api/), the fetch carrier pair (fetch/), and the host-side gateway plugin providing ctx.apiProxy",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/host/apiproxy"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json",
+    "./api": {
+      "types": "./lib/types/api/index.d.ts",
+      "default": "./lib/types/api/index.js"
+    },
+    "./api/*": {
+      "types": "./lib/types/api/*.d.ts",
+      "default": "./lib/types/api/*.js"
+    },
+    "./client": {
+      "types": "./lib/types/fetch/client.d.ts",
+      "default": "./lib/types/fetch/client.js"
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-default-model": "workspace:^",
+    "@nuaagent/api-remotes": "workspace:^",
+    "@nuaagent/brand": "workspace:^",
+    "@nuaagent/commands": "workspace:^",
+    "@nuaagent/credentials": "workspace:^",
+    "@nuaagent/goal": "workspace:^",
+    "@nuaagent/host-directory-picker": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/native-command": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/session-persistence": "workspace:^",
+    "@nuaagent/session-projection": "workspace:^",
+    "@nuaagent/session-projection-cache": "workspace:^",
+    "@nuaagent/session-query": "workspace:^",
+    "@nuaagent/session-title": "workspace:^",
+    "@nuaagent/settings": "workspace:^",
+    "@nuaagent/skill": "workspace:^",
+    "@nuaagent/subagent": "workspace:^",
+    "@nuaagent/jobs": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/user-approval": "workspace:^",
+    "@nuaagent/user-questions": "workspace:^",
+    "@nuaagent/workspace": "workspace:^",
+    "@nuaagent/schemastery": "workspace:^",
+    "fflate": "^0.8.2",
+    "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/agent-presets": "workspace:^",
+    "@nuaagent/cordis-host-runner": "workspace:^",
+    "@nuaagent/invariants": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/agent-presets": "workspace:^",
+    "@nuaagent/cordis-host-runner": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/storage": "workspace:^",
+    "@nuaagent/storage-domain": "workspace:^",
+    "@nuaagent/typert-protocol": "workspace:^",
+    "@nuaagent/typert-registry": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

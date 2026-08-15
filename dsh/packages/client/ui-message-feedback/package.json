@@ -1,0 +1,86 @@
+{
+  "name": "@nuaagent/client-ui-message-feedback",
+  "description": "Per-message feedback controls contributed to the assistant-message action strip, backed by the messageFeedback Host Remote",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/client/ui-message-feedback"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@nuaagent/client-runtime",
+        "@nuaagent/api-remotes",
+        "@nuaagent/client-locale",
+        "@nuaagent/client-ui-conversation"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/api-remotes": "workspace:^",
+    "@nuaagent/client-connection": "workspace:^",
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/message-feedback": "workspace:^",
+    "@nuaagent/typert-protocol": "workspace:^",
+    "@nuaagent/cordis": "workspace:^",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@nuaagent/api-remotes": "workspace:^",
+    "@nuaagent/client-connection": "workspace:^",
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-test-runtime": "workspace:^",
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/message-feedback": "workspace:^",
+    "@nuaagent/typert-protocol": "workspace:^",
+    "@nuaagent/cordis": "workspace:^",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "~18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ]
+}

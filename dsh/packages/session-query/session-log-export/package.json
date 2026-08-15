@@ -1,0 +1,63 @@
+{
+  "name": "@nuaagent/session-log-export",
+  "description": "Web Session-log export command and shared download dialog",
+  "version": "0.1.0-rc.5",
+  "publishConfig": { "access": "public" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/session-query/session-log-export"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": { "types": "./lib/types/index.d.ts", "default": "./lib/index.js" },
+    "./invariant": { "types": "./lib/types/invariant.d.ts", "default": "./lib/invariant.js" },
+    "./client": { "types": "./lib/types/client/index.d.ts", "default": "./lib/client.js" },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": ["lib/index.js", "lib/invariant.js", "lib/client.js", "lib/types/**/*.d.ts"],
+  "scripts": { "bundle": "tsdown", "watch": "tsdown --watch" },
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-ui-commands": "workspace:^",
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/commands": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-ui-commands": "workspace:^",
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/commands": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@types/react": "~18.3.1",
+    "react": "^18.2.0"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@nuaagent/client-locale",
+        "@nuaagent/client-runtime",
+        "@nuaagent/client-ui-commands",
+        "@nuaagent/client-ui-conversation"
+      ],
+      "platform": "web"
+    }
+  }
+}

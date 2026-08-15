@@ -1,0 +1,53 @@
+{
+  "name": "@nuaagent/agent-loop-testkit",
+  "description": "Shared prerequisite mounting for tests that exercise the concrete agent loop",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/test-support/agent-loop-testkit"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

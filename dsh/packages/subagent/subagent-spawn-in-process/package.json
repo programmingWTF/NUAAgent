@@ -1,0 +1,60 @@
+{
+  "name": "@nuaagent/subagent-spawn-in-process",
+  "description": "In-process spawn subagent backend: runs a fresh child agent on ctx.agents",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/subagent/subagent-spawn-in-process"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/subagent": "workspace:^",
+    "@nuaagent/subagent-in-process-driver": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "dependencies": {
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/agent-loop-testkit": "workspace:^",
+    "@nuaagent/bash-local": "workspace:^",
+    "@nuaagent/subprocess-local": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/llm-deepseek": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/subagent": "workspace:^",
+    "@nuaagent/subagent-in-process-driver": "workspace:^",
+    "@nuaagent/tool-bash": "workspace:^",
+    "@nuaagent/tool-subagent": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

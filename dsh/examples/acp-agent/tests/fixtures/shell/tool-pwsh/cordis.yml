@@ -1,0 +1,27 @@
+# Minimal tool-pwsh composition: real app boot path, real pwsh executor, real
+# foreground + background tool calls; driven by the package's loader.spec.ts.
+- id: system-prompt
+  name: '@nuaagent/system-prompt'
+
+- id: tools
+  name: '@nuaagent/tools'
+
+- id: subprocess
+  name: '@nuaagent/subprocess-local'
+
+- id: bash
+  name: '@nuaagent/pwsh-local'
+  config:
+    graceMs: 200
+
+- id: shell-env
+  name: '@nuaagent/shell-env'
+
+- id: tasks
+  name: '@nuaagent/jobs-local'
+
+- id: tool-jobs
+  name: '@nuaagent/tool-jobs'
+
+- id: tool-pwsh
+  name: '@nuaagent/tool-pwsh'

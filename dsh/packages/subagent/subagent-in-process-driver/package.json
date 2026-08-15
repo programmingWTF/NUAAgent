@@ -1,0 +1,63 @@
+{
+  "name": "@nuaagent/subagent-in-process-driver",
+  "description": "Shared in-process subagent run driver: drives a child agent on ctx.agents (used by the spawn and fork backends)",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/subagent/subagent-in-process-driver"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/subagent": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis-plugin-include": "workspace:^",
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/agent-loop-testkit": "workspace:^",
+    "@nuaagent/agent-presets": "workspace:^",
+    "@nuaagent/fs-sandbox": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/sandbox-policy": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/subagent": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tool-fs": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/user-approval": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

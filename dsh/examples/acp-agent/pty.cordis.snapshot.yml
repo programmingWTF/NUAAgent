@@ -1,0 +1,27 @@
+# Keyless replay counterpart to pty.cordis.yml.
+- id: base
+  name: '@nuaagent/cordis-plugin-include'
+  config:
+    path: ./cordis.yml
+    patches:
+      - id: llm-deepseek
+        name: '@nuaagent/llm-deepseek'
+        disabled: true
+      - insert:
+          - id: pty
+            name: '@nuaagent/terminal'
+          - id: pty-snapshot-backend
+            name: './pty-snapshot-backend.mjs'
+          - id: tool-terminal
+            name: '@nuaagent/tool-terminal'
+            config:
+              maxResultBytes: 64
+          - id: llm-replay
+            name: '@nuaagent/llm-replay'
+            config:
+              providers:
+                - id: deepseek-official
+                  name: DeepSeek
+                  models:
+                    - id: deepseek-v4-flash
+                    - id: deepseek-v4-pro

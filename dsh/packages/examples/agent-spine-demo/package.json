@@ -1,0 +1,100 @@
+{
+  "name": "@nuaagent/agent-spine-demo",
+  "description": "The default executor-less/UI-less agent spine with fallback session titles, provider-routed retry, and optional persisted goals",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/examples/agent-spine-demo"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/cordis-plugin-timer": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/goal": "workspace:^",
+    "@nuaagent/goal-round-driver": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/home-paths": "workspace:^",
+    "@nuaagent/llm-retry": "workspace:^",
+    "@nuaagent/scope": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/session-title": "workspace:^",
+    "@nuaagent/skill": "workspace:^",
+    "@nuaagent/skill-filesystem": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/jobs-local": "workspace:^",
+    "@nuaagent/shell-env": "workspace:^",
+    "@nuaagent/tool-bash": "workspace:^",
+    "@nuaagent/tool-goal": "workspace:^",
+    "@nuaagent/tool-skill": "workspace:^",
+    "@nuaagent/tool-jobs": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/agent-instructions": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis-plugin-timer": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/shell-env": "workspace:^",
+    "@nuaagent/bash-local": "workspace:^",
+    "@nuaagent/bash-sandbox": "workspace:^",
+    "@nuaagent/fs-local": "workspace:^",
+    "@nuaagent/fs-observation-policy": "workspace:^",
+    "@nuaagent/fs-sandbox": "workspace:^",
+    "@nuaagent/goal": "workspace:^",
+    "@nuaagent/goal-round-driver": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/home-paths": "workspace:^",
+    "@nuaagent/llm-retry": "workspace:^",
+    "@nuaagent/subprocess-local": "workspace:^",
+    "@nuaagent/sandbox-local": "workspace:^",
+    "@nuaagent/sandbox-policy": "workspace:^",
+    "@nuaagent/scope": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/session-title": "workspace:^",
+    "@nuaagent/skill": "workspace:^",
+    "@nuaagent/skill-filesystem": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/jobs": "workspace:^",
+    "@nuaagent/jobs-local": "workspace:^",
+    "@nuaagent/tool-bash": "workspace:^",
+    "@nuaagent/tool-fs": "workspace:^",
+    "@nuaagent/tool-goal": "workspace:^",
+    "@nuaagent/tool-skill": "workspace:^",
+    "@nuaagent/tool-jobs": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/agent-instructions": "workspace:^",
+    "@nuaagent/node-addon-landlock-run": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "dependencies": {
+    "@nuaagent/schemastery": "workspace:^"
+  }
+}

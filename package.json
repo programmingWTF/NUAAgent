@@ -1,0 +1,24 @@
+{
+  "name": "nuaagent",
+  "version": "0.2.0",
+  "description": "NUAAgent Web — 适配南航 API（token.nuaa.edu.cn）的 AI 编程助手（DeepSeek Harness 移植 + 深信服网关适配层）",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "nuaagent:web": "node dsh-adapter/launch.mjs web",
+    "nuaagent:headless": "node dsh-adapter/launch.mjs headless",
+    "setup": "corepack pnpm -C dsh install --frozen-lockfile",
+    "build": "corepack pnpm -C dsh build",
+    "dev:web": "corepack pnpm -C dsh run dev:web"
+  },
+  "keywords": [
+    "agent",
+    "cli",
+    "ai",
+    "nuaa"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  }
+}

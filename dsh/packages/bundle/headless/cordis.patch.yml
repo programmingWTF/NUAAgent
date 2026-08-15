@@ -1,0 +1,37 @@
+# The dsh-headless bundle patch: one-shot task mode directly over dsh-base.
+# It mounts no Host, HTTP server, Web runtime, or browser plugin. An ordinary
+# provider plugin injects `cmdlineArgs`, parses the task positional
+# (`dsh --profile headless "<task>"`) and this app's --help, then the direct
+# driver creates an Agent through the core registry and prints its durable result.
+
+- id: system-prompt
+  config:
+    persona: |-
+      You are a coding agent powered by the {{model}} model. Your working directory is {{cwd}}.
+
+      STRICT CONSTRAINT — the model API admits only ONE concurrent request (concurrency = 1). NEVER call `subagent`, `subagent_fork`, `workflow`, `ralph`, or any other tool or mechanism that starts another agent or a parallel model session, in the foreground or the background: a second concurrent request would be rejected outright or hang this session. Do every task yourself, sequentially, in this conversation.
+
+# The shared module-reload HMR row stays off; the launcher's watch-only
+# fallback still keeps the user patch layers live until the run exits.
+- id: hmr
+  disabled: true
+
+- id: tools
+  config:
+    # Keep the same temporary process-wide Code Mode opt-in as the Web surface.
+    mode: !!js process.env.DSH_TOOLS_MODE
+
+- insert:
+    # Code Mode is a core execution capability, not a Web component.
+    - id: code-runtime
+      name: '@nuaagent/code-runtime-worker-thread'
+
+    - id: headless-startup
+      name: '@nuaagent/headless/startup'
+
+    # Reads its task from the ordinary headlessStartup provider.
+    - id: headless-runner
+      name: '@nuaagent/headless'
+      inject: [headlessStartup]
+      config:
+        task: !!js ctx.headlessStartup.task

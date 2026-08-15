@@ -1,0 +1,67 @@
+{
+  "name": "@nuaagent/client-connection",
+  "description": "Wire consumer layer: HTTP-up/WebSocket-down client, ConnectionController dual streams with reconnect, and fixture api",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/client/connection"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "inject": [],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/host-apiproxy": "workspace:^",
+    "@nuaagent/commands": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/schemastery": "workspace:^",
+    "ws": "^8.21.0"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "peerDependencies": {
+    "@nuaagent/host-webserver": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/host-webserver": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@types/ws": "^8.18.1",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

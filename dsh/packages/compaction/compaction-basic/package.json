@@ -1,0 +1,70 @@
+{
+  "name": "@nuaagent/compaction-basic",
+  "description": "Token-meter-driven compaction policy and LLM summarization backend for the NUAAgent",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/compaction/compaction-basic"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/compaction": "workspace:^",
+    "@nuaagent/commands": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/token-meter": "workspace:^",
+    "@nuaagent/compaction-tool-result-pruner": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "peerDependenciesMeta": {
+    "@nuaagent/compaction-tool-result-pruner": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis-plugin-include": "workspace:^",
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/agent-loop-testkit": "workspace:^",
+    "@nuaagent/compaction": "workspace:^",
+    "@nuaagent/commands": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/llm-retry": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/token-meter": "workspace:^",
+    "@nuaagent/compaction-tool-result-pruner": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

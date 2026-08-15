@@ -1,0 +1,23 @@
+name: 问题咨询
+description: 就这个项目提问
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        欢迎提问！请尽量具体，以便我们快速帮助。
+  - type: textarea
+    id: question
+    attributes:
+      label: 你的问题
+      description: 你想了解什么？
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 背景
+      description: 你已经尝试或检查过什么？
+    validations:
+      required: false

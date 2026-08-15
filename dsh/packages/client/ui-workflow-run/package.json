@@ -1,0 +1,82 @@
+{
+  "name": "@nuaagent/client-ui-workflow-run",
+  "description": "Durable workflow-run Conversation Node and nested member disclosure for dsh web",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/client/ui-workflow-run"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@nuaagent/client-locale",
+        "@nuaagent/client-runtime",
+        "@nuaagent/client-ui-conversation"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/tool-workflow": "workspace:^",
+    "@nuaagent/workflow": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-test-runtime": "workspace:^",
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/tool-workflow": "workspace:^",
+    "@nuaagent/workflow": "workspace:^",
+    "@types/react": "~18.3.1",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

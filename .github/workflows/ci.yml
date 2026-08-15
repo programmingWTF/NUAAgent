@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 启用 Corepack（pnpm）
+        run: corepack enable
+
+      - name: 安装依赖
+        run: npm run setup
+
+      - name: 构建
+        run: npm run build
+
+      - name: 单元测试
+        run: corepack pnpm -C dsh test

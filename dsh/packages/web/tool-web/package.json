@@ -1,0 +1,63 @@
+{
+  "name": "@nuaagent/tool-web",
+  "description": "Model-facing web tools (web_search, web_fetch) over the NUAAgent web capability seam (ctx.web)",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/web/tool-web"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/web": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "dependencies": {
+    "@joplin/turndown-plugin-gfm": "^1.0.67",
+    "@nuaagent/schemastery": "workspace:^",
+    "turndown": "^7.2.4"
+  },
+  "devDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@types/turndown": "^5.0.6",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/spill-local": "workspace:^",
+    "@nuaagent/spill-policy": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tool-call-timeout-policy": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/web": "workspace:^",
+    "@nuaagent/web-fetch-http": "workspace:^",
+    "@nuaagent/web-search-exa": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

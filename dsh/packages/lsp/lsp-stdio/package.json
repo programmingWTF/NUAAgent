@@ -1,0 +1,61 @@
+{
+  "name": "@nuaagent/lsp-stdio",
+  "description": "Generic stdio language-server provider for the NUAAgent LSP capability seam (ctx.lsp) — spawns configured servers, translates JSON-RPC, and serves transient-open goToDefinition/findReferences/goToImplementation/hover queries in the host filesystem namespace",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/lsp/lsp-stdio"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/brand": "workspace:^",
+    "@nuaagent/fs": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/lsp": "workspace:^",
+    "@nuaagent/subprocess": "workspace:^",
+    "@nuaagent/timeout": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "dependencies": {
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/brand": "workspace:^",
+    "@nuaagent/fs": "workspace:^",
+    "@nuaagent/fs-local": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
+    "@nuaagent/lsp": "workspace:^",
+    "@nuaagent/subprocess": "workspace:^",
+    "@nuaagent/subprocess-local": "workspace:^",
+    "@nuaagent/timeout": "workspace:^",
+    "@nuaagent/cordis": "workspace:^",
+    "typescript": "^6.0.3",
+    "typescript-language-server": "^5.0.0"
+  }
+}

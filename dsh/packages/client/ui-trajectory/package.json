@@ -1,0 +1,86 @@
+{
+  "name": "@nuaagent/client-ui-trajectory",
+  "description": "Trajectory event ledger with an interactive timing overview: pure-consumer plugin registering into the conversation ViewMap (no service)",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/client/ui-trajectory"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@nuaagent/client-locale",
+        "@nuaagent/client-runtime",
+        "@nuaagent/client-ui-conversation"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@tanstack/react-virtual": "^3.14.9",
+    "diff": "^9.0.0"
+  },
+  "peerDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/compaction": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/client-locale": "workspace:^",
+    "@nuaagent/client-runtime": "workspace:^",
+    "@nuaagent/client-test-runtime": "workspace:^",
+    "@nuaagent/client-ui-primitives": "workspace:^",
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-slots": "workspace:^",
+    "@nuaagent/compaction": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@types/react": "~18.3.1",
+    "@types/react-dom": "~18.3.0",
+    "@nuaagent/cordis": "workspace:^",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "name": "@nuaagent/acp-demo",
+  "description": "ACP automation server app: agent spine + JSONL persistence + ACP transport, with a JSON-RPC stdio bin",
+  "version": "0.1.0-rc.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/examples/acp-demo"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "bin": {
+    "dsh-acp-demo": "lib/bin.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./bin": {
+      "types": "./lib/types/bin.d.ts",
+      "default": "./lib/bin.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/bin.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@nuaagent/cordis-plugin-include": "workspace:^",
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/acp": "workspace:^",
+    "@nuaagent/agent-spine-demo": "workspace:^",
+    "@nuaagent/app-boot": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/session-checkpoint-policy": "workspace:^",
+    "@nuaagent/session-persistence-jsonl": "workspace:^",
+    "@nuaagent/session-query": "workspace:^",
+    "@nuaagent/session-query-sqlite": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/agent-instructions": "workspace:^",
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis-plugin-include": "workspace:^",
+    "@nuaagent/cordis-plugin-loader": "workspace:^",
+    "@nuaagent/acp": "workspace:^",
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-spine-demo": "workspace:^",
+    "@nuaagent/app-boot": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/session-checkpoint-policy": "workspace:^",
+    "@nuaagent/session-persistence-jsonl": "workspace:^",
+    "@nuaagent/session-query": "workspace:^",
+    "@nuaagent/session-query-sqlite": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/agent-instructions": "workspace:^",
+    "@nuaagent/cordis": "workspace:^",
+    "@nuaagent/schemastery": "workspace:^"
+  }
+}

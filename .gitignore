@@ -1,0 +1,41 @@
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 编辑器 / IDE
+.idea/
+.vscode/
+*.swp
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Go
+*.test
+*.out
+
+# Rust
+target/
+
+# 构建产物
+dist/
+build/
+*.tsbuildinfo
+
+# 环境变量 / 密钥
+.env
+.env.*
+!.env.example
+
+# NUAAgent 本地配置与日志（含密钥，切勿提交）
+.nuaaagent/
+.dsh/
