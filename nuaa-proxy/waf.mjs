@@ -238,6 +238,8 @@ function curlStream(url, bodyStr, opts = {}) {
     '-sS',                    // silent + show errors
     '-i',                     // include response headers（解析真实状态码）
     '--suppress-connect-headers', // 抑制 CONNECT 代理响应头（tinyproxy），避免头泄露进 body
+    '--connect-timeout', '15',    // 上游连接超时：快速失败，避免整条链路挂死
+    '-H', 'Expect:',              // 禁用 100-continue（大 body 经代理时省 1s 等待）
     '-N',                     // no-buffer (streaming-ready)
     '--max-time', '1200',
     '--connect-timeout', '30',

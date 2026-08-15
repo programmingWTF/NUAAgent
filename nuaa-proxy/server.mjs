@@ -2,7 +2,7 @@
 // server.mjs — nuaa-proxy 后端服务入口
 //
 // 将南航 API 的 WAF 绕过逻辑包装成本地 OpenAI 兼容接口：
-//   http://localhost:<port>/v1  （默认端口 8899，可自定义）
+//   http://localhost:<port=>/v1  （默认端口 8899，可自定义）
 //
 // 用法：
 //   node server.mjs [--host 0.0.0.0] [--port 8899]
@@ -56,7 +56,7 @@ function readBody(rq, limit = 256 * 1024 * 1024) {
     let size = 0;
     rq.on('data', (c) => {
       size += c.length;
-      if (size > limit) { reject(new Error('body too large')); rq.destroy(); return; }
+      if (size >= limit) { reject(new Error('body too large')); rq.destroy(); return; }
       chunks.push(c);
     });
     rq.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
@@ -74,10 +74,10 @@ async function handleChat(rq, rs, url) {
   }
   if (!bodyStr) return json(rs, 400, { error: { message: 'empty request body', type: 'invalid_request' } });
 
-  // API Key：由客户端自行传入（Authorization: Bearer <key>）
+  // API Key：由客户端自行传入（Authorization: Bearer <key=>）
   const auth = rq.headers.authorization || '';
   const apiKey = auth.replace(/^Bearer\s+/i, '').trim();
-  if (!apiKey) return json(rs, 401, { error: { message: 'missing Authorization: Bearer <key> header', type: 'authentication_error' } });
+  if (!apiKey) return json(rs, 401, { error: { message: 'missing Authorization: Bearer <key=> header', type: 'authentication_error' } });
 
   // 解析 stream 标记（客户端在 body 中声明）
   let stream = false;
@@ -89,10 +89,52 @@ async function handleChat(rq, rs, url) {
   // 请求侧三层防拦截（与 dsh-adapter 完全一致）
   const sanitized = sanitizeBody(bodyStr);
 
-  // 上游真实地址：<upstream>/chat/completions
+  // 上游真实地址：<upstream=>/chat/completions
   const upstreamUrl = UPSTREAM + '/chat/completions';
 
-  // 以系统 curl 为底层命令转发（--proxy 可配，默认 EasyConnect http://localhost:8888）
+  // 流式：立即回 SSE 头 + 15s 心跳，避免中间层（如 clash 60 秒响应超时）掐断长思考请求
+  if (stream) {
+    rs.writeHead(200, {
+      'Content-Type': 'text/event-stream; charset=utf-8',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
+      'X-Accel-Buffering': 'no',
+      'Access-Control-Allow-Origin': '*',
+    });
+    const ka = setInterval(() => { try { rs.write(': ka\n\n'); } catch {} }, 15000);
+    rs.once('close', () => { clearInterval(ka); });
+    const sseEnd = (errMsg) => {
+      clearInterval(ka);
+      try {
+        if (errMsg) rs.write('data: ' + JSON.stringify({ error: { message: errMsg, type: 'upstream_error' } }) + '\n\n');
+        rs.write('data: [DONE]\n\n');
+        rs.end();
+      } catch {}
+    };
+    try {
+      const { status, bodyStream, proc } = await curlStream(upstreamUrl, sanitized, { proxyUrl: PROXY || undefined, apiKey });
+      if (status !== 200) {
+        try { proc.kill(); } catch {}
+        console.error('[nuaa-proxy] 上游状态码 ' + status + '（流式）');
+        sseEnd('upstream returned status ' + status);
+        return;
+      }
+      const onClose = () => { try { proc.kill(); } catch {} };
+      rs.on('close', onClose);
+      bodyStream.on('end', () => rs.removeListener('close', onClose));
+      const cleanStream = stripZeroWidth();
+      const onStreamErr = () => { try { rs.destroy(); } catch {} };
+      cleanStream.on('error', onStreamErr);
+      bodyStream.on('error', onStreamErr);
+      bodyStream.pipe(cleanStream).pipe(rs);
+    } catch (e) {
+      console.error('[nuaa-proxy] curl failed (stream): ' + e.message);
+      sseEnd('upstream request failed: ' + e.message);
+    }
+    return;
+  }
+
+  // 非流式：等待上游响应头再回传
   let curl;
   try {
     curl = await curlStream(upstreamUrl, sanitized, { proxyUrl: PROXY || undefined, apiKey });
@@ -107,23 +149,6 @@ async function handleChat(rq, rs, url) {
   const onClose = () => { try { proc.kill(); } catch {} };
   rs.on('close', onClose);
   bodyStream.on('end', () => rs.removeListener('close', onClose));
-
-  // 流式：SSE 原样转发（剥离零宽字符）
-  if (stream) {
-    rs.writeHead(status, {
-      'Content-Type': contentType || 'text/event-stream; charset=utf-8',
-      'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive',
-      'X-Accel-Buffering': 'no',
-      'Access-Control-Allow-Origin': '*',
-    });
-    const cleanStream = stripZeroWidth();
-    const onStreamErr = () => { try { rs.destroy(); } catch {} };
-    cleanStream.on('error', onStreamErr);
-    bodyStream.on('error', onStreamErr);
-    bodyStream.pipe(cleanStream).pipe(rs);
-    return;
-  }
 
   // 非流式：整包读取 → 剥离零宽 → 按上游 Content-Type 回传
   const chunks = [];
