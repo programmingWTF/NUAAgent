@@ -195,7 +195,7 @@ npm run dev:web       # 可选：另开终端跑客户端插件 HMR watcher
 ## 常见问题（FAQ）
 
 - **`pi-ai provider "nuaa" has no configured model "X"`**：默认模型不在 provider 的 `models` 列表里。0.2.0 起启动器已改为合并写入，正常不会再出现；若手工改过 `~/.dsh/settings.yaml`，把该模型补进 `models` 即可。
-- **某个模型执行到一半报错、且无法继续**：换一个模型试试。我们测试时偶尔遇到该问题，正在排查中。
+- **某个模型执行到一半报错、且无法继续**：换一个模型试试。如果遇到「重试延迟：xxx ms / 失败原因：Stream ended without finish_reason」这类提示，通常是因为该模型当前请求量较大、短时间内触发了请求量限制，切换到其他模型即可恢复。我们测试时偶尔遇到该问题，正在排查中。
 - **429 / 并发限制报错**：并发量为 1。关闭多余的会话窗口与后台任务，稍后重试；不要并行发问。
 - **校外访问失败**：`proxy` 填 EasyConnect（`http://127.0.0.1:8888`）；注意 EasyConnect 自带 WAF 对超大请求体有额外拦截，条件许可时校内直连。
 - **端口被占用**：`npm run nuaagent:web -- --port 3081` 换端口，或先结束占用进程。
