@@ -1,11 +1,11 @@
-# nuua-proxy —— 南航 API WAF 绕过代理（OpenAI 兼容）
+# nuua-proxy —— 南航 API 兼容代理（OpenAI 兼容）
 
-将 nuua-agent 的抗深信服 WAF 逻辑剥离为独立后端服务，以系统 curl 为底层命令，对外暴露 OpenAI 兼容的 HTTP 接口。
+将 nuua-agent 的南航网关兼容逻辑剥离为独立后端服务，以系统 curl 为底层命令，对外暴露 OpenAI 兼容的 HTTP 接口。
 
 ## 目录
 ```
 nuua-proxy/
-  ├── waf.mjs          # WAF 绕过核心
+  ├── waf.mjs          # 网关内容适配核心
   ├── server.mjs       # HTTP 服务入口
   ├── start.sh         # 启动脚本
   ├── stop.sh          # 停止脚本

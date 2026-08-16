@@ -1,6 +1,6 @@
 # EasyConnect 部署教程（校外访问必读）
 
-EasyConnect（深信服 VPN 客户端）用于把本机接入南航校园网。**在校内**可直接访问模型 API，无需配置；**在校外**（宿舍宽带、家里、运营商网络等）必须先用 EasyConnect 拨入校园网，NUAAgent 才能连上 `token.nuaa.edu.cn`。
+EasyConnect（校园网 VPN 客户端）用于把本机接入南航校园网。**在校内**可直接访问模型 API，无需配置；**在校外**（宿舍宽带、家里、运营商网络等）必须先用 EasyConnect 拨入校园网，NUAAgent 才能连上 `token.nuaa.edu.cn`。
 
 本仓库提供了 **一键脚本** 与 **手动部署** 两种方式，也包含 **没装过 Docker 的同学**的引导说明。
 
@@ -71,7 +71,7 @@ services:
       - USE_NOVNC=1
     ports:
       - "127.0.0.1:1080:1080"  # SOCKS5
-      - "127.0.0.1:8888:8888"  # HTTP 代理（NUAAgent 用这个）
+      - "127.0.0.1:8899:8888"  # HTTP 代理（NUAAgent 用这个）
       - "127.0.0.1:8080:8080"  # 网页 VNC
     volumes:
       - ./ecdata:/root
@@ -101,14 +101,14 @@ docker compose up -d
 
 ## 验证代理
 
-代理已监听本机 **1080（SOCKS5）** 与 **8888（HTTP）**。验证：
+代理已监听本机 **1080（SOCKS5）** 与 **8899（HTTP）**。验证：
 
 ```bash
 # Windows PowerShell
-curl.exe -x http://127.0.0.1:8888 https://www.baidu.com
+curl.exe -x http://127.0.0.1:8899 https://www.baidu.com
 
 # macOS / Linux
-curl -x http://127.0.0.1:8888 https://www.baidu.com
+curl -x http://127.0.0.1:8899 https://www.baidu.com
 ```
 
 能返回百度首页内容即代理正常。
@@ -120,7 +120,7 @@ curl -x http://127.0.0.1:8888 https://www.baidu.com
 编辑 `~/.nuaagent/config.json`，把 `proxy` 填为：
 
 ```json
-"proxy": "http://127.0.0.1:8888"
+"proxy": "http://127.0.0.1:8899"
 ```
 
 > **校内使用时建议把 `proxy` 留空（直连更稳定）**；校外必须填 EasyConnect 代理。
@@ -132,6 +132,6 @@ curl -x http://127.0.0.1:8888 https://www.baidu.com
 - **Docker 装好了但 `docker info` 报错 / 一直显示 Docker Engine is running**：多为 Docker Desktop 未完全启动，右键托盘图标等它变绿，或重启 Docker Desktop。
 - **`/dev/net/tun` 不存在（Linux）**：`sudo mkdir -p /dev/net && sudo mknod /dev/net/tun c 10 200 && sudo chmod 600 /dev/net/tun`。
 - **8080 打不开**：`docker compose ps` 看容器是否 Running；若显示 Exited，`docker compose logs` 看日志。
-- **端口被占用**：修改 `docker-compose.yml` 里左侧端口（如 `8889:8888`），容器内 8888 不变。
-- **登录后仍连不上校内**：确认 EasyConnect 已“已连接”，且 `proxy` 填的是 `http://127.0.0.1:8888`。
+- **端口被占用**：修改 `docker-compose.yml` 里左侧端口（如 `8899:8888`），容器内 8888 不变。
+- **登录后仍连不上校内**：确认 EasyConnect 已“已连接”，且 `proxy` 填的是 `http://127.0.0.1:8899`。
 - **Windows 无法直接运行 `.sh`**：用方式一的 `.ps1` 脚本，或用 Git Bash/WSL 运行。

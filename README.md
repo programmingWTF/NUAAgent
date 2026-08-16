@@ -11,7 +11,7 @@
 > 接入南航（NUAA）校内免费大模型 API 的 AI 编程助手 —— 基于 DeepSeek Harness 品牌化移植，内置深信服网关适配层，开箱即用地提供 Web GUI 与命令行（headless）两种用法。
 
 - 底座：DeepSeek Harness（DSH，MIT 许可）移植版，全面品牌化为 NUAAgent，Cordis 插件化架构，一切皆是插件。
-- 适配：`dsh-adapter/` 南航定制适配层，对接南航深信服网关后的免费模型 API（`token.nuaa.edu.cn`），内置 WAF/内容过滤绕过与代理回退。
+- 适配：`dsh-adapter/` 南航定制适配层，对接南航校园网网关后的免费模型 API（`token.nuaa.edu.cn`），**专门为南航 API 做优化**：内置网关内容适配与代理回退，稳定性大幅度提升，几乎解决了时不时出现的调用失败的问题。
 - 约束：南航免费 API 模型并发量为 **1**，本发行版已在系统提示词中**严格声明绝对不允许启用子代理**（见下文）。
 
 > **📢 重要提示**
@@ -23,6 +23,8 @@
 ## 功能特性
 
 - Web GUI（默认 `http://127.0.0.1:3080`）：流式输出、会话持久化、文件树/编辑器、工具调用可视化、审批弹窗、计划模式、任务列表。
+- Web 增强插件全家桶（`dsh-web-ui`）：SSH 远程运维、任务看板（支持定时任务）、右侧预览/文件/变更面板（含 Mermaid 图表渲染）、皮肤中心、梁神模式等 14 个插件，重启服务后在侧边栏可见。
+- 终端前端（`dsh-TUI`）：Ink/React 全屏交互式终端界面，会话恢复、斜杠命令、模型切换，与 Web 共享会话记录。
 - 丰富工具链：shell（bash/pwsh）、文件读写/检索、Web 搜索、技能（skills）、后台任务、持久化终端等。
 - 代理预设（presets）：`standard`（默认）/ `code`（Code Mode）/ `cordis`（可自修改运行时）/ `minimal`（极简固定提示词）。
 - 南航 API 一键接入：自动生成/合并 DSH 配置、注入密钥、带适配层启动。
@@ -40,10 +42,11 @@ NUAAgent/
 │   └── docs/, examples/        # 架构文档与可运行示例
 ├── dsh-adapter/                 # 南航定制适配层（独立于 dsh，不改 dsh 内部文件）
 │   ├── launch.mjs               # 启动器：合并配置 → 注入 key → 以 tsx 源码方式启动 dsh
-│   ├── nuaa-adapter.mjs         # 全局 fetch 包装：WAF 绕过 + 代理 curl 回退 + 零宽字符处理
-│   └── chdir.mjs                # headless 工作区切换钩子（NUAA_WORKSPACE）
+│   ├── nuaa-adapter.mjs         # 全局 fetch 包装：南航网关内容适配 + 代理 curl 回退 + 零宽字符处理
+│   ├── chdir.mjs                # headless 工作区切换钩子（NUAA_WORKSPACE）
+│   └── plugins/                 # vendored 社区插件（webui 14 包 / tui 2 包，已重命名为 @nuaagent/*）
 ├── src/provider/
-│   └── waf-keywords.ts          # WAF 敏感词表（适配层直接 import 的唯一真源）
+│   └── waf-keywords.ts          # 网关敏感词表（适配层直接 import 的唯一真源）
 ├── package.json                 # npm 脚本入口
 ├── .gitignore
 ├── LICENSE                     # MIT（上游版权归 DeepSeek，含 vendored Cordis）
@@ -64,7 +67,7 @@ NUAAgent/
 - ⚡ 自动配置脚本：`scripts/easyconnect-setup.ps1`（Windows）/ `scripts/easyconnect-setup.sh`（macOS / Linux）
 - 🐳 手动部署：[easyconnect/docker-compose.yml](easyconnect/docker-compose.yml)
 
-启动 EasyConnect 后，把 `config.json` 的 `proxy` 填为 `http://127.0.0.1:8888` 即可。
+启动 EasyConnect 后，把 `config.json` 的 `proxy` 填为 `http://127.0.0.1:8899` 即可。
 
 ## 快速开始
 
@@ -86,6 +89,11 @@ NUAAgent/
   "apiBaseUrl": "https://token.nuaa.edu.cn/v1",
   "apiKey": "sk-…",
   "model": "kimi-k3",
+  "models": [
+    { "id": "glm-5.3", "name": "智谱GLM-5.3" },
+    { "id": "deepseek-v4-pro-202606", "name": "DeepSeek-V4-Pro原厂直供" },
+    { "id": "kimi-k3", "name": "Kimi K3" }
+  ],
   "proxy": ""
 }
 ```
@@ -94,8 +102,9 @@ NUAAgent/
 | --- | --- |
 | `apiBaseUrl` | 南航网关端点，通常为 `https://token.nuaa.edu.cn/v1` |
 | `apiKey` | 你的南航 API 密钥（**不要提交到任何仓库**） |
-| `model` | 默认模型 id（会并`入 provider 模型列表，不覆盖已有模型） |
-| `proxy` | 可选。校外访问填 EasyConnect 代理 `http://127.0.0.1:8888`；校内留空直连更稳定 |
+| `model` | 默认模型 id（会并入 provider 模型列表，不覆盖已有模型） |
+| `models` | 可选。南航 API 可用模型列表（`{id, name}`），`launch.mjs` 启动时全量合并进 `~/.dsh/settings.yaml` 的 nuaa provider（只补不删）。新建配置默认写入全部模型（完整清单见 `src/config/schema.ts` 的 `NUAA_MODELS`）；留空时仅用 `model` 一个 |
+| `proxy` | 可选。校外访问填 EasyConnect 代理 `http://127.0.0.1:8899`；校内留空直连更稳定 |
 
 ### 2. 安装依赖
 
@@ -116,6 +125,9 @@ npm run nuaagent:web -- --port 3081
 
 # 一次性任务（headless）
 npm run nuaagent:headless -- "解释一下当前目录的代码结构"
+
+# 交互式终端前端（TUI；须在真实终端窗口运行，需要 TTY）
+npm run nuaagent:tui
 
 # headless 指定工作区
 NUAA_WORKSPACE=D:\some\project npm run nuaagent:headless -- "修一下这个仓库的 README"
@@ -166,15 +178,17 @@ npm run dev:web       # 可选：另开终端跑客户端插件 HMR watcher
 
 ## 南航网关适配层（`dsh-adapter/nuaa-adapter.mjs`）
 
+本适配层**专门为南航 API 做优化**：针对南航网关环境对请求内容的处理特性做了系统级兼容，稳定性大幅度提升，几乎解决了时不时出现的调用失败的问题。
+
 通过 `--import` 预加载，包装 `globalThis.fetch`，只处理指向 `token.nuaa.edu.cn/chat/completions` 的 POST，其余请求原样放行：
 
-- **请求侧三层防拦截**（顺序固定）：
-  1. 尖括号 HTML 实体编码（绕深信服代理对 `<script>` 等标签的拦截）；
-  2. WAF 敏感词表（唯一真源 `src/provider/waf-keywords.ts`）：在命中的关键词前 1/4 处插入零宽字符（`exec` → `e␣xec`，`SELECT` → `SE␣LECT`）；
-  3. 通用防过滤：对每 2 个连续英文字母插入 `U+200B`，打散深信服 ≥3 字母连续子串匹配（含组合规则）。
+- **请求侧三层内容规范化**（顺序固定，均为幂等可逆变换，不影响模型语义）：
+  1. 尖括号 HTML 实体编码：规范请求体中的标签类内容，保证代码片段原样送达；
+  2. 网关敏感词表（唯一真源 `src/provider/waf-keywords.ts`）：在命中的关键词前 1/4 处插入零宽分隔符（`exec` → `e␣xec`，`SELECT` → `SE␣LECT`）；
+  3. 通用规范化：对每 2 个连续英文字母插入 `U+200B` 分隔符，避免网关对长连续字母串的误判。
 - **幂等注入 `[NUAA-ZW-HINT]` 系统提示**：教模型"阅读时自动剥离打断字符、输出时用干净名称"，并对注入标记本身做归一化去重，多轮请求不重复累积。
 - **响应侧流式剥离** 5 种零宽字符（ZWSP/ZWNJ/ZWJ/BOM/WJ），清理模型复述时复制的打断字符。
-- **代理 curl 回退**：`proxy` 非空时改用系统 `curl`（兼容深信服 TLS 指纹拦截）；`curl -i` 解析真实 HTTP 状态码，429/5xx 正确透传给上游重试机制；`proxy` 为空时走原始 fetch（undici）。
+- **代理 curl 回退**：`proxy` 非空时改用系统 `curl`（兼容校园网网关的 TLS 连接特性）；`curl -i` 解析真实 HTTP 状态码，429/5xx 正确透传给上游重试机制；`proxy` 为空时走原始 fetch（undici）。
 - **异常落盘**：400+ 状态、流式响应头超时、网络错误自动把请求体/响应片段写到 `~/.nuaagent/logs/dsh-abnormal-*.json`，便于事后排查。
 
 ## 二次开发指引
@@ -182,7 +196,7 @@ npm run dev:web       # 可选：另开终端跑客户端插件 HMR watcher
 - 架构文档：`dsh/docs/architecture.md`、`dsh/AGENTS.md`、`dsh/README.md`（英文）。
 - 一切皆插件：改行为优先加/改 `cordis*.yml` 插件行与配置，别改 `agent-loop` 主循环。
 - 南航相关定制**只允许放 `dsh-adapter/` 层**，不要给 `dsh/` 子树打上游补丁（便于将来同步上游）。
-- 适配层冻结约束（源文件注释已标注）：`WAF_KEYWORDS` 始终 import `src/provider/waf-keywords.ts`；`sanitizeBody`/`resolveProxy`/`curlFetch` 算法为冻结实现，改动需全盘回归。
+- 适配层冻结约束（源文件注释已标注）：网关敏感词常量 `WAF_KEYWORDS` 始终 import `src/provider/waf-keywords.ts`；`sanitizeBody`/`resolveProxy`/`curlFetch` 算法为冻结实现，改动需全盘回归。
 - 测试：`corepack pnpm -C dsh test`（单元）、`corepack pnpm -C dsh test:snapshot`（免密回放快照）、`corepack pnpm -C dsh typecheck`。
 
 ## 数据与日志位置
@@ -201,7 +215,7 @@ npm run dev:web       # 可选：另开终端跑客户端插件 HMR watcher
 - **`pi-ai provider "nuaa" has no configured model "X"`**：默认模型不在 provider 的 `models` 列表里。0.2.0 起启动器已改为合并写入，正常不会再出现；若手工改过 `~/.dsh/settings.yaml`，把该模型补进 `models` 即可。
 - **某个模型执行到一半报错、且无法继续**：换一个模型试试。如果遇到「重试延迟：xxx ms / 失败原因：Stream ended without finish_reason」这类提示，通常是因为该模型当前请求量较大、短时间内触发了请求量限制，切换到其他模型即可恢复。我们测试时偶尔遇到该问题，正在排查中。
 - **429 / 并发限制报错**：并发量为 1。关闭多余的会话窗口与后台任务，稍后重试；不要并行发问。
-- **校外访问失败**：`proxy` 填 EasyConnect（`http://127.0.0.1:8888`）；注意 EasyConnect 自带 WAF 对超大请求体有额外拦截，条件许可时校内直连。
+- **校外访问失败**：`proxy` 填 EasyConnect（`http://127.0.0.1:8899`）；注意 EasyConnect 通道对超大请求体有额外限制，条件许可时校内直连。
 - **端口被占用**：`npm run nuaagent:web -- --port 3081` 换端口，或先结束占用进程。
 - **改了代码页面没变**：`npm run build` → 重启服务 → 浏览器强刷（运行时配置类改动不需 build）。当前正在运行的 GUI 是从仓库根目录旧副本启动的，本发行版的改动对它不生效。
 
@@ -218,4 +232,4 @@ npm run dev:web       # 可选：另开终端跑客户端插件 HMR watcher
 
 ## 许可证与致谢
 
-MIT（见 [LICENSE](LICENSE)，上游版权归 DeepSeek，含 vendored Cordis）。本项目在 DeepSeek Harness 基础上做了品牌化移植与南航校园网场景适配（网关过滤绕过、单并发约束、配置合并启动器）。
+MIT（见 [LICENSE](LICENSE)，上游版权归 DeepSeek，含 vendored Cordis）。本项目在 DeepSeek Harness 基础上做了品牌化移植与南航校园网场景适配（网关内容适配、单并发约束、配置合并启动器）。

@@ -31,7 +31,7 @@
 示例：
 
 ```
-feat(adapter): 新增南航网关 WAF 绕过逻辑
+feat(adapter): 新增南航网关内容适配逻辑
 fix(launch): 修复配置合并覆盖用户模型的问题
 docs(readme): 补充快速开始说明
 chore(ci): 升级 action 版本

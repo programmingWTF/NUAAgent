@@ -12,8 +12,8 @@
 ## 结构
 
 - `dsh/`：代理 harness 本体（DeepSeek Harness 移植，pnpm 工作区，一切皆插件）。
-- `dsh-adapter/`：南航定制适配层（launch / WAF 绕过 / chdir 钩子）。**南航定制只允许放这里。**
-- `src/provider/waf-keywords.ts`：WAF 敏感词唯一真源。
+- `dsh-adapter/`：南航定制适配层（launch / 网关内容适配 / chdir 钩子）。**南航定制只允许放这里。**
+- `src/provider/waf-keywords.ts`：网关敏感词表唯一真源。
 - `package.json`：npm 脚本入口（setup / build / nuaaagent:web / nuaaagent:headless）。
 
 ## 命令
