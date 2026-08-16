@@ -112,25 +112,31 @@ async function handleChat(rq, rs, url) {
         rs.end();
       } catch {}
     };
+    const release = await acquireSlot();
+    let slotDone = false;
+    const freeSlot = function () { if (slotDone) return; slotDone = true; release(); };
+    rs.on('close', freeSlot);
+    let curlGone = false;
+    rs.on('close', function () { curlGone = true; });
     try {
-      let triesLeft = 3;
+      const backoffs = [3, 8, 15, 25, 40];
+      let attempt = 0;
       let curlRes = null;
-      while (triesLeft) {
+      while (true) {
+        if (curlGone) { freeSlot(); return; }
         curlRes = await curlStream(upstreamUrl, sanitized, { proxyUrl: PROXY || undefined, apiKey });
         if (curlRes.status === 200) break;
-        if (' 502 503 504 '.indexOf(' ' + curlRes.status + ' ') === -1) {
-          console.error(new Date().toISOString() + ' [nuaa-proxy] 上游状态码 ' + curlRes.status + '（流式）');
+        try { curlRes.proc.kill(); } catch {}
+        if (' 502 503 504 '.indexOf(' ' + curlRes.status + ' ') === -1 || attempt === backoffs.length) {
+          console.error(new Date().toISOString() + ' [nuaa-proxy] 上游状态码 ' + curlRes.status + '（流式，放弃）');
+          freeSlot();
           sseEnd('upstream returned status ' + curlRes.status);
           return;
         }
-        try { curlRes.proc.kill(); } catch {}
-        triesLeft = triesLeft - 1;
-        console.error(new Date().toISOString() + ' [nuaa-proxy] 上游状态码 ' + curlRes.status + '（流式，自动重试，剩余' + triesLeft + '次）');
-        if (triesLeft) await new Promise(function(rr){ setTimeout(rr, 2000); });
-      }
-      if (!curlRes || curlRes.status !== 200) {
-        sseEnd('upstream returned status ' + (curlRes ? curlRes.status : 0));
-        return;
+        const delay = backoffs[attempt];
+        attempt = attempt + 1;
+        console.error(new Date().toISOString() + ' [nuaa-proxy] 上游状态码 ' + curlRes.status + '（流式，' + delay + 's 后重试，剩余机会 ' + (backoffs.length - attempt + 1) + '）');
+        await new Promise(function (rr) { setTimeout(rr, delay * 1000); });
       }
       const { status, bodyStream, proc } = curlRes;
       const onClose = () => { try { proc.kill(); } catch {} };
@@ -141,14 +147,22 @@ async function handleChat(rq, rs, url) {
       cleanStream.on('error', onStreamErr);
       bodyStream.on('error', onStreamErr);
       bodyStream.pipe(cleanStream).pipe(rs);
+      bodyStream.on('end', freeSlot);
+      bodyStream.on('error', freeSlot);
+      bodyStream.on('close', freeSlot);
     } catch (e) {
       console.error('[nuaa-proxy] curl failed (stream): ' + e.message);
+      freeSlot();
       sseEnd('upstream request failed: ' + e.message);
     }
     return;
   }
 
-  // 非流式：等待上游响应头再回传
+  // 非流式：等待上游响应头再回传（同样过槽位，避免和流式请求挤上游）
+  const release2 = await acquireSlot();
+  let slotDone2 = false;
+  const freeSlot2 = function () { if (slotDone2) return; slotDone2 = true; release2(); };
+  rs.on('close', freeSlot2);
   let curl;
   try {
     let triesLeft = 3;
@@ -163,11 +177,13 @@ async function handleChat(rq, rs, url) {
     }
     if (curl.status !== 200) {
       if (' 502 503 504 '.indexOf(' ' + curl.status + ' ') !== -1) {
+        freeSlot2();
         return json(rs, 502, { error: { message: 'upstream returned status ' + curl.status + ' after retries', type: 'upstream_error' } });
       }
     }
   } catch (e) {
     console.error('[nuaa-proxy] curl failed: ' + e.message);
+    freeSlot2();
     return json(rs, 502, { error: { message: 'upstream request failed: ' + e.message, type: 'upstream_error' } });
   }
 
@@ -195,6 +211,35 @@ async function handleChat(rq, rs, url) {
     console.error('[nuaa-proxy] body stream error: ' + err.message);
     if (!rs.writableEnded) rs.end();
   });
+  bodyStream.on('end', freeSlot2);
+  bodyStream.on('error', freeSlot2);
+  bodyStream.on('close', freeSlot2);
+}
+
+// ---- 上游并发=1：本地槽位排队串行转发，避免多个请求在上游门口各烧60秒被504 ----
+// 排队中的流式请求已回200头+心跳保活，本地等多久客户端连接都不断
+let slotBusy = false;
+let slotTicket = 0;
+const slotWaiters = [];
+function pumpSlot() {
+  if (slotBusy) return;
+  if (slotWaiters.length === 0) return;
+  const next = slotWaiters.shift();
+  slotBusy = true;
+  slotTicket = slotTicket + 1;
+  const myTicket = slotTicket;
+  console.error(new Date().toISOString() + ' [nuaa-proxy] 占用上游槽（队列剩 ' + slotWaiters.length + '）');
+  next(function () {
+    if (myTicket !== slotTicket) return; // 过期的重复释放，忽略
+    slotBusy = false;
+    pumpSlot();
+  });
+}
+function acquireSlot() {
+  return new Promise(function (resolve) {
+    slotWaiters.push(resolve);
+    pumpSlot();
+  });
 }
 
 // ---- 路由 ----
@@ -210,7 +255,7 @@ const server = createServer(async (rq, rs) => {
       return json(rs, 200, { object: 'list', data: KNOWN_MODELS });
     }
     if (rq.method === 'GET' && path === '/health') {
-      return json(rs, 200, { ok: true, port: PORT, upstream: UPSTREAM, proxy: PROXY });
+      return json(rs, 200, { ok: true, port: PORT, upstream: UPSTREAM, proxy: PROXY, slotBusy: slotBusy, queued: slotWaiters.length });
     }
     if (rq.method === 'GET' && path === '/') {
       return json(rs, 200, {
