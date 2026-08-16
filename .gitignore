@@ -39,3 +39,6 @@ build/
 # NUAAgent 本地配置与日志（含密钥，切勿提交）
 .nuaaagent/
 .dsh/
+
+# EasyConnect 容器数据（VNC 密码、VPN 登录态，切勿提交）
+easyconnect/ecdata/
