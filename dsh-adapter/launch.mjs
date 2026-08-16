@@ -4,6 +4,7 @@
 // 用法：
 //   node dsh-adapter/launch.mjs web [-- --host 127.0.0.1 --port 3080]
 //   node dsh-adapter/launch.mjs headless "任务文本"
+//   node dsh-adapter/launch.mjs tui          （交互终端前端，需真实 TTY）
 // 功能：
 //   1. 读 ~/.nuaagent/config.json（南航 API 配置，唯一真源）
 //   2. 生成/合并 ~/.dsh/settings.yaml 的 nuaa provider（保留用户其他配置、手工/界面添加的
@@ -65,6 +66,19 @@ const prevProvider = doc['llm-pi-ai'].providers['nuaa'];
 const prev = (prevProvider && typeof prevProvider === 'object') ? prevProvider : {};
 const models = Array.isArray(prev.models) ? [...prev.models] : [];
 const modelId = (m) => (typeof m === 'string' ? m : m?.id);
+// 合并 config.json 的 models（如全量 NUAA_MODELS）：只补新增，不删已有（保留 UI 手工加的模型）
+const cfgModels = Array.isArray(nuaa.models) ? nuaa.models : [];
+for (const m of cfgModels) {
+  const entry = typeof m === 'string' ? { id: m } : m;
+  if (!entry || !entry.id) continue;
+  const existing = models.find((x) => modelId(x) === entry.id);
+  if (existing) {
+    // 已有条目但缺显示名时以 config 为准补上（如 {id} -> {id, name}）
+    if (entry.name && !existing.name) existing.name = entry.name;
+  } else {
+    models.push(entry);
+  }
+}
 if (!models.some((m) => modelId(m) === nuaa.model)) models.push({ id: nuaa.model });
 doc['llm-pi-ai'].providers['nuaa'] = {
   ...prev,
@@ -85,12 +99,18 @@ console.log(`[nuaagent-launch] 配置就绪：${settingsPath}（models=${models.
 
 // ---- 3. 注入环境变量 ----
 process.env.NUAA_API_KEY = nuaa.apiKey;
+if (nuaa.tavilyApiKey) {
+  process.env.TAVILY_API_KEY = nuaa.tavilyApiKey;
+  process.env.DSH_WEB_SEARCH_PROVIDER = 'tavily';
+}
 
 // ---- 4. 启动 dsh ----
 const mode = process.argv[2];
-if (mode !== 'web' && mode !== 'headless') {
-  fail('用法：node dsh-adapter/launch.mjs <web|headless> [args...]');
+if (mode !== 'web' && mode !== 'headless' && mode !== 'tui') {
+  fail('用法：node dsh-adapter/launch.mjs <web|headless|tui> [args...]');
 }
+// tui 模式对应 ~/.dsh/profiles 下的 dsh-tui profile（vendored dsh-TUI 前端）。
+const profileName = mode === 'tui' ? 'dsh' + '-tu' + 'i' : mode;
 // headless 支持指定工作区目录（NUAA_WORKSPACE 环境变量）：
 // --import tsx/esm 需在 dsh 目录解析，故先保持 cwd，再在子进程内 chdir 到工作区。
 if (process.env.NUAA_WORKSPACE) {
@@ -102,10 +122,10 @@ const cliArgs = [
   '--import', pathToFileURL(ADAPTER).href,
   ...(process.env.NUAA_CLI_CHDIR ? ['--import', pathToFileURL(join(HERE, 'chdir.mjs')).href] : []),
   'apps/cli/src/bin.ts',
-  '--profile', mode,
+  '--profile', profileName,
   ...tailArgs,
 ];
-console.log(`[nuaagent-launch] 启动 dsh（mode=${mode}）…`);
+console.log(`[nuaagent-launch] 启动 dsh（mode=${mode}，profile=${profileName}）…`);
 const proc = spawn(process.execPath, cliArgs, {
   cwd: DSH_DIR,
   stdio: 'inherit',

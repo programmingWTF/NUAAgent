@@ -1,0 +1,1 @@
+{"version":3,"file":"UpdateEntry.d.ts","sourceRoot":"","sources":["../../../src/client/UpdateEntry.tsx"],"names":[],"mappings":"AASA,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,kCAAkC,CAAA;AAOnE,wEAAwE;AACxE,MAAM,WAAW,gBAAgB;IAC/B,oEAAoE;IACpE,IAAI,EAAE,OAAO,CAAA;IACb,CAAC,EAAE,WAAW,CAAC,QAAQ,CAAC,CAAA;CACzB;AAED;;;;GAIG;AACH,wBAAgB,WAAW,CAAC,EAAE,IAAI,EAAE,CAAC,EAAE,EAAE,gBAAgB,+BA2ExD"}

@@ -1,0 +1,167 @@
+{
+  "name": "@deepseek-harness-tui/dsh-tui",
+  "version": "0.7.2",
+  "description": "Claude Code style interactive TUI front door for DeepSeek Harness agents, built on the ported Ink core.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ccch1mneyyy/dsh-TUI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ccch1mneyyy/dsh-TUI/issues"
+  },
+  "homepage": "https://github.com/ccch1mneyyy/dsh-TUI#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "bin": {
+    "dsh-tui": "./bin/dsh-tui.js"
+  },
+  "main": "lib/types/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "import": "./lib/types/index.js"
+    },
+    "./working-activity": {
+      "types": "./lib/types/working-activity.d.ts",
+      "import": "./lib/types/working-activity.js"
+    },
+    "./workspaces": {
+      "types": "./lib/types/workspaces.d.ts",
+      "import": "./lib/types/workspaces.js"
+    },
+    "./command-trees": {
+      "types": "./lib/types/command-trees.d.ts",
+      "import": "./lib/types/command-trees.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/dsh-adapter/invariant.d.ts",
+      "default": "./lib/types/dsh-adapter/invariant.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "cordis.patch.yml",
+    "cordis.yml",
+    "presets",
+    "skills"
+  ],
+  "engines": {
+    "node": "^22.19 || >=24"
+  },
+  "peerDependencies": {
+    "@nuaagent/cordis": "^4.0.1",
+    "@nuaagent/invariants": "^0.1.0-rc.6"
+  },
+  "dependencies": {
+    "@alcalzone/ansi-tokenize": "^0.3.0",
+    "@nuaagent/agent": "^0.1.0-rc.6",
+    "@nuaagent/agent-instructions": "^0.1.0-rc.6",
+    "@nuaagent/agent-presets": "^0.1.0-rc.6",
+    "@nuaagent/agent-tool-presentation": "^0.1.0-rc.6",
+    "@nuaagent/commands": "^0.1.0-rc.6",
+    "@nuaagent/cordis-host-runner": "^0.1.0-rc.6",
+    "@nuaagent/llm": "^0.1.0-rc.6",
+    "@nuaagent/persona": "^0.1.0-rc.6",
+    "@nuaagent/session": "^0.1.0-rc.6",
+    "@nuaagent/skill": "^0.1.0-rc.6",
+    "@nuaagent/storage": "^0.1.0-rc.6",
+    "@nuaagent/storage-domain": "^0.1.0-rc.6",
+    "@nuaagent/storage-json": "^0.1.0-rc.6",
+    "@nuaagent/system-prompt": "^0.1.0-rc.6",
+    "@nuaagent/terminal": "^0.1.0-rc.6",
+    "@nuaagent/terminal-bash": "^0.1.0-rc.6",
+    "@nuaagent/tool-ask-user": "^0.1.0-rc.6",
+    "@nuaagent/tool-bash-persistent": "^0.1.0-rc.6",
+    "@nuaagent/tool-cordis": "^0.1.0-rc.6",
+    "@nuaagent/user-approval": "^0.1.0-rc.6",
+    "@nuaagent/user-questions": "^0.1.0-rc.6",
+    "@nuaagent/workspace": "^0.1.0-rc.6",
+    "@nuaagent/schemastery": "^3.18.1",
+    "auto-bind": "^4.0.0 || ^5.0.0",
+    "bidi-js": "^1.0.0",
+    "chalk": "^5.0.0",
+    "cli-boxes": "^3.0.0 || ^4.0.0",
+    "cli-highlight": "^2.1.11",
+    "code-excerpt": "^3.0.0 || ^4.0.0",
+    "dsh-working-activity": "^0.2.4",
+    "emoji-regex": "^10.0.0",
+    "figures": "^6.1.0",
+    "get-east-asian-width": "^1.0.0",
+    "highlight.js": "^11.11.1",
+    "indent-string": "^5.0.0",
+    "lodash-es": "^4.17.0",
+    "marked": "^18.0.7",
+    "react": "^19.2.0",
+    "react-reconciler": "^0.33.0",
+    "semver": "^7.0.0",
+    "signal-exit": "^4.0.0",
+    "stack-utils": "^2.0.0",
+    "strip-ansi": "^7.0.0",
+    "supports-hyperlinks": "^3.0.0",
+    "type-fest": "^4.0.0",
+    "usehooks-ts": "^3.1.0",
+    "wrap-ansi": "^8.0.0 || ^9.0.0"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis": "^4.0.1",
+    "@nuaagent/cordis-plugin-include": "^1.0.6",
+    "@nuaagent/cordis-plugin-loader": "^1.0.2",
+    "@nuaagent/atomic-write": "^0.1.0-rc.6",
+    "@nuaagent/attachment": "^0.1.0-rc.6",
+    "@nuaagent/brand": "^0.1.0-rc.6",
+    "@nuaagent/code-runtime": "^0.1.0-rc.6",
+    "@nuaagent/fs": "^0.1.0-rc.6",
+    "@nuaagent/home-paths": "^0.1.0-rc.6",
+    "@nuaagent/invariants": "^0.1.0-rc.6",
+    "@nuaagent/sandbox": "^0.1.0-rc.6",
+    "@nuaagent/sandbox-policy": "^0.1.0-rc.6",
+    "@nuaagent/scope": "^0.1.0-rc.6",
+    "@nuaagent/session-persistence": "^0.1.0-rc.6",
+    "@nuaagent/session-persistence-jsonl": "^0.1.0-rc.6",
+    "@nuaagent/session-persistence-sqlite": "^0.1.0-rc.6",
+    "@nuaagent/settings": "^0.1.0-rc.6",
+    "@nuaagent/subprocess": "^0.1.0-rc.6",
+    "@nuaagent/timeout": "^0.1.0-rc.6",
+    "@nuaagent/tools": "^0.1.0-rc.6",
+    "@nuaagent/typert-protocol": "^0.1.0-rc.6",
+    "@nuaagent/user-approval": "^0.1.0-rc.6",
+    "@nuaagent/web-app": "0.1.0-rc.6",
+    "@types/lodash-es": "^4.17.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-reconciler": "^0.33.0",
+    "@types/semver": "^7.0.0",
+    "@xterm/headless": "^6.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^6.0.3",
+    "yaml": "^2.9.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "clean": "node scripts/clean-lib.mjs",
+    "compile": "npm run clean && tsc -p tsconfig.json",
+    "build": "npm run compile && npm run verify:build",
+    "tui": "node --import tsx/esm scripts/run.ts",
+    "smoke": "node --import tsx/esm scripts/smoke.tsx",
+    "verify:build": "npm run verify:boundary && npm run verify:contract && npm run verify:patch-surface && npm run verify:packaged-presets && npm run verify:minimal-preset-tools && npm run verify:liangshen-bootstrap",
+    "verify:boundary": "node --import tsx/esm scripts/verify-adapter-boundary.ts",
+    "verify:contract": "node --import tsx/esm scripts/verify-upstream-contract.ts",
+    "verify:patch-surface": "node --import tsx/esm scripts/verify-patch-surface.ts",
+    "verify:packaged-presets": "node scripts/verify-packaged-presets.mjs",
+    "verify:minimal-preset-tools": "node scripts/verify-minimal-preset-tools.mjs",
+    "verify:liangshen-bootstrap": "node scripts/verify-liangshen-bootstrap.mjs",
+    "verify:package": "npm pack --dry-run --json --ignore-scripts | node scripts/verify-package.mjs",
+    "verify:clipboard-image": "node --import tsx/esm scripts/verify-clipboard-image.ts"
+  }
+}

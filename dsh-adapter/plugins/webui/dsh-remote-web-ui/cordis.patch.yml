@@ -1,0 +1,5 @@
+# NUAAgent adaptation: this bundle's row is mounted by the
+# dsh-web-ui-all aggregator patch in this directory; an explicit insert here
+# would mount the same row id twice (this profile installs every sibling as a
+# direct bundle). Kept as an empty patch list so the bundle stays registered.
+[]

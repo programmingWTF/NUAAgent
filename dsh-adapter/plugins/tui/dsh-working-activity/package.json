@@ -1,0 +1,107 @@
+{
+  "name": "dsh-working-activity",
+  "description": "Live model working-status line: playful copy, running tool, turn elapsed — for TUI prompt and Web UI",
+  "version": "0.2.4",
+  "type": "module",
+  "main": "lib/types/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/types/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./events": {
+      "types": "./lib/types/events.d.ts",
+      "default": "./lib/types/events.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/types/invariant.js"
+    },
+    "./status": {
+      "types": "./lib/types/status.d.ts",
+      "default": "./lib/types/status.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "cordis.patch.yml"
+  ],
+  "engines": {
+    "node": "^22.19 || >=24"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.client.json",
+    "build:client": "tsdown -c tsdown.config.ts"
+  },
+  "license": "BSD-3-Clause",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@nuaagent/client-runtime",
+        "@nuaagent/client-ui-conversation",
+        "@nuaagent/client-ui-slots"
+      ]
+    }
+  },
+  "dependencies": {
+    "@nuaagent/schemastery": "^3.18.1"
+  },
+  "peerDependencies": {
+    "@nuaagent/cordis": "^4.0.1",
+    "@nuaagent/agent": "^0.1.0-rc.6",
+    "@nuaagent/client-runtime": "^0.1.0-rc.6",
+    "@nuaagent/client-ui-conversation": "^0.1.0-rc.6",
+    "@nuaagent/client-ui-slots": "^0.1.0-rc.6",
+    "@nuaagent/invariants": "^0.1.0-rc.6",
+    "@nuaagent/session": "^0.1.0-rc.6",
+    "@nuaagent/system-prompt": "^0.1.0-rc.6",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@nuaagent/cordis": "^4.0.1",
+    "@nuaagent/agent": "^0.1.0-rc.6",
+    "@nuaagent/agent-loop": "^0.1.0-rc.6",
+    "@nuaagent/agent-loop-testkit": "^0.1.0-rc.6",
+    "@nuaagent/client-runtime": "^0.1.0-rc.6",
+    "@nuaagent/client-ui-conversation": "^0.1.0-rc.6",
+    "@nuaagent/client-ui-slots": "^0.1.0-rc.6",
+    "@nuaagent/invariants": "^0.1.0-rc.6",
+    "@nuaagent/llm": "^0.1.0-rc.6",
+    "@nuaagent/session": "^0.1.0-rc.6",
+    "@nuaagent/system-prompt": "^0.1.0-rc.6",
+    "@nuaagent/tools": "^0.1.0-rc.6",
+    "@types/node": "^22.0.0",
+    "@types/react": "~18.3.1",
+    "lightningcss": "^1.32.0",
+    "react": "^18.2.0",
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3"
+  },
+  "peerDependenciesMeta": {
+    "@nuaagent/client-runtime": {
+      "optional": true
+    },
+    "@nuaagent/client-ui-conversation": {
+      "optional": true
+    },
+    "@nuaagent/client-ui-slots": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  }
+}

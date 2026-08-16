@@ -1,0 +1,14 @@
+{
+  "name": "nuaagent-webui-host-deps",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Install anchor for vendored @linxin666 web-ui plugins' host-plane runtime deps: pnpm installs them flat into node_modules/ here so Node resolves them from each sibling plugin's real directory. Browser-side deps stay bundled in each lib/client.js.",
+  "type": "module",
+  "dependencies": {
+    "cloudflared": "^0.7.3",
+    "schemastery": "^3.18.0",
+    "ssh2": "^1.17.0",
+    "ws": "^8.18.0",
+    "zod": "^4.4.3"
+  }
+}

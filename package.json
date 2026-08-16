@@ -7,6 +7,7 @@
   "scripts": {
     "nuaagent:web": "node dsh-adapter/launch.mjs web",
     "nuaagent:headless": "node dsh-adapter/launch.mjs headless",
+    "nuaagent:tui": "node dsh-adapter/launch.mjs tui",
     "setup": "corepack pnpm -C dsh install --frozen-lockfile",
     "build": "corepack pnpm -C dsh build",
     "dev:web": "corepack pnpm -C dsh run dev:web"

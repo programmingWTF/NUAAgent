@@ -1,0 +1,1 @@
+{"version":3,"file":"RemoteEntry.d.ts","sourceRoot":"","sources":["../../../src/client/RemoteEntry.tsx"],"names":[],"mappings":"AAWA,OAAO,KAAK,EAAE,WAAW,EAAE,YAAY,EAAE,MAAM,kCAAkC,CAAA;AAQjF,wEAAwE;AACxE,MAAM,MAAM,gBAAgB,GAAG,YAAY,CAAC,gBAAgB,CAAC,GAAG,WAAW,CAAC,QAAQ,CAAC,CAAA;AAcrF;;;;GAIG;AACH,wBAAgB,WAAW,CAAC,EAAE,IAAI,EAAE,aAAa,EAAE,CAAC,EAAE,EAAE,gBAAgB,+BAuJvE"}
