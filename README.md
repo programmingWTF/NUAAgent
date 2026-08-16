@@ -1,10 +1,14 @@
 # NUAAgent
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![许可证: MIT](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-MIT-yellow)](LICENSE)
+![版本](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-0.2.0-blue)
 ![Node](https://img.shields.io/badge/Node-%5E22.19%20%7C%7C%20%3E%3D24-339933)
-![Version](https://img.shields.io/badge/version-0.2.0-blue)
+![CI](https://img.shields.io/github/actions/workflow/status/programmingWTF/NUAAgent/ci.yml?label=CI)
+![星标](https://img.shields.io/github/stars/programmingWTF/NUAAgent?label=%E6%98%9F%E6%A0%87)
+![问题](https://img.shields.io/github/issues/programmingWTF/NUAAgent?label=%E9%97%AE%E9%A2%98)
+![拉取请求](https://img.shields.io/github/issues-pr/programmingWTF/NUAAgent?label=%E6%8B%89%E5%8F%96%E8%AF%B7%E6%B1%82)
 
-接入南航（NUAA）校内免费大模型 API 的 AI 编程助手，提供 Web GUI 与命令行一次性任务（headless）两种用法。
+> 接入南航（NUAA）校内免费大模型 API 的 AI 编程助手 —— 基于 DeepSeek Harness 品牌化移植，内置深信服网关适配层，开箱即用地提供 Web GUI 与命令行（headless）两种用法。
 
 - 底座：DeepSeek Harness（DSH，MIT 许可）移植版，全面品牌化为 NUAAgent，Cordis 插件化架构，一切皆是插件。
 - 适配：`dsh-adapter/` 南航定制适配层，对接南航深信服网关后的免费模型 API（`token.nuaa.edu.cn`），内置 WAF/内容过滤绕过与代理回退。
