@@ -126,21 +126,6 @@ importers:
 
   apps/cli:
     dependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../vendor/cordis
-      '@nuaagent/cordis-plugin-hmr':
-        specifier: workspace:^
-        version: link:../../vendor/hmr
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../vendor/loader
-      '@nuaagent/cordis-plugin-timer':
-        specifier: workspace:^
-        version: link:../../vendor/timer
       '@nuaagent/agent-instructions':
         specifier: workspace:^
         version: link:../../packages/context/agent-instructions
@@ -174,9 +159,24 @@ importers:
       '@nuaagent/compaction-tool-result-pruner':
         specifier: workspace:^
         version: link:../../packages/compaction/compaction-tool-result-pruner
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../vendor/cordis
       '@nuaagent/cordis-client-runner':
         specifier: workspace:^
         version: link:../../packages/extensions/cordis-client-runner
+      '@nuaagent/cordis-plugin-hmr':
+        specifier: workspace:^
+        version: link:../../vendor/hmr
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../vendor/loader
+      '@nuaagent/cordis-plugin-timer':
+        specifier: workspace:^
+        version: link:../../vendor/timer
       '@nuaagent/fs-local':
         specifier: workspace:^
         version: link:../../packages/fs/fs-local
@@ -365,9 +365,6 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@nuaagent/cordis-plugin-group':
-        specifier: workspace:^
-        version: link:../../vendor/group
       '@nuaagent/client-modules':
         specifier: workspace:^
         version: link:../../packages/client/modules
@@ -383,6 +380,9 @@ importers:
       '@nuaagent/cmdline':
         specifier: workspace:^
         version: link:../../packages/boot/cmdline
+      '@nuaagent/cordis-plugin-group':
+        specifier: workspace:^
+        version: link:../../vendor/group
       '@nuaagent/pwsh-local':
         specifier: workspace:^
         version: link:../../packages/shell/pwsh-local
@@ -416,18 +416,6 @@ importers:
 
   examples:
     dependencies:
-      '@nuaagent/cordis-plugin-hmr':
-        specifier: workspace:*
-        version: link:../vendor/hmr
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:*
-        version: link:../vendor/include
-      '@nuaagent/cordis-plugin-logger-console':
-        specifier: workspace:*
-        version: link:../vendor/logger-console
-      '@nuaagent/cordis-plugin-timer':
-        specifier: workspace:*
-        version: link:../vendor/timer
       '@nuaagent/acp-demo':
         specifier: workspace:*
         version: link:../packages/examples/acp-demo
@@ -479,6 +467,18 @@ importers:
       '@nuaagent/cordis-host-runner':
         specifier: workspace:*
         version: link:../packages/extensions/cordis-host-runner
+      '@nuaagent/cordis-plugin-hmr':
+        specifier: workspace:*
+        version: link:../vendor/hmr
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:*
+        version: link:../vendor/include
+      '@nuaagent/cordis-plugin-logger-console':
+        specifier: workspace:*
+        version: link:../vendor/logger-console
+      '@nuaagent/cordis-plugin-timer':
+        specifier: workspace:*
+        version: link:../vendor/timer
       '@nuaagent/credentials-local':
         specifier: workspace:*
         version: link:../packages/credentials/credentials-local
@@ -778,9 +778,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -790,6 +787,9 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -812,12 +812,12 @@ importers:
         specifier: workspace:^
         version: link:../../typert/protocol
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-connection':
         specifier: workspace:^
         version: link:../../client/connection
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/host-webserver':
         specifier: workspace:^
         version: link:../../host/webserver
@@ -837,9 +837,6 @@ importers:
         specifier: workspace:^
         version: link:../../typert/protocol
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -852,6 +849,9 @@ importers:
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/cordis-host-runner':
         specifier: workspace:^
         version: link:../../extensions/cordis-host-runner
@@ -888,12 +888,12 @@ importers:
 
   packages/attachment/attachment:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -907,12 +907,12 @@ importers:
         specifier: ^0.35.3
         version: 0.35.3(@types/node@22.20.0)
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/attachment':
         specifier: workspace:^
         version: link:../attachment
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/home-paths':
         specifier: workspace:^
         version: link:../../util/home-paths
@@ -980,12 +980,6 @@ importers:
 
   packages/bundle/base:
     dependencies:
-      '@nuaagent/cordis-plugin-hmr':
-        specifier: workspace:^
-        version: link:../../../vendor/hmr
-      '@nuaagent/cordis-plugin-timer':
-        specifier: workspace:^
-        version: link:../../../vendor/timer
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -1025,6 +1019,12 @@ importers:
       '@nuaagent/compaction-tool-result-pruner':
         specifier: workspace:^
         version: link:../../compaction/compaction-tool-result-pruner
+      '@nuaagent/cordis-plugin-hmr':
+        specifier: workspace:^
+        version: link:../../../vendor/hmr
+      '@nuaagent/cordis-plugin-timer':
+        specifier: workspace:^
+        version: link:../../../vendor/timer
       '@nuaagent/credentials-local':
         specifier: workspace:^
         version: link:../../credentials/credentials-local
@@ -1205,9 +1205,18 @@ importers:
       '@nuaagent/web':
         specifier: workspace:^
         version: link:../../web/web
+      '@nuaagent/web-search-brave':
+        specifier: workspace:^
+        version: link:../../web/web-search-brave
       '@nuaagent/web-search-deepseek':
         specifier: workspace:^
         version: link:../../web/web-search-deepseek
+      '@nuaagent/web-search-serper':
+        specifier: workspace:^
+        version: link:../../web/web-search-serper
+      '@nuaagent/web-search-tavily':
+        specifier: workspace:^
+        version: link:../../web/web-search-tavily
       '@nuaagent/workflow-worker-thread':
         specifier: workspace:^
         version: link:../../workflow/workflow-worker-thread
@@ -1234,18 +1243,18 @@ importers:
         specifier: ^15.0.0
         version: 15.0.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/agent-default-model':
         specifier: workspace:^
         version: link:../../core/agent-default-model
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1405,6 +1414,9 @@ importers:
       '@nuaagent/message-feedback':
         specifier: workspace:^
         version: link:../../feedback/message-feedback
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
       '@nuaagent/session-log-export':
         specifier: workspace:^
         version: link:../../session-query/session-log-export
@@ -1429,9 +1441,6 @@ importers:
       '@nuaagent/workspace':
         specifier: workspace:^
         version: link:../../workspace/workspace
-      '@nuaagent/schemastery':
-        specifier: link:../../../vendor/schemastery
-        version: link:../../../vendor/schemastery
       commander:
         specifier: ^15.0.0
         version: 15.0.0
@@ -1466,15 +1475,15 @@ importers:
       '@nuaagent/llm':
         specifier: workspace:^
         version: link:../../llm/llm
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
       '@nuaagent/session':
         specifier: workspace:^
         version: link:../../core/session
       '@nuaagent/tools':
         specifier: workspace:^
         version: link:../../core/tools
-      '@nuaagent/schemastery':
-        specifier: link:../../../vendor/schemastery
-        version: link:../../../vendor/schemastery
       ws:
         specifier: ^8.21.0
         version: 8.21.0
@@ -1498,15 +1507,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/client-modules':
+        specifier: workspace:^
+        version: link:../modules
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/client-modules':
-        specifier: workspace:^
-        version: link:../modules
       '@nuaagent/host-webserver':
         specifier: workspace:^
         version: link:../../host/webserver
@@ -1519,16 +1528,13 @@ importers:
       '@nuaagent/client-connection':
         specifier: workspace:^
         version: link:../connection
-      '@nuaagent/settings':
-        specifier: workspace:^
-        version: link:../../settings/settings
       '@nuaagent/schemastery':
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
-    devDependencies:
-      '@nuaagent/cordis':
+      '@nuaagent/settings':
         specifier: workspace:^
-        version: link:../../../vendor/cordis
+        version: link:../../settings/settings
+    devDependencies:
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -1544,6 +1550,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1617,12 +1626,12 @@ importers:
         specifier: ~4.4.7
         version: 4.4.7(@types/react@18.3.31)(immer@10.2.0)(react@18.3.1)
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1654,9 +1663,6 @@ importers:
 
   packages/client/ui-agent-preset:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -1687,6 +1693,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1734,9 +1743,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -1767,6 +1773,9 @@ importers:
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1779,19 +1788,16 @@ importers:
 
   packages/client/ui-conversation:
     dependencies:
-      '@nuaagent/settings':
-        specifier: workspace:^
-        version: link:../../settings/settings
       '@nuaagent/schemastery':
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
+      '@nuaagent/settings':
+        specifier: workspace:^
+        version: link:../../settings/settings
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -1840,6 +1846,9 @@ importers:
       '@nuaagent/compaction':
         specifier: workspace:^
         version: link:../../compaction/compaction
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/goal':
         specifier: workspace:^
         version: link:../../goal/goal
@@ -1883,9 +1892,6 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-connection':
         specifier: workspace:^
         version: link:../connection
@@ -1904,6 +1910,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1920,9 +1929,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -1941,6 +1947,9 @@ importers:
       '@nuaagent/client-ui-workspace':
         specifier: workspace:^
         version: link:../ui-workspace
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1959,9 +1968,6 @@ importers:
 
   packages/client/ui-directory-picker-native:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-runtime':
         specifier: workspace:^
         version: link:../runtime
@@ -1971,6 +1977,9 @@ importers:
       '@nuaagent/client-ui-workspace':
         specifier: workspace:^
         version: link:../ui-workspace
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -1989,9 +1998,6 @@ importers:
 
   packages/client/ui-goal:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2016,6 +2022,9 @@ importers:
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/goal':
         specifier: workspace:^
         version: link:../../goal/goal
@@ -2041,9 +2050,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -2059,6 +2065,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2075,9 +2084,6 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -2096,6 +2102,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2105,9 +2114,6 @@ importers:
 
   packages/client/ui-layout:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -2120,6 +2126,9 @@ importers:
       '@nuaagent/client-ui-theme':
         specifier: workspace:^
         version: link:../ui-theme
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2132,9 +2141,6 @@ importers:
 
   packages/client/ui-message-feedback:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2159,6 +2165,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2183,9 +2192,6 @@ importers:
 
   packages/client/ui-model-selection:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2216,6 +2222,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2231,9 +2240,6 @@ importers:
 
   packages/client/ui-permission-presets:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2270,6 +2276,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2285,9 +2294,6 @@ importers:
 
   packages/client/ui-plan:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2312,6 +2318,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2407,9 +2416,6 @@ importers:
         specifier: workspace:^
         version: link:../connection
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2425,6 +2431,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2440,19 +2449,16 @@ importers:
 
   packages/client/ui-settings-general:
     dependencies:
-      '@nuaagent/settings':
-        specifier: workspace:^
-        version: link:../../settings/settings
       '@nuaagent/schemastery':
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
+      '@nuaagent/settings':
+        specifier: workspace:^
+        version: link:../../settings/settings
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2483,6 +2489,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2495,9 +2504,6 @@ importers:
 
   packages/client/ui-settings-models:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2528,6 +2534,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2540,9 +2549,6 @@ importers:
 
   packages/client/ui-settings-plugin-inventory:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2564,6 +2570,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2586,9 +2595,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2616,6 +2622,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2632,9 +2641,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -2653,6 +2659,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2665,9 +2674,6 @@ importers:
 
   packages/client/ui-skill:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2695,6 +2701,9 @@ importers:
       '@nuaagent/client-ui-tool':
         specifier: workspace:^
         version: link:../ui-tool
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2729,9 +2738,6 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -2753,6 +2759,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2771,19 +2780,16 @@ importers:
       '@nuaagent/client-connection':
         specifier: workspace:^
         version: link:../connection
-      '@nuaagent/settings':
-        specifier: workspace:^
-        version: link:../../settings/settings
       '@nuaagent/schemastery':
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
+      '@nuaagent/settings':
+        specifier: workspace:^
+        version: link:../../settings/settings
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2805,6 +2811,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/host-webserver':
         specifier: workspace:^
         version: link:../../host/webserver
@@ -2824,9 +2833,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -2854,6 +2860,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2879,9 +2888,6 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -2906,6 +2912,9 @@ importers:
       '@nuaagent/compaction':
         specifier: workspace:^
         version: link:../../compaction/compaction
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2949,9 +2958,6 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -2961,6 +2967,9 @@ importers:
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -2983,9 +2992,6 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -3004,6 +3010,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3026,9 +3035,6 @@ importers:
         specifier: ^2.0.0
         version: 2.1.1
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-locale':
         specifier: workspace:^
         version: link:../locale
@@ -3050,6 +3056,9 @@ importers:
       '@nuaagent/client-ui-slots':
         specifier: workspace:^
         version: link:../ui-slots
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3090,18 +3099,18 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/client-runtime':
         specifier: workspace:^
         version: link:../runtime
       '@nuaagent/client-test-runtime':
         specifier: workspace:^
         version: link:../../test-support/client-runtime
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3152,12 +3161,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/code-runtime':
         specifier: workspace:^
         version: link:../code-runtime
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3170,15 +3179,6 @@ importers:
 
   packages/compaction/command-compact:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -3188,6 +3188,15 @@ importers:
       '@nuaagent/compaction':
         specifier: workspace:^
         version: link:../compaction
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3200,15 +3209,15 @@ importers:
 
   packages/compaction/compaction:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3225,15 +3234,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -3252,6 +3252,15 @@ importers:
       '@nuaagent/compaction-tool-result-pruner':
         specifier: workspace:^
         version: link:../compaction-tool-result-pruner
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3277,6 +3286,9 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/compaction':
+        specifier: workspace:^
+        version: link:../compaction
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
@@ -3286,9 +3298,6 @@ importers:
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/compaction':
-        specifier: workspace:^
-        version: link:../compaction
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3308,18 +3317,18 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/agent-loop':
         specifier: workspace:^
         version: link:../../core/agent-loop
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/fs':
         specifier: workspace:^
         version: link:../../fs/fs
@@ -3357,15 +3366,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/compaction':
         specifier: workspace:^
         version: link:../../compaction/compaction
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3388,9 +3397,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -3400,6 +3406,9 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3425,12 +3434,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3480,12 +3489,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3502,12 +3511,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3542,15 +3551,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../agent
       '@nuaagent/code-runtime':
         specifier: workspace:^
         version: link:../../code-runtime/code-runtime
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3578,12 +3587,12 @@ importers:
 
   packages/core/session:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3625,15 +3634,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../agent
       '@nuaagent/code-runtime':
         specifier: workspace:^
         version: link:../../code-runtime/code-runtime
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3655,12 +3664,12 @@ importers:
 
   packages/credentials/credentials:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3677,12 +3686,12 @@ importers:
         specifier: ^2.9.0
         version: 2.9.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/atomic-write':
         specifier: workspace:^
         version: link:../../util/atomic-write
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/credentials':
         specifier: workspace:^
         version: link:../credentials
@@ -3761,15 +3770,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/acp':
         specifier: workspace:^
         version: link:../../acp/acp
@@ -3785,6 +3785,15 @@ importers:
       '@nuaagent/app-boot':
         specifier: workspace:^
         version: link:../../boot/app-boot
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3813,12 +3822,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-timer':
-        specifier: workspace:^
-        version: link:../../../vendor/timer
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -3834,6 +3837,12 @@ importers:
       '@nuaagent/bash-sandbox':
         specifier: workspace:^
         version: link:../../shell/bash-sandbox
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-timer':
+        specifier: workspace:^
+        version: link:../../../vendor/timer
       '@nuaagent/fs-local':
         specifier: workspace:^
         version: link:../../fs/fs-local
@@ -3867,6 +3876,9 @@ importers:
       '@nuaagent/llm-retry':
         specifier: workspace:^
         version: link:../../llm/llm-retry
+      '@nuaagent/node-addon-landlock-run':
+        specifier: workspace:^
+        version: link:../../../native/landlock-run/packages/entry
       '@nuaagent/sandbox-local':
         specifier: workspace:^
         version: link:../../sandbox/sandbox-local
@@ -3915,9 +3927,6 @@ importers:
       '@nuaagent/tools':
         specifier: workspace:^
         version: link:../../core/tools
-      '@nuaagent/node-addon-landlock-run':
-        specifier: workspace:^
-        version: link:../../../native/landlock-run/packages/entry
 
   packages/examples/jsonrpc-demo:
     dependencies:
@@ -3934,12 +3943,6 @@ importers:
 
   packages/extensions/cordis-client-runner:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -3958,6 +3961,12 @@ importers:
       '@nuaagent/client-ui-theme':
         specifier: workspace:^
         version: link:../../client/ui-theme
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -3977,18 +3986,18 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-timer':
-        specifier: workspace:^
-        version: link:../../../vendor/timer
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-timer':
+        specifier: workspace:^
+        version: link:../../../vendor/timer
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4010,18 +4019,18 @@ importers:
 
   packages/extensions/tool-cordis:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/cordis-host-runner':
         specifier: workspace:^
         version: link:../cordis-host-runner
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4043,9 +4052,6 @@ importers:
 
   packages/extensions/ui-cordis:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/api-remotes':
         specifier: workspace:^
         version: link:../../api/remotes
@@ -4073,6 +4079,9 @@ importers:
       '@nuaagent/client-ui-tool':
         specifier: workspace:^
         version: link:../../client/ui-tool
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/cordis-client-runner':
         specifier: workspace:^
         version: link:../cordis-client-runner
@@ -4088,15 +4097,6 @@ importers:
 
   packages/feedback/command-feedback:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -4106,6 +4106,15 @@ importers:
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4128,6 +4137,9 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
+      '@nuaagent/brand':
+        specifier: workspace:^
+        version: link:../../util/brand
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
@@ -4137,9 +4149,6 @@ importers:
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/brand':
-        specifier: workspace:^
-        version: link:../../util/brand
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4170,12 +4179,12 @@ importers:
 
   packages/fs/fs:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4253,9 +4262,6 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -4268,6 +4274,9 @@ importers:
       '@nuaagent/attachment':
         specifier: workspace:^
         version: link:../../attachment/attachment
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/fs':
         specifier: workspace:^
         version: link:../fs
@@ -4314,12 +4323,12 @@ importers:
         specifier: ^1.18.0
         version: 1.18.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4357,12 +4366,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/fs':
         specifier: workspace:^
         version: link:../fs
@@ -4399,18 +4408,18 @@ importers:
 
   packages/goal/command-goal:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/goal':
         specifier: workspace:^
         version: link:../goal
@@ -4433,15 +4442,15 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4466,9 +4475,6 @@ importers:
 
   packages/goal/goal-round-driver:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -4478,6 +4484,9 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/goal':
         specifier: workspace:^
         version: link:../goal
@@ -4503,15 +4512,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
       '@nuaagent/goal':
         specifier: workspace:^
         version: link:../goal
@@ -4537,9 +4546,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -4549,6 +4555,9 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4601,9 +4610,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -4616,6 +4622,9 @@ importers:
       '@nuaagent/bash-local':
         specifier: workspace:^
         version: link:../../shell/bash-local
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/hook-protocol':
         specifier: workspace:^
         version: link:../hook-protocol
@@ -4653,9 +4662,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -4668,6 +4674,9 @@ importers:
       '@nuaagent/bash-local':
         specifier: workspace:^
         version: link:../../shell/bash-local
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/hook-protocol':
         specifier: workspace:^
         version: link:../hook-protocol
@@ -4734,6 +4743,9 @@ importers:
       '@nuaagent/native-command':
         specifier: workspace:^
         version: link:../../util/native-command
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
       '@nuaagent/session':
         specifier: workspace:^
         version: link:../../core/session
@@ -4773,9 +4785,6 @@ importers:
       '@nuaagent/workspace':
         specifier: workspace:^
         version: link:../../workspace/workspace
-      '@nuaagent/schemastery':
-        specifier: link:../../../vendor/schemastery
-        version: link:../../../vendor/schemastery
       fflate:
         specifier: ^0.8.2
         version: 0.8.3
@@ -4783,12 +4792,12 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent-presets':
         specifier: workspace:^
         version: link:../../preset/agent-presets
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/cordis-host-runner':
         specifier: workspace:^
         version: link:../../extensions/cordis-host-runner
@@ -4819,6 +4828,12 @@ importers:
 
   packages/host/directory-picker-auto:
     devDependencies:
+      '@nuaagent/client-ui-directory-picker-browse':
+        specifier: workspace:^
+        version: link:../../client/ui-directory-picker-browse
+      '@nuaagent/client-ui-directory-picker-native':
+        specifier: workspace:^
+        version: link:../../client/ui-directory-picker-native
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
@@ -4828,12 +4843,6 @@ importers:
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/client-ui-directory-picker-browse':
-        specifier: workspace:^
-        version: link:../../client/ui-directory-picker-browse
-      '@nuaagent/client-ui-directory-picker-native':
-        specifier: workspace:^
-        version: link:../../client/ui-directory-picker-native
       '@nuaagent/host-directory-picker':
         specifier: workspace:^
         version: link:../directory-picker
@@ -4913,15 +4922,15 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
+      '@nuaagent/brand':
+        specifier: workspace:^
+        version: link:../../util/brand
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/brand':
-        specifier: workspace:^
-        version: link:../../util/brand
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4944,12 +4953,12 @@ importers:
 
   packages/identity/anonymous-user-id:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/home-paths':
         specifier: workspace:^
         version: link:../../util/home-paths
@@ -4963,15 +4972,15 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -4994,12 +5003,12 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5027,12 +5036,12 @@ importers:
 
   packages/interaction/tool-ask-user:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5055,15 +5064,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5082,12 +5091,12 @@ importers:
 
   packages/interaction/user-questions:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5097,15 +5106,15 @@ importers:
 
   packages/jobs/jobs:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5119,6 +5128,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
+      '@nuaagent/brand':
+        specifier: workspace:^
+        version: link:../../util/brand
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
@@ -5128,12 +5143,6 @@ importers:
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
-      '@nuaagent/brand':
-        specifier: workspace:^
-        version: link:../../util/brand
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5156,12 +5165,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5193,15 +5202,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/attachment':
         specifier: workspace:^
         version: link:../../attachment/attachment
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5218,12 +5227,12 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/anonymous-user-id':
         specifier: workspace:^
         version: link:../../identity/anonymous-user-id
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/credentials':
         specifier: workspace:^
         version: link:../../credentials/credentials
@@ -5245,19 +5254,19 @@ importers:
 
   packages/llm/llm-pi-ai:
     dependencies:
-      '@nuaagent/schemastery':
-        specifier: link:../../../vendor/schemastery
-        version: link:../../../vendor/schemastery
       '@earendil-works/pi-ai':
         specifier: ^0.82.1
         version: 0.82.1(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.21.0)(zod@4.4.3)
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/attachment':
         specifier: workspace:^
         version: link:../../attachment/attachment
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/credentials':
         specifier: workspace:^
         version: link:../../credentials/credentials
@@ -5286,15 +5295,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -5307,6 +5307,15 @@ importers:
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5347,12 +5356,12 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/compaction':
         specifier: workspace:^
         version: link:../../compaction/compaction
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5368,12 +5377,12 @@ importers:
 
   packages/lsp/lsp:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5387,12 +5396,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/fs':
         specifier: workspace:^
         version: link:../../fs/fs
@@ -5430,12 +5439,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/fs-local':
         specifier: workspace:^
         version: link:../../fs/fs-local
@@ -5472,16 +5481,22 @@ importers:
 
   packages/mcp/mcp-client:
     dependencies:
-      '@nuaagent/schemastery':
-        specifier: link:../../../vendor/schemastery
-        version: link:../../../vendor/schemastery
       '@modelcontextprotocol/sdk':
         specifier: ^1.12.0
         version: 1.29.0(zod@4.4.3)
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
       zod:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
+      '@modelcontextprotocol/server-everything':
+        specifier: ^2026.7.4
+        version: 2026.7.4
+      '@modelcontextprotocol/server-filesystem':
+        specifier: ^2026.7.4
+        version: 2026.7.10(zod@4.4.3)
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
@@ -5500,12 +5515,6 @@ importers:
       '@nuaagent/tools':
         specifier: workspace:^
         version: link:../../core/tools
-      '@modelcontextprotocol/server-everything':
-        specifier: ^2026.7.4
-        version: 2026.7.4
-      '@modelcontextprotocol/server-filesystem':
-        specifier: ^2026.7.4
-        version: 2026.7.10(zod@4.4.3)
 
   packages/plan/plan-mode:
     dependencies:
@@ -5513,9 +5522,6 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -5528,6 +5534,9 @@ importers:
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5559,15 +5568,6 @@ importers:
         specifier: ^4.1.0
         version: 4.2.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -5577,6 +5577,15 @@ importers:
       '@nuaagent/atomic-write':
         specifier: workspace:^
         version: link:../../util/atomic-write
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/home-paths':
         specifier: workspace:^
         version: link:../../util/home-paths
@@ -5651,12 +5660,12 @@ importers:
 
   packages/sandbox/sandbox-local:
     dependencies:
-      '@nuaagent/sandbox-windows-acl':
-        specifier: workspace:^
-        version: link:../sandbox-windows-acl
       '@nuaagent/node-addon-landlock-run':
         specifier: workspace:^
         version: link:../../../native/landlock-run/packages/entry
+      '@nuaagent/sandbox-windows-acl':
+        specifier: workspace:^
+        version: link:../sandbox-windows-acl
       '@nuaagent/schemastery':
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
@@ -5683,12 +5692,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5723,12 +5732,6 @@ importers:
 
   packages/schedule/schedule:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -5741,6 +5744,12 @@ importers:
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5805,18 +5814,18 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/agent-spine-demo':
         specifier: workspace:^
         version: link:../../examples/agent-spine-demo
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5844,12 +5853,6 @@ importers:
 
   packages/session-query/session-log-export:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -5874,6 +5877,12 @@ importers:
       '@nuaagent/commands':
         specifier: workspace:^
         version: link:../../interaction/commands
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5889,12 +5898,12 @@ importers:
 
   packages/session-query/session-query:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5945,12 +5954,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -5990,12 +5999,6 @@ importers:
 
   packages/session/session-checkpoint-policy:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -6005,6 +6008,12 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6029,12 +6038,12 @@ importers:
 
   packages/session/session-persistence:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6166,12 +6175,12 @@ importers:
 
   packages/session/session-telemetry:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6203,18 +6212,18 @@ importers:
         specifier: ^0.220.0
         version: 0.220.0(@opentelemetry/api@1.9.1)
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/anonymous-user-id':
         specifier: workspace:^
         version: link:../../identity/anonymous-user-id
       '@nuaagent/command-feedback':
         specifier: workspace:^
         version: link:../../feedback/command-feedback
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6237,12 +6246,12 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6352,12 +6361,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6374,12 +6383,12 @@ importers:
         specifier: ^2.9.0
         version: 2.9.0
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/atomic-write':
         specifier: workspace:^
         version: link:../../util/atomic-write
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/home-paths':
         specifier: workspace:^
         version: link:../../util/home-paths
@@ -6420,15 +6429,18 @@ importers:
 
   packages/shell/bash-sandbox:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/bash-local':
         specifier: workspace:^
         version: link:../bash-local
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
+      '@nuaagent/node-addon-landlock-run':
+        specifier: workspace:^
+        version: link:../../../native/landlock-run/packages/entry
       '@nuaagent/sandbox':
         specifier: workspace:^
         version: link:../../sandbox/sandbox
@@ -6444,9 +6456,6 @@ importers:
       '@nuaagent/subprocess-local':
         specifier: workspace:^
         version: link:../../subprocess/subprocess-local
-      '@nuaagent/node-addon-landlock-run':
-        specifier: workspace:^
-        version: link:../../../native/landlock-run/packages/entry
 
   packages/shell/pwsh-local:
     dependencies:
@@ -6527,12 +6536,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/home-paths':
         specifier: workspace:^
         version: link:../../util/home-paths
@@ -6558,9 +6567,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -6573,6 +6579,9 @@ importers:
       '@nuaagent/bash-local':
         specifier: workspace:^
         version: link:../bash-local
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6625,6 +6634,9 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
@@ -6634,9 +6646,6 @@ importers:
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6677,12 +6686,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6794,12 +6803,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6824,12 +6833,12 @@ importers:
 
   packages/spill/spill:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6846,12 +6855,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6871,15 +6880,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/code-runtime-worker-thread':
         specifier: workspace:^
         version: link:../../code-runtime/code-runtime-worker-thread
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -6965,9 +6974,6 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -6977,6 +6983,9 @@ importers:
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7029,15 +7038,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7075,12 +7084,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7112,15 +7121,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7158,15 +7167,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7198,12 +7207,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -7213,6 +7216,12 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7234,15 +7243,6 @@ importers:
 
   packages/subagent/subagent-in-process-driver:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -7255,6 +7255,15 @@ importers:
       '@nuaagent/agent-presets':
         specifier: workspace:^
         version: link:../../preset/agent-presets
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/fs-sandbox':
         specifier: workspace:^
         version: link:../../fs/fs-sandbox
@@ -7292,12 +7301,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -7310,6 +7313,12 @@ importers:
       '@nuaagent/bash-local':
         specifier: workspace:^
         version: link:../../shell/bash-local
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7344,15 +7353,15 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7392,9 +7401,6 @@ importers:
 
   packages/subagent/tool-subagent-control:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -7404,6 +7410,9 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7438,9 +7447,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -7450,6 +7456,9 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7514,15 +7523,15 @@ importers:
 
   packages/terminal/terminal:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7536,12 +7545,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7570,6 +7579,9 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
+      '@nuaagent/agent':
+        specifier: workspace:^
+        version: link:../../core/agent
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
@@ -7579,9 +7591,6 @@ importers:
       '@nuaagent/cordis-plugin-loader':
         specifier: workspace:^
         version: link:../../../vendor/loader
-      '@nuaagent/agent':
-        specifier: workspace:^
-        version: link:../../core/agent
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7649,15 +7658,15 @@ importers:
 
   packages/test-support/agent-loop-testkit:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/agent-loop':
         specifier: workspace:^
         version: link:../../core/agent-loop
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7686,9 +7695,6 @@ importers:
         specifier: ^4.1.8
         version: 4.1.8(@opentelemetry/api@1.9.1)(@types/node@25.9.3)(@vitest/coverage-v8@4.1.8)(jsdom@29.1.1)(vite@8.0.16(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.4)(yaml@2.9.0))
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/client-runtime':
         specifier: workspace:^
         version: link:../../client/runtime
@@ -7698,6 +7704,9 @@ importers:
       '@nuaagent/client-web-react':
         specifier: workspace:^
         version: link:../../client/web-react
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/host-apiproxy':
         specifier: workspace:^
         version: link:../../host/apiproxy
@@ -7728,12 +7737,12 @@ importers:
 
   packages/test-support/llm-replay:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/compaction':
         specifier: workspace:^
         version: link:../../compaction/compaction
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7753,12 +7762,12 @@ importers:
         specifier: ^4.22.4
         version: 4.22.4
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -7778,15 +7787,6 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../../vendor/loader
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -7796,6 +7796,15 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/host-apiproxy':
         specifier: workspace:^
         version: link:../../host/apiproxy
@@ -7958,22 +7967,22 @@ importers:
 
   packages/web/tool-web:
     dependencies:
-      '@nuaagent/schemastery':
-        specifier: link:../../../vendor/schemastery
-        version: link:../../../vendor/schemastery
       '@joplin/turndown-plugin-gfm':
         specifier: ^1.0.67
         version: 1.0.67
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
       turndown:
         specifier: ^7.2.4
         version: 7.2.4
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -8046,7 +8055,7 @@ importers:
         specifier: workspace:^
         version: link:../web
 
-  packages/web/web-search-deepseek:
+  packages/web/web-search-brave:
     dependencies:
       '@nuaagent/schemastery':
         specifier: link:../../../vendor/schemastery
@@ -8055,9 +8064,28 @@ importers:
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
+      '@nuaagent/invariants':
+        specifier: workspace:^
+        version: link:../../runtime-diagnostics/invariants
+      '@nuaagent/launch-environment':
+        specifier: workspace:^
+        version: link:../../util/launch-environment
+      '@nuaagent/web':
+        specifier: workspace:^
+        version: link:../web
+
+  packages/web/web-search-deepseek:
+    dependencies:
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/credentials':
         specifier: workspace:^
         version: link:../../credentials/credentials
@@ -8118,7 +8146,7 @@ importers:
         specifier: workspace:^
         version: link:../web
 
-  packages/workflow/tool-ralph:
+  packages/web/web-search-serper:
     dependencies:
       '@nuaagent/schemastery':
         specifier: link:../../../vendor/schemastery
@@ -8127,9 +8155,41 @@ importers:
       '@nuaagent/cordis':
         specifier: workspace:^
         version: link:../../../vendor/cordis
-      '@nuaagent/cordis-plugin-loader':
+      '@nuaagent/invariants':
         specifier: workspace:^
-        version: link:../../../vendor/loader
+        version: link:../../runtime-diagnostics/invariants
+      '@nuaagent/launch-environment':
+        specifier: workspace:^
+        version: link:../../util/launch-environment
+      '@nuaagent/web':
+        specifier: workspace:^
+        version: link:../web
+
+  packages/web/web-search-tavily:
+    dependencies:
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/invariants':
+        specifier: workspace:^
+        version: link:../../runtime-diagnostics/invariants
+      '@nuaagent/launch-environment':
+        specifier: workspace:^
+        version: link:../../util/launch-environment
+      '@nuaagent/web':
+        specifier: workspace:^
+        version: link:../web
+
+  packages/workflow/tool-ralph:
+    dependencies:
+      '@nuaagent/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -8139,6 +8199,12 @@ importers:
       '@nuaagent/agent-loop-testkit':
         specifier: workspace:^
         version: link:../../test-support/agent-loop-testkit
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../../vendor/loader
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -8176,12 +8242,12 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -8209,15 +8275,15 @@ importers:
 
   packages/workflow/workflow:
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -8234,9 +8300,6 @@ importers:
         specifier: link:../../../vendor/schemastery
         version: link:../../../vendor/schemastery
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/agent':
         specifier: workspace:^
         version: link:../../core/agent
@@ -8249,6 +8312,9 @@ importers:
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -8283,12 +8349,12 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../../vendor/cordis
       '@nuaagent/brand':
         specifier: workspace:^
         version: link:../../util/brand
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../../vendor/cordis
       '@nuaagent/invariants':
         specifier: workspace:^
         version: link:../../runtime-diagnostics/invariants
@@ -8307,24 +8373,6 @@ importers:
 
   python/sdk-runtime:
     dependencies:
-      '@nuaagent/cordis':
-        specifier: workspace:^
-        version: link:../../vendor/cordis
-      '@nuaagent/cordis-plugin-group':
-        specifier: workspace:^
-        version: link:../../vendor/group
-      '@nuaagent/cordis-plugin-include':
-        specifier: workspace:^
-        version: link:../../vendor/include
-      '@nuaagent/cordis-plugin-loader':
-        specifier: workspace:^
-        version: link:../../vendor/loader
-      '@nuaagent/cordis-plugin-timer':
-        specifier: workspace:^
-        version: link:../../vendor/timer
-      '@nuaagent/cosmokit':
-        specifier: link:../../vendor/cosmokit
-        version: link:../../vendor/cosmokit
       '@nuaagent/acp':
         specifier: workspace:^
         version: link:../../packages/acp/acp
@@ -8376,9 +8424,27 @@ importers:
       '@nuaagent/compaction-tool-result-pruner':
         specifier: workspace:^
         version: link:../../packages/compaction/compaction-tool-result-pruner
+      '@nuaagent/cordis':
+        specifier: workspace:^
+        version: link:../../vendor/cordis
       '@nuaagent/cordis-host-runner':
         specifier: workspace:^
         version: link:../../packages/extensions/cordis-host-runner
+      '@nuaagent/cordis-plugin-group':
+        specifier: workspace:^
+        version: link:../../vendor/group
+      '@nuaagent/cordis-plugin-include':
+        specifier: workspace:^
+        version: link:../../vendor/include
+      '@nuaagent/cordis-plugin-loader':
+        specifier: workspace:^
+        version: link:../../vendor/loader
+      '@nuaagent/cordis-plugin-timer':
+        specifier: workspace:^
+        version: link:../../vendor/timer
+      '@nuaagent/cosmokit':
+        specifier: link:../../vendor/cosmokit
+        version: link:../../vendor/cosmokit
       '@nuaagent/credentials':
         specifier: workspace:^
         version: link:../../packages/credentials/credentials
@@ -8457,6 +8523,9 @@ importers:
       '@nuaagent/sandbox-policy':
         specifier: workspace:^
         version: link:../../packages/sandbox/sandbox-policy
+      '@nuaagent/schemastery':
+        specifier: link:../../vendor/schemastery
+        version: link:../../vendor/schemastery
       '@nuaagent/scope':
         specifier: workspace:^
         version: link:../../packages/core/scope
@@ -8628,9 +8697,6 @@ importers:
       '@nuaagent/workflow-worker-thread':
         specifier: workspace:^
         version: link:../../packages/workflow/workflow-worker-thread
-      '@nuaagent/schemastery':
-        specifier: link:../../vendor/schemastery
-        version: link:../../vendor/schemastery
 
   vendor/cordis:
     dependencies:

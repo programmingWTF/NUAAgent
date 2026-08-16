@@ -114,6 +114,9 @@
     "@nuaagent/user-questions": "workspace:^",
     "@nuaagent/web": "workspace:^",
     "@nuaagent/web-search-deepseek": "workspace:^",
+    "@nuaagent/web-search-tavily": "workspace:^",
+    "@nuaagent/web-search-brave": "workspace:^",
+    "@nuaagent/web-search-serper": "workspace:^",
     "@nuaagent/workflow-worker-thread": "workspace:^",
     "@nuaagent/agent-instructions": "workspace:^"
   },
