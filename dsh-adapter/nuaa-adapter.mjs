@@ -49,8 +49,9 @@ const ZW_HINT =
 2) 下划线 _（用于打断敏感词，例如 exec 可能写成 e_xec，SELECT 可能写成 SEL_ECT）。
 务必遵守：
 - 阅读工具描述、历史消息、用户输入时，自动剥离上述打断字符后再理解；
+- 若看到 &lt; 或 &gt;（本会话请求经过 HTML 实体编码，&lt; 即 <、&gt; 即 >），按原字符理解；
 - 生成工具调用（tool call）时，函数名与 JSON 参数键名必须使用标准、干净的名称（例如 command、exec、path），禁止输出任何零宽字符或打断用的下划线；
-- 你的任何输出（包括思考、回复、工具参数）都不得复制这些打断字符。
+- 你的任何输出（包括思考、回复、工具参数）都不得复制这些打断字符，也禁止把 <、> 写成 &lt;、&gt;（除非内容本身是在讲 HTML 实体）。
 `;
 
 /** 幂等注入提示词：合并进现有 system 消息（找不到则新建），已注入过则跳过。
@@ -287,36 +288,102 @@ function curlFetch(url, bodyStr, proxyUrl, apiKey, signal) {
   });
 }
 
-// ---- 响应净化：剥离模型输出中复制来的零宽字符 ----
+// ---- 响应净化：剥离模型输出中复制来的零宽/不可见字符，还原误复制的 HTML 实体 ----
 /**
- * 字节级 TransformStream：移除 UTF-8 编码的零宽字符序列。
- * 模型会把请求侧插入的零宽字符（U+200B 等）复制进回复内容 / tool_call 参数，
- * 导致显示异常（不可见字符混入代码）与工具执行失败；这里在 SSE 字节流上实时剥离。
- * 处理序列（UTF-8 十六进制）：
- *   U+200B ZWSP  e2 80 8b / U+200C ZWNJ e2 80 8c / U+200D ZWJ  e2 80 8d
- *   U+FEFF BOM   ef bb bf / U+2060 WJ   e2 81 a0
- * 跨 chunk 安全：末尾保留最多 2 字节（可能是被 chunk 边界截断的序列开头），
- * 与下一块拼接后再判断，flush 时输出残留。
+ * 字节级 TransformStream：在 SSE 流上实时净化模型输出。
+ * 模型会把请求侧插入的零宽字符（U+200B 等）或 HTML 实体（&lt;/&gt;）复制进
+ * 回复内容 / tool_call 参数，导致显示异常（不可见字符混入代码）、
+ * 工具执行失败（参数带实体）等问题；这里统一处理。
+ *
+ * 1) 零宽/不可见字符全集合剥离（UTF-8 十六进制序列）：
+ *    U+200B ZWSP / U+200C ZWNJ / U+200D ZWJ（打断字符，最常被复制）
+ *    U+200E LRM  / U+200F RLM（左右标记，破坏代码语义）
+ *    U+202A-202E 双向嵌入/覆盖/弹出（bidi 控制，可被用来做视觉欺骗）
+ *    U+2060-2064 词连接符/隐形运算符（WJ/函数应用/隐形乘号/分隔符/加号）
+ *    U+2066-2069 双向隔离符（LSI/RLI/FSI/PDI）
+ *    U+FEFF BOM / U+00AD 软连字符 / U+034F 组合字素连接符
+ *    U+180E 蒙古语元音分隔符 / U+115F,U+1160 谚文填充符 / U+17B4,U+17B5 高棉元音
+ *    U+FFA0 半宽谚文填充符
+ *    C0/C1 控制字符（保留 \t \n \r）：U+0000-001F、U+007F、U+0080-009F
+ * 2) HTML 实体还原：&lt; → <、&gt; → >（请求侧 sanitizeBody 为了过 WAF 把
+ *    < > 编码成实体后，模型经常原样复制进输出；这里在响应侧还原为真实字符）。
+ *
+ * 跨 chunk 安全：末尾保留最多 4 字节（最长序列 &lt; 的长度），与下一块拼接
+ * 后再判断，flush 时输出残留。
  */
-const ZW_SEQ = new Set(['e2808b', 'e2808c', 'e2808d', 'efbbbf', 'e281a0']);
-function stripZeroWidth() {
+// UTF-8 三字节零宽/不可见字符序列（十六进制小写）
+const ZW_SEQ = new Set([
+  'e2808b', // U+200B ZERO WIDTH SPACE
+  'e2808c', // U+200C ZERO WIDTH NON-JOINER
+  'e2808d', // U+200D ZERO WIDTH JOINER
+  'e2808e', // U+200E LEFT-TO-RIGHT MARK
+  'e2808f', // U+200F RIGHT-TO-LEFT MARK
+  'e280aa', // U+202A LEFT-TO-RIGHT EMBEDDING
+  'e280ab', // U+202B RIGHT-TO-LEFT EMBEDDING
+  'e280ac', // U+202C POP DIRECTIONAL FORMATTING
+  'e280ad', // U+202D LEFT-TO-RIGHT OVERRIDE
+  'e280ae', // U+202E RIGHT-TO-LEFT OVERRIDE
+  'e281a0', // U+2060 WORD JOINER
+  'e281a1', // U+2061 FUNCTION APPLICATION
+  'e281a2', // U+2062 INVISIBLE TIMES
+  'e281a3', // U+2063 INVISIBLE SEPARATOR
+  'e281a4', // U+2064 INVISIBLE PLUS
+  'e281a6', // U+2066 LEFT-TO-RIGHT ISOLATE
+  'e281a7', // U+2067 RIGHT-TO-LEFT ISOLATE
+  'e281a8', // U+2068 FIRST STRONG ISOLATE
+  'e281a9', // U+2069 POP DIRECTIONAL ISOLATE
+  'efbbbf', // U+FEFF ZERO WIDTH NO-BREAK SPACE / BOM
+  'e1a08e', // U+180E MONGOLIAN VOWEL SEPARATOR
+  'e1859f', // U+115F HANGUL CHOSEONG FILLER
+  'e185a0', // U+1160 HANGUL JUNGSEONG FILLER
+  'e19eb4', // U+17B4 KHMER VOWEL INHERENT AQ
+  'e19eb5', // U+17B5 KHMER VOWEL INHERENT AA
+  'efbea0', // U+FFA0 HALFWIDTH HANGUL FILLER
+]);
+// 两字节不可见字符序列：U+00AD SOFT HYPHEN (c2 ad)、U+034F COMBINING GRAPHEME JOINER (cd 8f)
+const ZW_SEQ_2 = new Set(['c2ad', 'cd8f']);
+// C1 控制字符区间（U+0080 - U+009F 的 UTF-8 编码为 c2 80 - c2 9f）：软连字符 c2 ad 不在区间内
+function isC1Control(b1, b2) {
+  return b1 === 0xc2 && b2 >= 0x80 && b2 <= 0x9f;
+}
+// 单字节控制字符（C0 控制 + DEL），保留 \t(09) \n(0a) \r(0d)
+function isC0Control(b) {
+  return b < 0x20 ? (b === 0x09 || b === 0x0a || b === 0x0d ? false : true) : b === 0x7f;
+}
+// HTML 实体还原（请求侧 sanitizeBody 编码的两种实体）
+const LT_ENTITY = [0x26, 0x6c, 0x74, 0x3b]; // &lt;
+const GT_ENTITY = [0x26, 0x67, 0x74, 0x3b]; // &gt;
+function matches(buf, pos, seq) {
+  if (pos + seq.length > buf.length) return false;
+  for (let k = 0; k < seq.length; k++) if (buf[pos + k] !== seq[k]) return false;
+  return true;
+}
+function sanitizeOutput() {
   let tail = Buffer.alloc(0);
   return new TransformStream({
     transform(chunk, controller) {
       const buf = Buffer.concat([tail, Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)]);
       const out = [];
       let i = 0;
-      for (; i < buf.length; i++) {
+      while (i < buf.length) {
         if (i + 2 < buf.length) {
           const seq = buf[i].toString(16).padStart(2, '0')
             + buf[i + 1].toString(16).padStart(2, '0')
             + buf[i + 2].toString(16).padStart(2, '0');
-          if (ZW_SEQ.has(seq)) { i += 2; continue; }
+          if (ZW_SEQ.has(seq)) { i += 3; continue; }
         }
+        if (matches(buf, i, LT_ENTITY)) { out.push(0x3c /* < */); i += LT_ENTITY.length; continue; }
+        if (matches(buf, i, GT_ENTITY)) { out.push(0x3e /* > */); i += GT_ENTITY.length; continue; }
+        if (i + 1 < buf.length) {
+          if (ZW_SEQ_2.has(buf[i].toString(16).padStart(2, '0') + buf[i + 1].toString(16).padStart(2, '0'))
+              || isC1Control(buf[i], buf[i + 1])) { i += 2; continue; }
+        }
+        if (isC0Control(buf[i])) { i += 1; continue; }
         out.push(buf[i]);
+        i += 1;
       }
-      // 末尾最多保留 2 字节（可能是被截断的序列开头），留到下一块
-      const keep = Math.min(2, out.length);
+      // 末尾保留：按 UTF-8 序列完整性 + 实体前缀判断（固定截断会切坏多字节字符）
+      const keep = computeTailKeep(out);
       const head = out.slice(0, out.length - keep);
       tail = Buffer.from(out.slice(out.length - keep));
       if (head.length) controller.enqueue(new Uint8Array(head));
@@ -325,6 +392,32 @@ function stripZeroWidth() {
       if (tail.length) controller.enqueue(new Uint8Array(tail));
     },
   });
+}
+
+/**
+ * 决定 out 末尾需要留到下一块的字节数：
+ * - 若末尾是多字节 UTF-8 字符被截断的部分，保留不完整序列（等下一块补齐）；
+ * - 若末尾是 HTML 实体前缀（&lt/&gt 的 ASCII 开头），保留前缀；
+ * - 其余情况（完整字符/纯 ASCII 结尾）返回 0，立即输出。
+ */
+function computeTailKeep(out) {
+  const len = out.length;
+  if (len === 0) return 0;
+  // 从末尾往前数 UTF-8 延续字节（10xxxxxx）
+  let k = 0;
+  while (k < len && k < 3 && (out[len - 1 - k] & 0xc0) === 0x80) k += 1;
+  if (k < len) {
+    const b = out[len - 1 - k];
+    const total = (b & 0xf8) === 0xf0 ? 4 : (b & 0xf0) === 0xe0 ? 3 : (b & 0xe0) === 0xc0 ? 2 : 0;
+    if (total > 0 && k < total - 1) return k + 1; // 起始字节 + 已数到的延续字节
+  }
+  // HTML 实体前缀（'&' 之后的 l/g/t 是 ASCII，需在字节流层识别）
+  if (k === 0 && len >= 3 && out[len - 3] === 0x26 && out[len - 2] === 0x6c && out[len - 1] === 0x74) return 3; // &lt
+  if (k === 0 && len >= 3 && out[len - 3] === 0x26 && out[len - 2] === 0x67 && out[len - 1] === 0x74) return 3; // &gt
+  if (k === 0 && len >= 2 && out[len - 2] === 0x26 && out[len - 1] === 0x6c) return 2; // &l
+  if (k === 0 && len >= 2 && out[len - 2] === 0x26 && out[len - 1] === 0x67) return 2; // &g
+  if (k === 0 && len >= 1 && out[len - 1] === 0x26) return 1; // &
+  return 0;
 }
 
 // ---- 包装 globalThis.fetch ----
@@ -344,11 +437,12 @@ globalThis.fetch = async function (input, init = {}) {
     } else {
       resp = await origFetch(input, { ...init, body: sanitized });
     }
-    // 剥离响应中的零宽字符（模型复制请求侧打断字符的产物）
+    // 净化响应：剥离零宽/不可见字符（模型复制请求侧打断字符的产物）
+    // + 还原误复制的 &lt;/&gt; 实体（sanitizeBody 的编码在模型输出中的残留）
     if (resp && resp.body) {
       const h = new Headers(resp.headers);
       h.delete('content-length'); // 内容已变更，长度头作废
-      return new Response(resp.body.pipeThrough(stripZeroWidth()), { status: resp.status, headers: h });
+      return new Response(resp.body.pipeThrough(sanitizeOutput()), { status: resp.status, headers: h });
     }
     return resp;
   }

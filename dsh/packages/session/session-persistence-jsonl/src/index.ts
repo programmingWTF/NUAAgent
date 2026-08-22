@@ -42,6 +42,13 @@ const DEFAULT_COMPRESSION: JsonlCompression = 'zstd'
  * remains an indivisible synchronous decode.
  */
 const ZSTD_DECODE_YIELD_INTERVAL_MS = 500
+/**
+ * Convergent read-loop bound: after this many stat/read rounds without a
+ * stable revision, accept the latest read instead of retrying forever. A
+ * long-lived foreign writer (e.g. a previous harness instance that survived
+ * a restart) would otherwise make session-history loading hang indefinitely.
+ */
+const MAX_STABLE_READ_ATTEMPTS = 8
 
 /** Assert that the independently decodable first frame contains only the header record. */
 function assertZstdHeaderFrame(plaintext: Buffer): void {
@@ -285,6 +292,14 @@ export class JsonlSessionPersistence extends SessionPersistence implements Persi
    * Read a file's bytes under a revision-stable loop: a writer appending
    * between stat and readFile would yield a torn physical file, so retry
    * while the stat revision changes.
+   *
+   * Bounded: a continuous external writer (another process still alive after
+   * a restart, appending to the same session log) would otherwise keep the
+   * revision moving forever and make history loading spin without ever
+   * returning. After {@link MAX_STABLE_READ_ATTEMPTS} failed rounds the
+   * latest read is accepted — readFile observes one atomic state, so the
+   * bytes are a valid cut of the log, and any torn tail is repaired later by
+   * the physical-format scanner.
    * @param path - the artifact file to read.
    * @param signal - optional cancellation for the stat/read work.
    * @returns the stable bytes and the revision that matched both stats.
@@ -293,13 +308,23 @@ export class JsonlSessionPersistence extends SessionPersistence implements Persi
     path: string,
     signal?: AbortSignal,
   ): Promise<{ buffer: Buffer; revision: PersistenceRevision }> {
-    for (;;) {
+    let lastBuffer: Buffer | undefined
+    let lastRevision: PersistenceRevision | undefined
+    for (let attempt = 0; ; attempt += 1) {
       signal?.throwIfAborted()
       const before = fileRevision(await stat(path, { bigint: true }))
       const buffer = await readFile(path, { signal })
       signal?.throwIfAborted()
       const after = fileRevision(await stat(path, { bigint: true }))
       if (before === after) return { buffer, revision: after }
+      lastBuffer = buffer
+      lastRevision = after
+      if (attempt >= MAX_STABLE_READ_ATTEMPTS - 1) {
+        // Continuous external writers may keep the revision moving; take the
+        // latest read rather than spinning forever. The torn tail (if any)
+        // is recovered by readZstdPrefix / scanLog on the return path.
+        return { buffer, revision: after }
+      }
     }
   }
 
