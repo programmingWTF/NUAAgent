@@ -194,10 +194,19 @@ function resolveProxy() {
  * 在 dsh 内部使用无斜杠别名（launch.mjs normalizeModelId 规范化），发往南航 API 时
  * 由 sanitizeBody 还原为官方 id。返回值：{ 别名: 官方id }。读取失败返回空映射（请求原样发送）。
  */
+/**
+ * 南航平台模型 id 的 wire 映射（内置，不依赖用户配置字段）：
+ * dsh 内部使用无斜杠别名（launch.mjs normalizeModelId 规范化，配置里就是普通模型），
+ * 发往南航 API 时在此还原为官方 id。南航平台部分模型 id 带 provider 前缀斜杠。
+ * 兼容旧配置：config.json 里若显式写了 wireId 或原生含斜杠 id，优先采用。
+ */
+const MODEL_WIRE_ALIASES = {
+  'deepseek-v4-flash-vision-exp': 'deepseek/deepseek-v4-flash-vision-exp',
+};
 function modelWireMap() {
+  const map = { ...MODEL_WIRE_ALIASES };
   try {
     const cfg = JSON.parse(readFileSync(join(homedir(), '.nuaagent', 'config.json'), 'utf8'));
-    const map = {};
     if (!Array.isArray(cfg.models)) return map;
     for (const entry of cfg.models) {
       if (typeof entry !== 'object' || entry === null || typeof entry.id !== 'string') continue;
@@ -211,7 +220,7 @@ function modelWireMap() {
       }
     }
     return map;
-  } catch { return {}; }
+  } catch { return map; }
 }
 
 /** 诊断：异常响应（拦截页/错误页/非 SSE）时落盘请求体与响应首块，便于排查。 */
