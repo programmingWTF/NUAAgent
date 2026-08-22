@@ -46,6 +46,15 @@ const models = force
   : (() => {
       const list = Array.isArray(existing.models) ? [...existing.models] : [];
       const modelId = (m) => (typeof m === 'string' ? m : m?.id);
+      // 迁移旧配置：带斜杠 provider 前缀的模型 id（如 deepseek/deepseek-v4-flash-vision-exp）
+      // 规范化为无斜杠别名 + wireId（与 launch.mjs 的 normalizeModelId 一致，wire 层由 nuaa-adapter 还原）
+      const normalize = (m) => {
+        if (typeof m === 'string') return m;
+        if (!m || typeof m.id !== 'string' || !m.id.includes('/')) return m;
+        const safeId = m.id.slice(m.id.lastIndexOf('/') + 1);
+        return { ...m, id: safeId, wireId: m.wireId || m.id };
+      };
+      for (let i = 0; i < list.length; i++) list[i] = normalize(list[i]);
       for (const m of DEFAULTS.models) {
         if (!list.some((x) => modelId(x) === m.id)) list.push(JSON.parse(JSON.stringify(m)));
       }
