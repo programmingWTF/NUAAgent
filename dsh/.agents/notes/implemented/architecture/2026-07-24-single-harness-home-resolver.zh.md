@@ -6,7 +6,7 @@ Status: implemented
 
 ## 问题
 
-对于"NUAAgent 用户数据存放在哪里"，harness 里存在两套互不一致的约定：
+对于"DeepSeek Harness 用户数据存放在哪里"，harness 里存在两套互不一致的约定：
 
 - `@nuaagent/home` 按 `configured ?? $DSH_HOME ?? ~/.dsh` 解析。
 - `@nuaagent/home-paths` 又提供了**第二个** `resolveDshHome`，优先级相同但额外做了波浪号展开——它几乎是 `dsh-home` 的重复实现，却没有任何门禁发现，因为两者分属不同的包，而且早已漂移（只有一个会展开波浪号）。
@@ -25,7 +25,7 @@ explicit configured path  >  $DSH_HOME  >  ~/.dsh
 
 `@nuaagent/home` 被删除。它的三个引用方（`dsh-tool-bash`、`dsh-skill-filesystem`、`dsh-agent-spine-demo`）从 `dsh-home-paths` 导入 `resolveDshHome`。
 
-`dsh-telemetry` 及其独立 home 策略已随 [SDK 项目工具链移除](../simplification/2026-08-11-remove-sdk-project-toolchain.md)一并消失，因此该解析器是唯一的 home 策略。
+`dsh-telemetry` 及其独立 home 策略已随 [SDK 项目工具链移除](../simplification/2026-08-11-remove-sdk-project-toolchain.zh.md)一并消失，因此该解析器是唯一的 home 策略。
 
 ## 备选方案
 

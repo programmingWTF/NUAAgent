@@ -6,7 +6,7 @@ English | [中文](2026-08-13-public-vendor-and-native-sequences.zh.md)
 
 ## Problem
 
-The [three release sequences](2026-08-10-npm-release-sequences.md) shipped with `publishConfig.access: restricted`, so every package published to the `@deepseek-ai` scope was visible only inside the organization. Five rehearsal publications ran that way, through `dsh@0.0.1-rc.5`, `vendor *-rc.4`, and `landlock-run@0.0.1`.
+The [three release sequences](2026-08-10-npm-release-sequences.md) shipped with `publishConfig.access: restricted`, so every package published to the `@nuaagent` scope was visible only inside the organization. Five rehearsal publications ran that way, through `dsh@0.0.1-rc.5`, `vendor *-rc.4`, and `landlock-run@0.0.1`.
 
 A restricted dependency is what actually blocks a public consumer. Every harness package declares the vendored framework as a `peerDependency`, and `dsh-sandbox-local` declares the Landlock entry as a `dependency`. A public package that requires a restricted one cannot be installed by anyone outside the organization, so those two sequences have to be public before the dsh family can be — and while the dsh family is still restricted, they are the only two whose artifacts an outside consumer would need to resolve.
 

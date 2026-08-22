@@ -4,16 +4,20 @@ import type { Context } from '@nuaagent/cordis'
 import commandsRemote from '@nuaagent/commands/remote'
 import goalsRemote from '@nuaagent/goal/remote'
 import dynamicRemote from '@nuaagent/cordis-host-runner/remote'
+import fileReferencesRemote from '@nuaagent/file-reference/remote'
 import pluginInventoryRemote from '@nuaagent/host-plugin-inventory/remote'
 import messageFeedbackRemote from '@nuaagent/message-feedback/remote'
+import sessionReferencesRemote from '@nuaagent/session-reference/remote'
 import type { TypertClientRemote } from '@nuaagent/typert-protocol'
 
 export type { TypertClientRemote as ClientRemote } from '@nuaagent/typert-protocol'
 export type { PluginInventorySnapshot } from '@nuaagent/host-plugin-inventory/types'
 export type {} from '@nuaagent/commands/remote'
+export type {} from '@nuaagent/file-reference/remote'
 export type {} from '@nuaagent/goal/remote'
 export type {} from '@nuaagent/host-plugin-inventory/remote'
 export type {} from '@nuaagent/message-feedback/remote'
+export type {} from '@nuaagent/session-reference/remote'
 // The forwarded-event allowlist's selection seat: without it in the consumer's
 // compilation face `TypertRemoteEvent` is `never` and every `$on` call fails.
 export type { ApiRemoteForwardedEvent } from '../types.ts'
@@ -86,6 +90,10 @@ export type {
 // reason: a Client contribution names what it sends without importing a Host
 // package, and this assembly is where both planes legitimately meet.
 export type { JsonValue } from '@nuaagent/session/types'
+// Reference-discovery result vocabulary for the fileReferences and
+// sessionReferenceResolver namespaces.
+export type { FileReferenceCandidate } from '@nuaagent/file-reference/types'
+export type { SessionReferenceMentionCandidate } from '@nuaagent/session-reference/types'
 
 declare module '@nuaagent/cordis' {
   interface Context {
@@ -106,7 +114,8 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
   const disposers: Array<() => Promise<void>> = []
   try {
     for (const contribution of [
-      commandsRemote, goalsRemote, dynamicRemote, pluginInventoryRemote, messageFeedbackRemote,
+      commandsRemote, goalsRemote, dynamicRemote, fileReferencesRemote,
+      pluginInventoryRemote, messageFeedbackRemote, sessionReferencesRemote,
     ]) {
       disposers.push(await ctx.remote.$mount(contribution))
     }

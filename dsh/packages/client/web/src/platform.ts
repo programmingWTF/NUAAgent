@@ -8,10 +8,12 @@
 export const PLATFORM_MODULES = [
   'react', 'react/jsx-runtime', 'react-dom', 'react-dom/client', '@nuaagent/cordis',
   '@nuaagent/client-ui-slots',
-  '@nuaagent/client-web-react',
   '@nuaagent/client-ui-primitives',
-  '@nuaagent/client-ui-attachment',
-  '@nuaagent/client-schema-form',
+] as const
+
+/** Client-bundle specifiers whose factories the parser preloads before the shell starts. */
+export const PRELOADED_CLIENT_EXTERNALS = [
+  '@nuaagent/client-runtime/client',
 ] as const
 
 /** One platform module specifier (a seed-table key). */

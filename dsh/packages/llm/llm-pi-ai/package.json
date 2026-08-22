@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/llm-pi-ai",
-  "description": "pi-ai-backed DeepSeek adapter for the NUAAgent LLM seam (design-verification twin of dsh-llm-deepseek)",
-  "version": "0.1.0-rc.5",
+  "description": "pi-ai-backed DeepSeek adapter for the DeepSeek Harness LLM seam (design-verification twin of dsh-llm-deepseek)",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -33,6 +33,7 @@
   "license": "MIT",
   "peerDependencies": {
     "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/authorization": "workspace:^",
     "@nuaagent/credentials": "workspace:^",
     "@nuaagent/launch-environment": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/authorization": "workspace:^",
     "@nuaagent/credentials": "workspace:^",
     "@nuaagent/launch-environment": "workspace:^",
     "@nuaagent/invariants": "workspace:^",

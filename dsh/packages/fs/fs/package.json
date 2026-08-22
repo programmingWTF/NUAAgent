@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/fs",
-  "description": "Abstract filesystem capability seam (ctx.fs) for the NUAAgent — vocabulary types, the FileSystem service (text IO + optional version-guarded atomic mutations), and the fs/* policy event vocabulary",
-  "version": "0.1.0-rc.5",
+  "description": "Abstract filesystem capability seam (ctx.fs) for the DeepSeek Harness — vocabulary types, the FileSystem service (text IO + optional version-guarded atomic mutations), and the fs/* policy event vocabulary",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },

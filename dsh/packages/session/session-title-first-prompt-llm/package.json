@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/session-title-first-prompt-llm",
-  "description": "First-message LLM provider plugin for NUAAgent session titles",
-  "version": "0.1.0-rc.5",
+  "description": "First-message LLM provider plugin for DeepSeek Harness session titles",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },

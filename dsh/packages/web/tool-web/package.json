@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/tool-web",
-  "description": "Model-facing web tools (web_search, web_fetch) over the NUAAgent web capability seam (ctx.web)",
-  "version": "0.1.0-rc.5",
+  "description": "Model-facing web tools (web_search, web_fetch) over the DeepSeek Harness web capability seam (ctx.web)",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },

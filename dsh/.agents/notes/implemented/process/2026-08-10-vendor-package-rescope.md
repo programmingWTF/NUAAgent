@@ -1,4 +1,4 @@
-# Agent Note: Rescope vendored Cordis into @deepseek-ai
+# Agent Note: Rescope vendored Cordis into @nuaagent
 
 Status: implemented
 
@@ -10,7 +10,7 @@ The nine packages under `vendor/` kept their upstream npm names (`cordis`, `cosm
 
 ## Decision
 
-All nine packages move into the `@deepseek-ai` scope. Directory names, upstream version numbers, and dependency ranges stay untouched, so the `vendor/README.md` manifest still reads as an upstream snapshot. [docs/rescope.md](../../../../docs/rescope.md) restates this mapping for consumers.
+All nine packages move into the `@nuaagent` scope. Directory names, upstream version numbers, and dependency ranges stay untouched, so the `vendor/README.md` manifest still reads as an upstream snapshot. [docs/rescope.md](../../../../docs/rescope.md) restates this mapping for consumers.
 
 | Directory | npm name | Upstream name |
 |---|---|---|

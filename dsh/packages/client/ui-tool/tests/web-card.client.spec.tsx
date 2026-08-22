@@ -17,7 +17,7 @@ import type {
   ConversationSnapshot, RunningToolCall, SessionId, SessionListState, ToolResultNode, WorkspaceListState,
 } from '@nuaagent/client-runtime/client'
 import type { ToolResultView } from '@nuaagent/api-remotes/client'
-import { bindSnapshotSelector } from '@nuaagent/client-web-react'
+import { bindSnapshotSelector } from '@nuaagent/client-test-runtime'
 import type { SelectionTarget } from '@nuaagent/client-ui-conversation/client'
 import type { ToolCallOwnerProps } from '@nuaagent/client-ui-tool/client'
 import { IconGlobeOutline14 } from '@nuaagent/client-ui-primitives'

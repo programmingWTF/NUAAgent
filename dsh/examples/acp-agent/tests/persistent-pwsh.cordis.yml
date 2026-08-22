@@ -1,0 +1,42 @@
+# Minimal live counterpart for the persistent-pwsh-tool-turn snapshot composition.
+- id: llm-deepseek
+  name: '@nuaagent/llm-deepseek'
+  config:
+    models:
+      - id: deepseek-v4-pro
+
+- id: sandbox-policy
+  name: '@nuaagent/sandbox-policy'
+  config:
+    mode: danger-full-access
+    workspaceRoot: !!js process.cwd()
+
+- id: subprocess
+  name: '@nuaagent/subprocess-local'
+
+- id: terminal
+  name: '@nuaagent/terminal'
+
+- id: terminal-pwsh
+  name: '@nuaagent/terminal-bash'
+  config:
+    shellDialect: pwsh
+    timeoutMs: 30000
+
+- id: acp-agent
+  name: '@nuaagent/acp-demo'
+  config:
+    provider: deepseek-official
+    model: deepseek-v4-pro
+    persistenceRoot: !!js process.env.DSH_SNAPSHOT_SESSIONS_ROOT ?? './.sessions'
+    persistenceCompression: !!js "process.env.DSH_SNAPSHOT === undefined ? 'zstd' : 'none'"
+    workspaceContext: false
+    skills:
+      enabled: false
+    toolBash: false
+    toolJobs: false
+    goals: false
+    persona: You are a concise snapshot agent working in {{cwd}}.
+
+- id: tool-pwsh-persistent
+  name: '@nuaagent/tool-pwsh-persistent'

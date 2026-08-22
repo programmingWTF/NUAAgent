@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/client-ui-workspace",
   "description": "Workspace picker plugin: one WorkspacePicker registered into the sidebar and empty-state workspace slots",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -32,6 +32,7 @@
   "dsh": {
     "client": {
       "inject": [
+        "@nuaagent/client-connection",
         "@nuaagent/client-locale",
         "@nuaagent/client-runtime",
         "@nuaagent/client-ui-conversation",
@@ -49,15 +50,16 @@
     "clsx": "^2.0.0"
   },
   "peerDependencies": {
+    "@nuaagent/client-connection": "workspace:^",
     "@nuaagent/client-locale": "workspace:^",
     "@nuaagent/client-runtime": "workspace:^",
-    "@nuaagent/client-ui-primitives": "workspace:^",
-    "@nuaagent/client-ui-slots": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
     "@nuaagent/cordis": "workspace:^",
-    "react": "^18.2.0"
+    "@nuaagent/client-ui-conversation": "workspace:^",
+    "@nuaagent/client-ui-sidebar": "workspace:^"
   },
   "devDependencies": {
+    "@nuaagent/client-connection": "workspace:^",
     "@nuaagent/client-locale": "workspace:^",
     "@nuaagent/client-runtime": "workspace:^",
     "@nuaagent/client-test-runtime": "workspace:^",

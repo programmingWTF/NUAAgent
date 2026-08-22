@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/api-remotes",
   "description": "Remote BFF assembly and Host Agent/Session lookup policy",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -58,37 +58,41 @@
     "@nuaagent/typert-protocol": "workspace:^"
   },
   "peerDependencies": {
-    "@nuaagent/cordis": "workspace:^",
     "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-presets": "workspace:^",
     "@nuaagent/api-gateway": "workspace:^",
     "@nuaagent/commands": "workspace:^",
-    "@nuaagent/credentials": "workspace:^",
-    "@nuaagent/goal": "workspace:^",
     "@nuaagent/cordis-host-runner": "workspace:^",
+    "@nuaagent/credentials": "workspace:^",
+    "@nuaagent/file-reference": "workspace:^",
+    "@nuaagent/goal": "workspace:^",
     "@nuaagent/host-plugin-inventory": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
-    "@nuaagent/agent-presets": "workspace:^",
     "@nuaagent/llm": "workspace:^",
     "@nuaagent/message-feedback": "workspace:^",
     "@nuaagent/session": "workspace:^",
     "@nuaagent/session-persistence": "workspace:^",
+    "@nuaagent/session-reference": "workspace:^",
     "@nuaagent/settings": "workspace:^",
-    "@nuaagent/typert-registry": "workspace:^"
+    "@nuaagent/typert-registry": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
   },
   "devDependencies": {
     "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-presets": "workspace:^",
     "@nuaagent/api-gateway": "workspace:^",
     "@nuaagent/commands": "workspace:^",
-    "@nuaagent/credentials": "workspace:^",
-    "@nuaagent/goal": "workspace:^",
     "@nuaagent/cordis-host-runner": "workspace:^",
+    "@nuaagent/credentials": "workspace:^",
+    "@nuaagent/file-reference": "workspace:^",
+    "@nuaagent/goal": "workspace:^",
     "@nuaagent/host-plugin-inventory": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
-    "@nuaagent/agent-presets": "workspace:^",
     "@nuaagent/llm": "workspace:^",
     "@nuaagent/message-feedback": "workspace:^",
     "@nuaagent/session": "workspace:^",
     "@nuaagent/session-persistence": "workspace:^",
+    "@nuaagent/session-reference": "workspace:^",
     "@nuaagent/settings": "workspace:^",
     "@nuaagent/typert-registry": "workspace:^",
     "@nuaagent/cordis": "workspace:^"

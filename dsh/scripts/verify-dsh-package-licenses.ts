@@ -7,11 +7,7 @@ import { globSync, readFileSync } from 'node:fs'
 import { resolve, sep } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
-
-// Repository-owned packages are every `@nuaagent/*` workspace member
-// EXCEPT the vendored Cordis framework, which keeps its upstream license.
-const VENDORED_MANIFEST_PREFIX = 'vendor/'
-const HARNESS_PACKAGE_NAME = /^@nuaagent\//
+const DSH_PACKAGE_NAME = /^@nuaagent\//
 
 /** Result of checking every DSH package reachable through the root workspace list. */
 export interface DshPackageLicenseReport {
@@ -63,14 +59,13 @@ export function inspectDshPackageLicenses(root: string): DshPackageLicenseReport
   const failures: string[] = []
 
   for (const file of workspaceManifestPaths(root)) {
-    const normalizedFile = file.split(sep).join('/')
-    if (normalizedFile.startsWith(VENDORED_MANIFEST_PREFIX)) continue
     const manifest = readManifest(root, file)
     const name = manifest.name
-    if (typeof name !== 'string' || !HARNESS_PACKAGE_NAME.test(name)) continue
+    if (typeof name !== 'string' || !DSH_PACKAGE_NAME.test(name)) continue
 
     packageCount++
     if (manifest.license !== 'MIT') {
+      const normalizedFile = file.split(sep).join('/')
       failures.push(
         `${normalizedFile}: ${name} must declare "license": "MIT"; found ${printable(manifest.license)}.`,
       )

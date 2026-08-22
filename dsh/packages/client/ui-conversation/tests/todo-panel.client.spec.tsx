@@ -6,7 +6,7 @@
  */
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { bindSnapshotSelector } from '@nuaagent/client-web-react'
+import { bindSnapshotSelector } from '@nuaagent/client-test-runtime'
 import { createSnapshotStore } from '@nuaagent/client-runtime/client'
 import type { TodoItem } from '@nuaagent/client-runtime/client'
 import { makeTranslate } from '@nuaagent/client-test-runtime'

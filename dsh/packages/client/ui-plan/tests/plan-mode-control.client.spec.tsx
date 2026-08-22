@@ -8,7 +8,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { createSnapshotStore } from '@nuaagent/client-runtime/client'
-import { bindSnapshotSelector } from '@nuaagent/client-web-react'
+import { bindSnapshotSelector } from '@nuaagent/client-test-runtime'
 import type { PlanProjection } from '@nuaagent/plan-mode/client'
 import { PlanChip, type PlanChipProps } from '../src/client/PlanModeControl.tsx'
 import { makeTranslate } from '@nuaagent/client-test-runtime'

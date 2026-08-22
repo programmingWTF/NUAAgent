@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/client-ui-layout",
   "description": "Shell plugin: three-column AppFrame with drag handles, ctx.layout viewing-state service (navigation + panels)",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -45,11 +45,9 @@
   "license": "MIT",
   "peerDependencies": {
     "@nuaagent/client-runtime": "workspace:^",
-    "@nuaagent/client-ui-slots": "workspace:^",
     "@nuaagent/client-ui-theme": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
-    "@nuaagent/cordis": "workspace:^",
-    "react": "^18.2.0"
+    "@nuaagent/cordis": "workspace:^"
   },
   "devDependencies": {
     "@nuaagent/client-locale": "workspace:^",

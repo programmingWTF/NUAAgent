@@ -12,10 +12,7 @@ import * as ReactDom from 'react-dom'
 import * as ReactDomClient from 'react-dom/client'
 import * as Cordis from '@nuaagent/cordis'
 import * as UiSlots from '@nuaagent/client-ui-slots'
-import * as WebReact from '@nuaagent/client-web-react'
 import * as UiPrimitives from '@nuaagent/client-ui-primitives'
-import * as UiAttachment from '@nuaagent/client-ui-attachment'
-import * as SchemaForm from '@nuaagent/client-schema-form'
 import type { PlatformModule } from './platform.ts'
 
 /**
@@ -33,9 +30,6 @@ export function getStaticModules(): Record<string, unknown> {
     'react-dom/client': ReactDomClient,
     '@nuaagent/cordis': Cordis,
     '@nuaagent/client-ui-slots': UiSlots,
-    '@nuaagent/client-web-react': WebReact,
     '@nuaagent/client-ui-primitives': UiPrimitives,
-    '@nuaagent/client-ui-attachment': UiAttachment,
-    '@nuaagent/client-schema-form': SchemaForm,
   } satisfies Record<PlatformModule, unknown>
 }

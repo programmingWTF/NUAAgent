@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/client-ui-permission-presets",
   "description": "Permission surfaces: a new-session default in General settings and a current-session /permission popup over the permissions projection",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -53,15 +53,11 @@
     "@nuaagent/client-connection": "workspace:^",
     "@nuaagent/client-locale": "workspace:^",
     "@nuaagent/client-runtime": "workspace:^",
-    "@nuaagent/client-schema-form": "workspace:^",
     "@nuaagent/client-ui-commands": "workspace:^",
-    "@nuaagent/client-ui-primitives": "workspace:^",
     "@nuaagent/client-ui-settings": "workspace:^",
     "@nuaagent/client-ui-input-trigger": "workspace:^",
-    "@nuaagent/client-ui-slots": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
-    "@nuaagent/permission-presets": "workspace:^",
-    "react": "^18.2.0"
+    "@nuaagent/permission-presets": "workspace:^"
   },
   "devDependencies": {
     "@nuaagent/cordis": "workspace:^",
@@ -69,14 +65,12 @@
     "@nuaagent/client-connection": "workspace:^",
     "@nuaagent/client-locale": "workspace:^",
     "@nuaagent/client-runtime": "workspace:^",
-    "@nuaagent/client-schema-form": "workspace:^",
     "@nuaagent/client-test-runtime": "workspace:^",
     "@nuaagent/client-ui-commands": "workspace:^",
     "@nuaagent/client-ui-primitives": "workspace:^",
     "@nuaagent/client-ui-settings": "workspace:^",
     "@nuaagent/client-ui-input-trigger": "workspace:^",
     "@nuaagent/client-ui-slots": "workspace:^",
-    "@nuaagent/client-web-react": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
     "@nuaagent/permission-presets": "workspace:^",
     "@types/react": "~18.3.1",

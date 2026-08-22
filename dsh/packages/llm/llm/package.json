@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/llm",
-  "description": "Provider-neutral LLM service interface for the NUAAgent",
-  "version": "0.1.0-rc.5",
+  "description": "Provider-neutral LLM service interface for the DeepSeek Harness",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },

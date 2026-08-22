@@ -23,12 +23,12 @@ const OWNERSHIP_MARKER_VERSION = 1
 const OWNERSHIP_MARKER_OWNER = 'deepseek-harness worktree-local lefthook hooks'
 const INSTALL_LOCK = 'dsh-lefthook-install.lock'
 const INSTALL_LOCK_TIMEOUT_MS = 30_000
-const INSTALL_LOCK_INITIALIZATION_TIMEOUT_MS = 1_000
+const INSTALL_LOCK_INITIALIZATION_TIMEOUT_MS = 5_000
 const INSTALL_LOCK_POLL_MS = 50
 const ALLOW_HOOKS_PATH_OVERRIDE = 'DSH_LEFTHOOK_ALLOW_HOOKS_PATH_OVERRIDE'
 const REPOSITORY_EXTENSION_PATTERN = '^extensions\\.'
 const PAIRING_MERGE_DRIVER_CONFIG = [
-  ['merge.dsh-translation-pairing.name', 'NUAAgent bilingual pairing records'],
+  ['merge.dsh-translation-pairing.name', 'DeepSeek Harness bilingual pairing records'],
   [
     'merge.dsh-translation-pairing.driver',
     'scripts/merge-translation-pairing-driver.sh %O %A %B %P',

@@ -100,6 +100,9 @@ export interface GoalProjection {
 }
 
 declare module '@nuaagent/session-projection/types' {
+  interface SessionProjectionStateMap {
+    goal: GoalProjection | null
+  }
   interface SessionProjectionMap {
     /**
      * The session's current goal (the latest `goal/change` whole value), or

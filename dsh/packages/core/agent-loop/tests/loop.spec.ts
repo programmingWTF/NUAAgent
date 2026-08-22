@@ -252,7 +252,7 @@ describe('agent loop', () => {
     await waitForIdle(ctx, agent)
 
     const request = adapter.requests[0]
-    expect(request!.system).toBe('You are an AI agent powered by NUAAgent.\n\nYou are a test agent on mock.\n\nUse the noop tool wisely.')
+    expect(request!.system).toBe('You are an AI agent powered by DeepSeek Harness.\n\nYou are a test agent on mock.\n\nUse the noop tool wisely.')
     expect(request!.tools?.map(t => t.name)).toEqual(['noop'])
   })
 
@@ -269,7 +269,7 @@ describe('agent loop', () => {
     send(agent, 'hi')
     await waitForIdle(ctx, agent)
 
-    expect(adapter.requests[0]!.system).toBe('You are an AI agent powered by NUAAgent.\n\nWorking in /work/space.')
+    expect(adapter.requests[0]!.system).toBe('You are an AI agent powered by DeepSeek Harness.\n\nWorking in /work/space.')
   })
 
   it('contains a strict-variable render failure: the turn errors, the loop keeps serving turns', async () => {
@@ -305,7 +305,7 @@ describe('agent loop', () => {
     await waitForIdle(ctx, agent)
 
     expect(adapter.requests).toHaveLength(1)
-    expect(adapter.requests[0]!.system).toBe('You are an AI agent powered by NUAAgent.\n\nIn /rescued.')
+    expect(adapter.requests[0]!.system).toBe('You are an AI agent powered by DeepSeek Harness.\n\nIn /rescued.')
     const turnEnds = agent.session.events.filter(e => e.type === 'turn/end')
     expect(turnEnds).toHaveLength(2)
     expect(turnEnds[1]?.type === 'turn/end' && turnEnds[1].data.reason.kind).toBe('completed')
@@ -335,7 +335,7 @@ describe('agent loop', () => {
 
     expect(adapter.requests).toHaveLength(1)
     expect(adapter.requests[0]!.model).toBe('mock')
-    expect(adapter.requests[0]!.system).toBe('You are an AI agent powered by NUAAgent.\n\nYou run on mock.')
+    expect(adapter.requests[0]!.system).toBe('You are an AI agent powered by DeepSeek Harness.\n\nYou run on mock.')
   })
 
   it('omits the system field when system-prompt/assemble short-circuits with an empty assembly', async () => {
@@ -1192,15 +1192,29 @@ describe('agent loop', () => {
       { type: 'block-end', index: 0, block: { type: 'text', text: 'partial text' } },
       { type: 'block-start', index: 1, blockType: 'tool-call' },
       { type: 'tool-call-delta', index: 1, id: callId, name: 'echo', argumentsDelta: '{"text"' },
-      { type: 'finish', reason: { kind: 'max-tokens' } },
-    ]])
+      {
+        type: 'finish',
+        reason: { kind: 'max-tokens' },
+        replayState: { response: { responseId: 'resp-1' }, blocks: ['text-meta', 'tool-meta'] },
+      },
+    ], textResponse('continued')])
     const ctx = await harness(adapter)
     const agent = ctx.agentLoop.create(SessionId('a1'), { provider: 'mock', model: 'mock' })
 
     send(agent, 'go')
     await waitForIdle(ctx, agent)
+    send(agent, 'continue')
+    await waitForIdle(ctx, agent)
 
     expect(agent.session.events.some(e => e.type === 'tool/call')).toBe(false)
+    // The follow-up request replays the truncated message with its replay
+    // metadata pruned in step with the dropped tool call.
+    expect(adapter.requests[1]?.messages[1]?.source).toEqual({
+      kind: 'model',
+      provider: 'mock',
+      model: 'mock',
+      replayState: { response: { responseId: 'resp-1' }, blocks: ['text-meta'] },
+    })
     expect(agent.session.deriveMessages()).toEqual([
       {
         id: expect.any(String) as unknown,
@@ -1212,6 +1226,23 @@ describe('agent loop', () => {
         id: expect.any(String) as unknown,
         role: 'assistant',
         content: [{ type: 'text', text: 'partial text' }],
+        source: {
+          kind: 'model',
+          provider: 'mock',
+          model: 'mock',
+          replayState: { response: { responseId: 'resp-1' }, blocks: ['text-meta'] },
+        },
+      },
+      {
+        id: expect.any(String) as unknown,
+        role: 'user',
+        content: [{ type: 'text', text: 'continue' }],
+        source: { kind: 'user' },
+      },
+      {
+        id: expect.any(String) as unknown,
+        role: 'assistant',
+        content: [{ type: 'text', text: 'continued' }],
         source: { kind: 'model', provider: 'mock', model: 'mock' },
       },
     ])

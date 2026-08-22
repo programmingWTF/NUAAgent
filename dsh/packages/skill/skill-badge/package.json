@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/skill-badge",
-  "description": "Bundled dsh badge skill provider for NUAAgent",
-  "version": "0.1.0-rc.5",
+  "description": "Bundled dsh badge skill provider for DeepSeek Harness",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },

@@ -1,6 +1,6 @@
 /**
  * Web application entry: thin bootstrap over the shell library. Everything —
- * loader holding, module-table seeding, AppRoot gate, plugin assembly — lives
+ * module-table seeding, the boot page, and the UI-renderer handoff — lives
  * in @nuaagent/client-web; this file only finds the mount point.
  */
 import { AppWebEntry } from '@nuaagent/client-web'

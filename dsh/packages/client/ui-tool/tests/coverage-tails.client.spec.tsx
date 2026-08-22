@@ -4,7 +4,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render } from '@testing-library/react'
 import { createSnapshotStore } from '@nuaagent/client-runtime/client'
-import { bindSnapshotSelector } from '@nuaagent/client-web-react'
+import { bindSnapshotSelector } from '@nuaagent/client-test-runtime'
 import type { RunningToolCall, SessionId, SessionListState, ToolResultNode } from '@nuaagent/client-runtime/client'
 import { makeTranslate } from '@nuaagent/client-test-runtime'
 import { zh as commonZh } from '@nuaagent/client-locale/src/locales/zh.ts'
