@@ -3,21 +3,43 @@
   "apiBaseUrl": "https://token.nuaa.edu.cn/v1",
   "model": "deepseek-v4-pro-202606",
   "models": [
-    { "id": "deepseek-v4-pro-202606", "name": "DeepSeek-V4-Pro" },
-    { "id": "deepseek-v4-flash-202605", "name": "DeepSeek-V4-Flash" },
-    { "id": "deepseek-v4-pro", "name": "DeepSeek-V4-Pro latest" },
-    { "id": "deepseek-v4-flash", "name": "DeepSeek-V4-Flash latest" },
-    { "id": "kimi-k3", "name": "Kimi K3" },
     {
-      "id": "deepseek/deepseek-v4-flash-vision-exp",
+      "id": "deepseek-v4-pro-202606",
+      "name": "DeepSeek-V4-Pro"
+    },
+    {
+      "id": "deepseek-v4-flash-202605",
+      "name": "DeepSeek-V4-Flash"
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek-V4-Pro latest"
+    },
+    {
+      "id": "deepseek-v4-flash",
+      "name": "DeepSeek-V4-Flash latest"
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3"
+    },
+    {
+      "id": "deepseek-v4-flash-vision-exp",
       "name": "DeepSeek-V4-Flash Vision",
-      "input": ["text", "image"]
+      "input": [
+        "text",
+        "image"
+      ],
+      "wireId": "deepseek/deepseek-v4-flash-vision-exp"
     }
   ],
   "retryPolicy": {
     "mode": "normal",
     "maxRetries": 10,
-    "backoff": { "initialDelayMs": 1000, "maxDelayMs": 30000 }
+    "backoff": {
+      "initialDelayMs": 1000,
+      "maxDelayMs": 30000
+    }
   },
   "timeoutMs": 1200000,
   "streamIdleTimeoutMs": 600000

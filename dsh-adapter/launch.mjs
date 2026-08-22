@@ -43,6 +43,20 @@ function ensureVisionInput(entry) {
   return entry;
 }
 
+/**
+ * 模型 id 规范化：南航平台部分模型 id 带 provider 前缀斜杠（如
+ * deepseek/deepseek-v4-flash-vision-exp）。斜杠 id 在 dsh/pi-ai 的多层处理中
+ * 是隐患（路径拼接、provider/model 切分等），统一在配置层转成无斜杠别名
+ * （取最后一个 '/' 后的段）；真实 wire id 由 nuaa-adapter.mjs 读取 config.json
+ * 的 wireId（或原带斜杠 id）在请求发出时映射还原（sanitizeBody 的 modelWireMap）。
+ */
+function normalizeModelId(entry) {
+  if (!entry || typeof entry !== 'object' || typeof entry.id !== 'string') return entry;
+  if (!entry.id.includes('/')) return entry;
+  const safeId = entry.id.slice(entry.id.lastIndexOf('/') + 1);
+  return { ...entry, id: safeId };
+}
+
 function fail(msg) {
   console.error(`[nuaagent-launch] ${msg}`);
   process.exit(1);
@@ -81,12 +95,25 @@ doc['llm-pi-ai'].providers = doc['llm-pi-ai'].providers || {};
 // 只刷新 API 端点与 key 环境变量；config.json 的 model 仅作为新增项补入列表。
 const prevProvider = doc['llm-pi-ai'].providers['nuaa'];
 const prev = (prevProvider && typeof prevProvider === 'object') ? prevProvider : {};
-const models = Array.isArray(prev.models) ? [...prev.models] : [];
 const modelId = (m) => (typeof m === 'string' ? m : m?.id);
+// 已有 settings.yaml 条目也做 normalize（迁移旧版带斜杠 provider 前缀的模型 id），
+// 使旧条目与新条目用同一无斜杠 id，并按 id 去重（normalize 可能让斜杠/无斜杠
+// 两条同 id 条目并存，保留首个即可）。
+const models = [];
+{
+  const seen = new Set();
+  for (const m of (Array.isArray(prev.models) ? prev.models : [])) {
+    const entry = normalizeModelId(typeof m === 'string' ? { id: m } : m);
+    const id = modelId(entry);
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    models.push(entry);
+  }
+}
 // 合并 config.json 的 models（如全量 NUAA_MODELS）：只补新增，不删已有（保留 UI 手工加的模型）
 const cfgModels = Array.isArray(nuaa.models) ? nuaa.models : [];
 for (const m of cfgModels) {
-  const entry = typeof m === 'string' ? { id: m } : ensureVisionInput(m);
+  const entry = normalizeModelId(typeof m === 'string' ? { id: m } : ensureVisionInput(m));
   if (!entry || !entry.id) continue;
   const existing = models.find((x) => modelId(x) === entry.id);
   if (existing) {
