@@ -80,6 +80,9 @@ const publicRunnerExcludes = [
   'packages/workflow/workflow-worker-thread/tests/integration.spec.ts',
   'packages/workflow/workflow-worker-thread/tests/source-worker.compat.spec.ts',
   'packages/workflow/workflow-worker-thread/tests/workflow-worker-thread.spec.ts',
+  'packages/shell/tool-pwsh/tests/loader.spec.ts',
+  'packages/shell/tool-pwsh-persistent/tests/loader-composition.spec.ts',
+  'packages/terminal/terminal-bash/tests/local.spec.ts',
   'scripts/install-lefthook.spec.ts',
   'scripts/translation-pairing-merge.spec.ts',
 ]
