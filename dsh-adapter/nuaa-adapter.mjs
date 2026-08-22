@@ -104,6 +104,11 @@ function sanitizeBody(json) {
   // Step 2: parse JSON, apply keyword breaking only to message content fields
   try {
     const obj = JSON.parse(result);
+    // 模型 wire 映射：dsh 内部用无斜杠别名（launch.mjs normalizeModelId 规范化），
+    // 这里还原为官方 id（南航平台部分模型 id 带 provider 前缀斜杠，
+    // 如 deepseek/deepseek-v4-flash-vision-exp）
+    const wire = modelWireMap();
+    if (typeof obj.model === 'string' && wire[obj.model]) obj.model = wire[obj.model];
     // 注入防过滤字符说明（幂等），提醒模型忽略零宽/下划线打断、输出干净名称
     injectHint(obj);
     /** WAF 关键词打断（通用）：用指定字符 Z 在关键词约 1/4 处插入，切断子串匹配 */
@@ -182,6 +187,31 @@ function resolveProxy() {
   } catch {}
   return process.env.HTTPS_PROXY || process.env.HTTP_PROXY
     || process.env.https_proxy || process.env.http_proxy || undefined;
+}
+
+/**
+ * 模型 id 的 wire 映射：config.json 中带 wireId（或原生含斜杠 provider 前缀）的模型，
+ * 在 dsh 内部使用无斜杠别名（launch.mjs normalizeModelId 规范化），发往南航 API 时
+ * 由 sanitizeBody 还原为官方 id。返回值：{ 别名: 官方id }。读取失败返回空映射（请求原样发送）。
+ */
+function modelWireMap() {
+  try {
+    const cfg = JSON.parse(readFileSync(join(homedir(), '.nuaagent', 'config.json'), 'utf8'));
+    const map = {};
+    if (!Array.isArray(cfg.models)) return map;
+    for (const entry of cfg.models) {
+      if (typeof entry !== 'object' || entry === null || typeof entry.id !== 'string') continue;
+      const wire = typeof entry.wireId === 'string' && entry.wireId.length > 0 ? entry.wireId : undefined;
+      if (entry.id.includes('/')) {
+        // 原生带斜杠 id（旧配置/直接手写）：取最后一个 '/' 后的段为别名
+        const safeId = entry.id.slice(entry.id.lastIndexOf('/') + 1);
+        map[safeId] = wire || entry.id;
+      } else if (wire && wire !== entry.id) {
+        map[entry.id] = wire;
+      }
+    }
+    return map;
+  } catch { return {}; }
 }
 
 /** 诊断：异常响应（拦截页/错误页/非 SSE）时落盘请求体与响应首块，便于排查。 */
