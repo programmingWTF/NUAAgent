@@ -82,19 +82,27 @@ NUAAgent/
 
 ### 1. 写入 API 配置（一次性）
 
-配置唯一真源是 `~/.nuaagent/config.json`：
+配置唯一真源是 `~/.nuaagent/config.json`。推荐用内置初始化脚本生成（幂等，已有配置先备份，只补不删）：
+
+```bash
+NUAA_API_KEY=你的个人密钥 node scripts/init-config.mjs    # 已有配置则自动合并升级
+```
+
+脚本会写入默认模型清单（含视觉模型）、默认重试策略（至少 10 次）与超时配置；再次运行不会丢你在界面/手工添加的模型。生成的模板形如：
 
 ```json
 {
   "apiBaseUrl": "https://token.nuaa.edu.cn/v1",
   "apiKey": "sk-…",
-  "model": "kimi-k3",
+  "model": "deepseek-v4-pro-202606",
   "models": [
-    { "id": "glm-5.3", "name": "智谱GLM-5.3" },
-    { "id": "deepseek-v4-pro-202606", "name": "DeepSeek-V4-Pro原厂直供" },
-    { "id": "kimi-k3", "name": "Kimi K3" }
+    { "id": "deepseek-v4-pro-202606", "name": "DeepSeek-V4-Pro" },
+    { "id": "deepseek/deepseek-v4-flash-vision-exp", "name": "DeepSeek-V4-Flash Vision", "input": ["text", "image"] }
   ],
-  "proxy": ""
+  "proxy": "",
+  "retryPolicy": { "mode": "normal", "maxRetries": 10, "backoff": { "initialDelayMs": 1000, "maxDelayMs": 30000 } },
+  "timeoutMs": 1200000,
+  "streamIdleTimeoutMs": 600000
 }
 ```
 
@@ -103,8 +111,11 @@ NUAAgent/
 | `apiBaseUrl` | 南航网关端点，通常为 `https://token.nuaa.edu.cn/v1` |
 | `apiKey` | 你的南航 API 密钥（**不要提交到任何仓库**） |
 | `model` | 默认模型 id（会并入 provider 模型列表，不覆盖已有模型） |
-| `models` | 可选。南航 API 可用模型列表（`{id, name}`），`launch.mjs` 启动时全量合并进 `~/.dsh/settings.yaml` 的 nuaa provider（只补不删）。新建配置默认写入全部模型（完整清单见 `src/config/schema.ts` 的 `NUAA_MODELS`）；留空时仅用 `model` 一个 |
+| `models` | 可选。南航 API 可用模型列表（`{id, name}`），`launch.mjs` 启动时全量合并进 `~/.dsh/settings.yaml` 的 nuaa provider（只补不删）。新建配置默认写入全部模型（完整清单见 `src/config/default-models.json`，`src/config/schema.ts` 提供类型化导出）；视觉模型建议声明 `"input": ["text", "image"]`（id 含 `vision` 时 `launch.mjs` 会自动补，无需手写） |
 | `proxy` | 可选。校外访问填 EasyConnect 代理 `http://127.0.0.1:8899`；校内留空直连更稳定 |
+| `retryPolicy` | 可选。模型请求重试策略（provider 级，对全部模型含视觉模型生效）；缺省默认 `maxRetries: 10`。也可在 `launch.mjs` 生成的 `~/.dsh/settings.yaml` 里调整 |
+| `timeoutMs` | 可选。单次请求超时（毫秒），缺省 1 200 000（20 分钟，与适配层 curl `--max-time` 一致） |
+| `streamIdleTimeoutMs` | 可选。流空闲超时（毫秒），缺省 600 000（10 分钟，南航网关偶发长停顿） |
 
 ### 2. 安装依赖
 

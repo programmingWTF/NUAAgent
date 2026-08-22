@@ -16,6 +16,7 @@ import { runCoordinatorContract, type CoordinatorFixture } from '../../session-p
 const statRace = vi.hoisted(() => ({
   path: undefined as string | undefined,
   reads: 0,
+  alwaysChanging: false,
 }))
 
 vi.mock('node:fs/promises', async (importOriginal) => {
@@ -26,8 +27,8 @@ vi.mock('node:fs/promises', async (importOriginal) => {
       const identity = await actual.stat(...args)
       if (String(args[0]) !== statRace.path || !('mtimeNs' in identity)) return identity
       statRace.reads += 1
-      if (statRace.reads !== 2) return identity
-      return { ...identity, mtimeNs: identity.mtimeNs + 1n }
+      if (statRace.reads !== 2 && !statRace.alwaysChanging) return identity
+      return { ...identity, mtimeNs: identity.mtimeNs + BigInt(statRace.reads) }
     }) as typeof actual.stat,
   }
 })
@@ -417,6 +418,22 @@ describe('JsonlSessionPersistence: durability and crash semantics', () => {
 
     await expect(persistence.loadStored(m.id)).resolves.toMatchObject({ events: oneTurnLog() })
     expect(statRace.reads).toBe(4)
+  })
+
+  it('bounded stable-read: a continuously-changing revision still returns instead of spinning', async () => {
+    // 模拟“重启后另一进程仍在持续写同一会话文件”的极端场景：每次 stat 都不同。
+    // readStableFile 必须在有限重试后接受最后一次读取（torn 尾部由扫描器兜底），
+    // 否则会话历史会永远加载不出来。
+    const m = meta('stored-prefix-revision-always')
+    await ctx.sessionPersistence.create(m)
+    await ctx.sessionPersistence.append(m.id, oneTurnLog())
+    const persistence = ctx.sessionPersistence as JsonlSessionPersistence
+    statRace.path = rawLogPath(root, m.cwd, m.id)
+    statRace.alwaysChanging = true
+
+    // 8 次尝试后必须返回（不再自旋）；最后一次读取内容仍可解析出事件
+    await expect(persistence.loadStored(m.id)).resolves.toMatchObject({ events: oneTurnLog() })
+    expect(statRace.reads).toBeLessThanOrEqual(16) // 8 次尝试 × 每次 2 次 stat（容忍读完后的收尾 stat）
   })
 
   it('handles revision-stat races and errors after log discovery', async () => {

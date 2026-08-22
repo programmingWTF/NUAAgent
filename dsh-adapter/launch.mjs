@@ -26,6 +26,23 @@ const ADAPTER = join(HERE, 'nuaa-adapter.mjs');
 const require = createRequire(join(DSH_DIR, 'packages', 'boot', 'app-boot', 'package.json'));
 const yaml = require('js-yaml');
 
+// ---- 默认重试/超时（桂鱼 2026-08-22 要求：默认至少重试 10 次，视觉模型同样适用）----
+// 重试是 provider 级（nuaa 路由）配置，对本路由下所有模型（含视觉模型）统一生效。
+const DEFAULT_MAX_RETRIES = 10;
+const DEFAULT_RETRY_BACKOFF = { initialDelayMs: 1000, maxDelayMs: 30000 };
+// 请求级超时（毫秒）：与 nuaa-adapter.mjs 里 curl 的 --max-time 1200s 保持一致
+const DEFAULT_TIMEOUT_MS = 1_200_000;
+// 流空闲超时（毫秒）：南航网关偶发长停顿，放宽到 10 分钟避免中途误判超时
+const DEFAULT_STREAM_IDLE_TIMEOUT_MS = 600_000;
+
+/** 若模型 id 明显是视觉模型且条目未声明 input 模态，补上 [text, image]。 */
+function ensureVisionInput(entry) {
+  if (!entry || typeof entry !== 'object' || typeof entry.id !== 'string') return entry;
+  if (!/vision|vl(-|$)|vlm/i.test(entry.id)) return entry;
+  if (entry.input === undefined) return { ...entry, input: ['text', 'image'] };
+  return entry;
+}
+
 function fail(msg) {
   console.error(`[nuaagent-launch] ${msg}`);
   process.exit(1);
@@ -69,12 +86,14 @@ const modelId = (m) => (typeof m === 'string' ? m : m?.id);
 // 合并 config.json 的 models（如全量 NUAA_MODELS）：只补新增，不删已有（保留 UI 手工加的模型）
 const cfgModels = Array.isArray(nuaa.models) ? nuaa.models : [];
 for (const m of cfgModels) {
-  const entry = typeof m === 'string' ? { id: m } : m;
+  const entry = typeof m === 'string' ? { id: m } : ensureVisionInput(m);
   if (!entry || !entry.id) continue;
   const existing = models.find((x) => modelId(x) === entry.id);
   if (existing) {
-    // 已有条目但缺显示名时以 config 为准补上（如 {id} -> {id, name}）
+    // 已有条目但缺显示名时以 config 为准补上（如 {id} -> {id, name}）；
+    // 视觉模型缺 input 模态声明时也补上
     if (entry.name && !existing.name) existing.name = entry.name;
+    if (entry.input && !existing.input) existing.input = entry.input;
   } else {
     models.push(entry);
   }
@@ -86,6 +105,16 @@ doc['llm-pi-ai'].providers['nuaa'] = {
   api: 'openai-completions',
   baseURL: nuaa.apiBaseUrl,
   models,
+  // 重试策略：优先保留用户在 settings.yaml / config.json 里的自定义值，
+  // 缺省用默认（至少重试 10 次，覆盖全部模型含视觉模型）
+  retryPolicy: prev.retryPolicy ?? nuaa.retryPolicy ?? {
+    mode: 'normal',
+    maxRetries: DEFAULT_MAX_RETRIES,
+    backoff: DEFAULT_RETRY_BACKOFF,
+  },
+  // 请求超时：南航网关偶发慢，默认放宽（与 adapter 的 curl --max-time 一致）
+  timeoutMs: prev.timeoutMs ?? nuaa.timeoutMs ?? DEFAULT_TIMEOUT_MS,
+  streamIdleTimeoutMs: prev.streamIdleTimeoutMs ?? nuaa.streamIdleTimeoutMs ?? DEFAULT_STREAM_IDLE_TIMEOUT_MS,
 };
 // agent-default-model 只在缺失时写入：尊重用户已在界面/手工选择的默认模型。
 doc['agent-default-model'] = doc['agent-default-model'] ?? { provider: 'nuaa', model: nuaa.model };
