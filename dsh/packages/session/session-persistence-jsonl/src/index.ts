@@ -308,8 +308,6 @@ export class JsonlSessionPersistence extends SessionPersistence implements Persi
     path: string,
     signal?: AbortSignal,
   ): Promise<{ buffer: Buffer; revision: PersistenceRevision }> {
-    let lastBuffer: Buffer | undefined
-    let lastRevision: PersistenceRevision | undefined
     for (let attempt = 0; ; attempt += 1) {
       signal?.throwIfAborted()
       const before = fileRevision(await stat(path, { bigint: true }))
@@ -317,8 +315,6 @@ export class JsonlSessionPersistence extends SessionPersistence implements Persi
       signal?.throwIfAborted()
       const after = fileRevision(await stat(path, { bigint: true }))
       if (before === after) return { buffer, revision: after }
-      lastBuffer = buffer
-      lastRevision = after
       if (attempt >= MAX_STABLE_READ_ATTEMPTS - 1) {
         // Continuous external writers may keep the revision moving; take the
         // latest read rather than spinning forever. The torn tail (if any)
