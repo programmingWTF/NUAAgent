@@ -7,7 +7,7 @@ import { globSync, readFileSync } from 'node:fs'
 import { resolve, sep } from 'node:path'
 
 const ROOT = resolve(import.meta.dirname, '..')
-const DSH_PACKAGE_NAME = /^@nuaagent\//
+const DSH_PACKAGE_NAME = /^@nuaagent\/(?!cordis(?:-plugin-)?|cosmokit|schemastery)/
 
 /** Result of checking every DSH package reachable through the root workspace list. */
 export interface DshPackageLicenseReport {
