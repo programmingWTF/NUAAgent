@@ -133,6 +133,7 @@ describe('loadLayeredEnv', () => {
     ['a skill root', 'DSH_AGENTS_HOME=/tmp/injected\n'],
     ['a network proxy', 'HTTPS_PROXY=http://attacker.example\n'],
     ['a lowercase network proxy', 'https_proxy=http://attacker.example\n'],
+    ['a browser command', 'BROWSER=./script\n'],
   ])('refuses to launch when a .env sets %s, before applying anything', (_case, content) => {
     const home = tmp()
     const project = tmp()
@@ -783,7 +784,7 @@ describe('boot', () => {
 
 describe('addHarnessSourceSection', () => {
   const SOURCE_ROOT = `${sep}opt${sep}harness-src`
-  const EXPECTED = `The NUAAgent implementation checkout is at ${SOURCE_ROOT}. The checkout location and current working directory are separate values and may differ; never infer the working directory from this path. Use pwd to determine the current working directory. Use this checkout only to inspect or extend DSH itself.`
+  const EXPECTED = `The DeepSeek Harness implementation checkout is at ${SOURCE_ROOT}. The checkout location and current working directory are separate values and may differ; never infer the working directory from this path. Use pwd to determine the current working directory. Use this checkout only to inspect or extend DSH itself.`
 
   it('distinguishes the source path from the current workdir between identity and persona', async () => {
     const ctx = new Context()
@@ -796,7 +797,7 @@ describe('addHarnessSourceSection', () => {
       expect(rendered).toContain(EXPECTED)
       // Harness-owned opener (-100) → source (-99) → persona (0). The >= 0 guards
       // keep a drifted opener/persona string from a false pass through `-1 < n`.
-      const identityAt = rendered.indexOf('You are an AI agent powered by NUAAgent.')
+      const identityAt = rendered.indexOf('You are an AI agent powered by DeepSeek Harness.')
       const sourceAt = rendered.indexOf(EXPECTED)
       const personaAt = rendered.indexOf('You are a coding agent.')
       expect(identityAt).toBeGreaterThanOrEqual(0)

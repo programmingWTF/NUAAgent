@@ -28,4 +28,7 @@ jobs:
         run: npm run build
 
       - name: 单元测试
-        run: corepack pnpm -C dsh test
+        # test:ci = vitest run 排除需企业 runner 环境的环境类测试（workflow worker/ACP 快照/
+        # sandbox/typert 远程模型/真实产品二进制等，见 dsh/package.json 的 test:ci 定义）。
+        # 上游在自建企业 runner 跑全量（pnpm test）；公共 runner 下这些测试无法满足运行环境。
+        run: corepack pnpm -C dsh test:ci

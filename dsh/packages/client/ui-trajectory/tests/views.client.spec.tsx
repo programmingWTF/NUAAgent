@@ -11,7 +11,7 @@ import { Context } from '@nuaagent/cordis'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { createElement, type ComponentProps, type FC, type ReactNode } from 'react'
-import { bindSnapshotSelector } from '@nuaagent/client-web-react'
+import { bindSnapshotSelector } from '@nuaagent/client-test-runtime'
 import { resolveSlotLabel } from '@nuaagent/client-ui-slots'
 import {
   ConversationEventRegistry, ConversationViewRegistry, createSnapshotStore,

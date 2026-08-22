@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * nuaagent — command-line entry. Dynamic imports per mode keep unrelated modes out
+ * dsh — command-line entry. Dynamic imports per mode keep unrelated modes out
  * of each dispatch path; the adapter prints and exits for
  * `--help`/`--version`/a parse error, so only a valid mode reaches the switch.
  * @module @nuaagent/cli/bin
@@ -30,7 +30,7 @@ switch (invocation.mode) {
   case 'profile': {
     const { runProfile } = await import('./profile-boot.ts')
     await runProfile({
-      environment: loadLayeredEnv('nuaagent'),
+      environment: loadLayeredEnv('dsh'),
       profile: invocation.profile,
       patchFiles: invocation.patches,
       args: invocation.args,
@@ -49,5 +49,5 @@ switch (invocation.mode) {
   }
   default:
     invocation satisfies never
-    throw new Error(`nuaagent: unhandled invocation mode ${JSON.stringify(invocation)}`)
+    throw new Error(`dsh: unhandled invocation mode ${JSON.stringify(invocation)}`)
 }

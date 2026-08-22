@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/web-app",
   "description": "The dsh browser-surface bundle: the web patch layer over dsh-base plus the runtime glue plugin (frontend dist serving, web-surface prompt, bash runtime variables, URL line)",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -51,8 +51,11 @@
     "@nuaagent/client-hmr": "workspace:^",
     "@nuaagent/client-locale": "workspace:^",
     "@nuaagent/client-modules": "workspace:^",
+    "@nuaagent/client-ui-renderer": "workspace:^",
     "@nuaagent/client-runtime": "workspace:^",
     "@nuaagent/client-ui-agent-preset": "workspace:^",
+    "@nuaagent/client-ui-attachment": "workspace:^",
+    "@nuaagent/client-ui-brand-official": "workspace:^",
     "@nuaagent/client-ui-commands": "workspace:^",
     "@nuaagent/client-ui-conversation": "workspace:^",
     "@nuaagent/client-ui-cordis": "workspace:^",
@@ -74,6 +77,7 @@
     "@nuaagent/client-ui-sidebar": "workspace:^",
     "@nuaagent/client-ui-skill": "workspace:^",
     "@nuaagent/client-ui-input-trigger": "workspace:^",
+    "@nuaagent/client-ui-reference": "workspace:^",
     "@nuaagent/client-ui-subagent": "workspace:^",
     "@nuaagent/client-ui-jobs": "workspace:^",
     "@nuaagent/client-ui-theme": "workspace:^",
@@ -93,16 +97,22 @@
     "@nuaagent/host-directory-picker-native": "workspace:^",
     "@nuaagent/host-plugin-inventory": "workspace:^",
     "@nuaagent/host-webserver": "workspace:^",
+    "@nuaagent/file-reference": "workspace:^",
+    "@nuaagent/file-reference-local": "workspace:^",
+    "@nuaagent/launch-environment": "workspace:^",
     "@nuaagent/message-feedback": "workspace:^",
     "@nuaagent/session-projection-cache": "workspace:^",
+    "@nuaagent/session-reference": "workspace:^",
     "@nuaagent/session-log-export": "workspace:^",
     "@nuaagent/session-stats": "workspace:^",
     "@nuaagent/storage": "workspace:^",
     "@nuaagent/storage-domain": "workspace:^",
     "@nuaagent/storage-json": "workspace:^",
+    "@nuaagent/subprocess": "workspace:^",
     "@nuaagent/workspace": "workspace:^",
     "@nuaagent/schemastery": "workspace:^",
-    "commander": "^15.0.0"
+    "commander": "^15.0.0",
+    "open": "^11.0.0"
   },
   "peerDependencies": {
     "@nuaagent/cordis-plugin-loader": "workspace:^",

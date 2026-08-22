@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/e2b",
-  "description": "Shared E2B sandbox lifecycle for NUAAgent provider adapters",
-  "version": "0.1.0-rc.5",
+  "description": "Shared E2B sandbox lifecycle for DeepSeek Harness provider adapters",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },

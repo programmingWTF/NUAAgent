@@ -50,7 +50,7 @@ function moduleShortName(moduleName: string): string {
   return unscoped
     .replace(/^cordis:/, '')
     .replace(/^cordis-plugin-/, '')
-    .replace(/^(?:host-|client-)/, '')
+    .replace(/^dsh-(?:host-|client-)?/, '')
 }
 
 /** Whether an inventory row matches the local catalog query. */

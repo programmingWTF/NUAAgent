@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/acp",
-  "description": "Automation-only Agent Client Protocol server for driving NUAAgent agents over JSON-RPC stdio",
-  "version": "0.1.0-rc.5",
+  "description": "Automation-only Agent Client Protocol server for driving DeepSeek Harness agents over JSON-RPC stdio",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -36,13 +36,16 @@
     "@nuaagent/schemastery": "workspace:^"
   },
   "peerDependencies": {
+    "@nuaagent/attachment": "workspace:^",
     "@nuaagent/agent": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/llm": "workspace:^",
     "@nuaagent/session": "workspace:^",
     "@nuaagent/user-approval": "workspace:^",
     "@nuaagent/cordis": "workspace:^"
   },
   "devDependencies": {
+    "@nuaagent/attachment": "workspace:^",
     "@nuaagent/agent": "workspace:^",
     "@nuaagent/agent-loop": "workspace:^",
     "@nuaagent/agent-loop-testkit": "workspace:^",

@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/llm-deepseek",
-  "description": "DeepSeek chat-completions adapter for the NUAAgent LLM seam",
-  "version": "0.1.0-rc.5",
+  "description": "DeepSeek chat-completions adapter for the DeepSeek Harness LLM seam",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -32,10 +32,14 @@
   ],
   "license": "MIT",
   "peerDependencies": {
+    "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/atomic-write": "workspace:^",
+    "@nuaagent/brand": "workspace:^",
     "@nuaagent/credentials": "workspace:^",
     "@nuaagent/launch-environment": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
     "@nuaagent/llm": "workspace:^",
+    "@nuaagent/home-paths": "workspace:^",
     "@nuaagent/settings": "workspace:^",
     "@nuaagent/timeout": "workspace:^",
     "@nuaagent/anonymous-user-id": "workspace:^",
@@ -46,10 +50,14 @@
     "@nuaagent/schemastery": "workspace:^"
   },
   "devDependencies": {
+    "@nuaagent/attachment": "workspace:^",
+    "@nuaagent/atomic-write": "workspace:^",
+    "@nuaagent/brand": "workspace:^",
     "@nuaagent/credentials": "workspace:^",
     "@nuaagent/launch-environment": "workspace:^",
     "@nuaagent/invariants": "workspace:^",
     "@nuaagent/llm": "workspace:^",
+    "@nuaagent/home-paths": "workspace:^",
     "@nuaagent/settings": "workspace:^",
     "@nuaagent/timeout": "workspace:^",
     "@nuaagent/anonymous-user-id": "workspace:^",

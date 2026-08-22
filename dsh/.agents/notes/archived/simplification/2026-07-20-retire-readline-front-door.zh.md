@@ -7,7 +7,7 @@ Archived: 2026-07-26
 
 ## 问题
 
-仓库同时提供两个交互式终端前端：面向行的 readline 通道（`@nuaagent/stdio`）和全屏的 [`@nuaagent/tui`](../feature/2026-07-17-dedicated-full-screen-tui-front-door.md)。TUI 落地之后，readline 的交互角色已经冗余——`demo:tui` 作为编码 agent 体验取代了 `demo:repl`——而它剩下的真实角色（管道与自动化）已由单次任务的 `@nuaagent/demo` 应用以更好的方式承担（任务输入、DSH 原生 `text`/`json`/`stream-json` 输出、持久化、信号处理）。
+仓库同时提供两个交互式终端前端：面向行的 readline 通道（`@nuaagent/stdio`）和全屏的 [`@nuaagent/tui`](../feature/2026-07-17-dedicated-full-screen-tui-front-door.md)。TUI 落地之后，readline 的交互角色已经冗余——`demo:tui` 作为编码 agent 体验取代了 `demo:repl`——而它剩下的真实角色（管道与自动化）已由单次任务的 `@nuaagent/cli-demo` 应用以更好的方式承担（任务输入、DSH 原生 `text`/`json`/`stream-json` 输出、持久化、信号处理）。
 
 这种重复是结构性的，不只是表面问题：`dsh-stdio-demo` 携带一个 `TerminalMode`（`auto`/`readline`/`tui`）选择接缝、约 1,000 行 readline 单元测试、一套被 CI 演示冒烟测试和两个 built-bin e2e 用 grep 匹配的 readline 文本记录语法（`[tool call] …` 行），以及一个倒置的示例组合：旗舰 `tui-agent` 叶节点被定义为对它所取代的 `repl-agent` 叶节点的 include patch。
 

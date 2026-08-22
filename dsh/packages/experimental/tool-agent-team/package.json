@@ -1,0 +1,61 @@
+{
+  "name": "@nuaagent/experimental-tool-agent-team",
+  "description": "Scoped model-facing Agent Teams tools over ctx.agentTeams",
+  "version": "0.1.1-rc.2",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepseek-ai/deepseek-harness.git",
+    "directory": "packages/experimental/tool-agent-team"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/invariant.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@nuaagent/schemastery": "workspace:^"
+  },
+  "peerDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/experimental-agent-team": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@nuaagent/agent": "workspace:^",
+    "@nuaagent/agent-loop": "workspace:^",
+    "@nuaagent/agent-loop-testkit": "workspace:^",
+    "@nuaagent/invariants": "workspace:^",
+    "@nuaagent/session": "workspace:^",
+    "@nuaagent/session-persistence-jsonl": "workspace:^",
+    "@nuaagent/scope": "workspace:^",
+    "@nuaagent/subagent": "workspace:^",
+    "@nuaagent/subagent-fork-in-process": "workspace:^",
+    "@nuaagent/subagent-spawn-in-process": "workspace:^",
+    "@nuaagent/tool-subagent-control": "workspace:^",
+    "@nuaagent/system-prompt": "workspace:^",
+    "@nuaagent/experimental-agent-team": "workspace:^",
+    "@nuaagent/tools": "workspace:^",
+    "@nuaagent/cordis": "workspace:^"
+  }
+}

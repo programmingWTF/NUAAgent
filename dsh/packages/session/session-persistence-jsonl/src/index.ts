@@ -292,14 +292,6 @@ export class JsonlSessionPersistence extends SessionPersistence implements Persi
    * Read a file's bytes under a revision-stable loop: a writer appending
    * between stat and readFile would yield a torn physical file, so retry
    * while the stat revision changes.
-   *
-   * Bounded: a continuous external writer (another process still alive after
-   * a restart, appending to the same session log) would otherwise keep the
-   * revision moving forever and make history loading spin without ever
-   * returning. After {@link MAX_STABLE_READ_ATTEMPTS} failed rounds the
-   * latest read is accepted — readFile observes one atomic state, so the
-   * bytes are a valid cut of the log, and any torn tail is repaired later by
-   * the physical-format scanner.
    * @param path - the artifact file to read.
    * @param signal - optional cancellation for the stat/read work.
    * @returns the stable bytes and the revision that matched both stats.

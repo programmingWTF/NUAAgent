@@ -7,7 +7,7 @@ English | [中文](2026-07-20-retire-readline-front-door.zh.md)
 
 ## Problem
 
-The repo shipped two interactive terminal front doors: the line-oriented readline channel (`@nuaagent/stdio`) and the full-screen [`@nuaagent/tui`](../feature/2026-07-17-dedicated-full-screen-tui-front-door.md). After the TUI landed, readline's interactive role was redundant — `demo:tui` superseded `demo:repl` as the coding-agent experience — while its remaining real role, pipes and automation, was already served better by the one-shot `@nuaagent/demo` app (task in, DSH-native `text`/`json`/`stream-json` out, durable persistence, signal handling).
+The repo shipped two interactive terminal front doors: the line-oriented readline channel (`@nuaagent/stdio`) and the full-screen [`@nuaagent/tui`](../feature/2026-07-17-dedicated-full-screen-tui-front-door.md). After the TUI landed, readline's interactive role was redundant — `demo:tui` superseded `demo:repl` as the coding-agent experience — while its remaining real role, pipes and automation, was already served better by the one-shot `@nuaagent/cli-demo` app (task in, DSH-native `text`/`json`/`stream-json` out, durable persistence, signal handling).
 
 The duplication was structural, not just cosmetic: `dsh-stdio-demo` carried a `TerminalMode` (`auto`/`readline`/`tui`) selection seam, ~1,000 lines of readline unit tests, a readline transcript grammar (`[tool call] …` lines) that the CI demo smoke and two built-bin e2es grepped, and an inverted example composition where the flagship `tui-agent` leaf was defined as an include-patch over the `repl-agent` leaf it superseded.
 

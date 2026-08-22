@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/web",
-  "description": "Abstract web access capability seam (ctx.web) for the NUAAgent — search/fetch provider registry, registration-order-independent selection, request/result vocabulary, and the WebError taxonomy",
-  "version": "0.1.0-rc.5",
+  "description": "Abstract web access capability seam (ctx.web) for the DeepSeek Harness — search/fetch provider registry, registration-order-independent selection, request/result vocabulary, and the WebError taxonomy",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },

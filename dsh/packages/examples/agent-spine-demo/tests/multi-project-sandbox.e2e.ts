@@ -10,7 +10,7 @@ import * as FsPolicy from '@nuaagent/fs-observation-policy'
 import SandboxedFileSystem from '@nuaagent/fs-sandbox'
 import { CallId } from '@nuaagent/llm'
 import { LocalSandboxProvider } from '@nuaagent/sandbox-local'
-import { seatbeltProfileArgs } from '@nuaagent/sandbox-local/src/profiles.ts'
+import { bwrapProfileArgs, seatbeltProfileArgs } from '@nuaagent/sandbox-local/src/profiles.ts'
 import SandboxPolicyService from '@nuaagent/sandbox-policy'
 import { SessionId } from '@nuaagent/session'
 import * as ToolFs from '@nuaagent/tool-fs'
@@ -18,9 +18,7 @@ import type { ToolResult } from '@nuaagent/tools'
 import { launcherPath } from '@nuaagent/node-addon-landlock-run'
 import * as agentSpine from '../src/index.ts'
 
-const bwrapUsable = spawnSync('bwrap', [
-  '--ro-bind', '/', '/', '--dev', '/dev', '--proc', '/proc', '--die-with-parent', '--', 'true',
-], { timeout: 5_000, stdio: 'ignore' }).status === 0
+const bwrapUsable = spawnSync('bwrap', [...bwrapProfileArgs({ mode: 'read-only', workspaceRoot: '/' }), '--', 'true'], { timeout: 5_000, stdio: 'ignore' }).status === 0
 const landlockUsable = spawnSync(launcherPath(), ['--probe'], { timeout: 5_000, stdio: 'ignore' }).status === 0
 const seatbeltUsable = process.platform === 'darwin'
   && spawnSync('sandbox-exec', [...seatbeltProfileArgs({ mode: 'workspace-write', workspaceRoot: homedir() }), '--', 'true'], { timeout: 5_000, stdio: 'ignore' }).status === 0

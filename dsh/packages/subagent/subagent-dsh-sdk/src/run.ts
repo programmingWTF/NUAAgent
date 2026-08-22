@@ -1,5 +1,5 @@
 /**
- * Fresh-process SDK subagent client. Drives one child NUAAgent
+ * Fresh-process SDK subagent client. Drives one child DeepSeek Harness
  * runtime over stdio JSON-RPC through `@nuaagent/sdk-client` and owns
  * cancellation and quiescent disposal. Structure mirrors the ACP backend
  * (`@nuaagent/subagent-acp`): publish after the child handshake,

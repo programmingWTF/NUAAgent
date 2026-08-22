@@ -1,7 +1,7 @@
 {
   "name": "@nuaagent/cli",
   "description": "dsh CLI: profile boot, plugin management, and the browser UI alias",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.1-rc.2",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
   },
   "type": "module",
   "bin": {
-    "nuaagent": "lib/bin.js"
+    "dsh": "lib/bin.js"
   },
   "files": [
     "lib/*.js",
@@ -59,6 +59,7 @@
     "@nuaagent/tool-ask-user": "workspace:^",
     "@nuaagent/tool-bash": "workspace:^",
     "@nuaagent/tool-bash-persistent": "workspace:^",
+    "@nuaagent/tool-pwsh-persistent": "workspace:^",
     "@nuaagent/tool-cordis": "workspace:^",
     "@nuaagent/tool-fs": "workspace:^",
     "@nuaagent/tool-fs-search": "workspace:^",

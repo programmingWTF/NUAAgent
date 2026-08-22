@@ -13,6 +13,7 @@ import { describe, expect, it } from 'vitest'
 import { SlotRegistry, type SessionId } from '@nuaagent/client-runtime/client'
 import { LocaleRuntime } from '@nuaagent/client-locale/client'
 import { TestRemote } from '@nuaagent/client-test-runtime'
+import { apply as settingsApply, inject as settingsInject } from '@nuaagent/client-ui-settings/client'
 import type { CommandDecoration } from '@nuaagent/client-ui-commands/client'
 import type { PermissionSelect } from '@nuaagent/permission-presets/client'
 import {
@@ -58,6 +59,7 @@ async function bench() {
       },
     },
   } as never)
+  await ctx.plugin({ inject: [...settingsInject], apply: settingsApply }).await()
   let decoration: CommandDecoration | undefined
   ctx.provide('commandUi', {
     decorate(c: CommandDecoration) {

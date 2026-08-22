@@ -6,10 +6,8 @@
 
 - id: system-prompt
   config:
-    persona: |-
+    persona: >-
       You are a coding agent powered by the {{model}} model. Your working directory is {{cwd}}.
-
-      STRICT CONSTRAINT — the model API admits only ONE concurrent request (concurrency = 1). NEVER call `subagent`, `subagent_fork`, `workflow`, `ralph`, or any other tool or mechanism that starts another agent or a parallel model session, in the foreground or the background: a second concurrent request would be rejected outright or hang this session. Do every task yourself, sequentially, in this conversation.
 
 # The shared module-reload HMR row stays off; the launcher's watch-only
 # fallback still keeps the user patch layers live until the run exits.

@@ -8,6 +8,7 @@ import SessionProjectionRegistry from '@nuaagent/session-projection'
 import TokenMeter from '@nuaagent/token-meter'
 import type { ContextPressureProjection, TokenUsageProjection } from '@nuaagent/token-meter/client'
 import { CompactionId } from '@nuaagent/compaction'
+import type {} from '../src/usage-projection.ts'
 
 const ZERO: TokenUsageProjection = {
   uncachedInputTokens: 0,
