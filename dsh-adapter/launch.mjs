@@ -95,6 +95,7 @@ doc['llm-pi-ai'].providers = doc['llm-pi-ai'].providers || {};
 // 只刷新 API 端点与 key 环境变量；config.json 的 model 仅作为新增项补入列表。
 const prevProvider = doc['llm-pi-ai'].providers['nuaa'];
 const prev = (prevProvider && typeof prevProvider === 'object') ? prevProvider : {};
+const modelId = (m) => (typeof m === 'string' ? m : m?.id);
 // 已有 settings.yaml 条目也做 normalize（迁移旧版带斜杠 provider 前缀的模型 id），
 // 使旧条目与新条目用同一无斜杠 id，并按 id 去重（normalize 可能让斜杠/无斜杠
 // 两条同 id 条目并存，保留首个即可）。
@@ -109,7 +110,6 @@ const models = [];
     models.push(entry);
   }
 }
-const modelId = (m) => (typeof m === 'string' ? m : m?.id);
 // 合并 config.json 的 models（如全量 NUAA_MODELS）：只补新增，不删已有（保留 UI 手工加的模型）
 const cfgModels = Array.isArray(nuaa.models) ? nuaa.models : [];
 for (const m of cfgModels) {
